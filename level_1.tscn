@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://kbjh2plbis4u"]
+
+[ext_resource type="Texture2D" uid="uid://c455gyvr7hoey" path="res://background_game_2.png" id="1_3hls8"]
+[ext_resource type="Texture2D" uid="uid://brfx3exieeaaj" path="res://rock_tile.png" id="2_ihfcg"]
+[ext_resource type="Texture2D" uid="uid://b8afq3xai4kt0" path="res://ground_tile.png" id="3_rka8t"]
+[ext_resource type="Texture2D" uid="uid://6r6slq2rg20e" path="res://bounce_tile.png" id="4_5hph3"]
+
+[node name="Level1" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [106.0, 191.0]
+
+[node name="GameBG" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_3hls8")
+
+[node name="RockTile" type="Sprite2D" parent="."]
+position = Vector2(841, 150)
+texture = ExtResource("2_ihfcg")
+
+[node name="GroundTile" type="Sprite2D" parent="."]
+position = Vector2(928, 459)
+texture = ExtResource("3_rka8t")
+
+[node name="BounceTile" type="Sprite2D" parent="."]
+position = Vector2(999, 457)
+texture = ExtResource("4_5hph3")

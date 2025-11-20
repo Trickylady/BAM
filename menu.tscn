@@ -1,0 +1,211 @@
+[gd_scene load_steps=21 format=3 uid="uid://dkvx72mdk1m41"]
+
+[ext_resource type="Texture2D" uid="uid://nxgwwpcy3hhf" path="res://menu_bg.png" id="1_l48gv"]
+[ext_resource type="Script" uid="uid://bh1br8v38gclv" path="res://menu.gd" id="1_nrnbx"]
+[ext_resource type="Texture2D" uid="uid://dhadtq4woms1v" path="res://main_menu_overlay.png" id="2_ecwwl"]
+[ext_resource type="Texture2D" uid="uid://bslfuw5o3jh2k" path="res://logo1.png" id="3_kk3ma"]
+[ext_resource type="Texture2D" uid="uid://by3e6vjb2mqk6" path="res://logo2.png" id="4_nrnbx"]
+[ext_resource type="Texture2D" uid="uid://bsvt1jv36bvdt" path="res://logo3.png" id="5_iqepy"]
+[ext_resource type="Texture2D" uid="uid://bfjii4j85iyxi" path="res://logo4.png" id="6_h1wq0"]
+[ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://ComicaRegular.otf" id="7_ecwwl"]
+[ext_resource type="Script" uid="uid://ts7qcjrm0yfm" path="res://b_about.gd" id="9_iqepy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dwrpx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kk3ma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nrnbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_iqepy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_h1wq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_iqepy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nrnbx")
+}],
+"loop": true,
+"name": &"logoanimation",
+"speed": 15.0
+}]
+
+[sub_resource type="Theme" id="Theme_kk3ma"]
+default_font = ExtResource("7_ecwwl")
+default_font_size = 50
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nrnbx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqepy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h1wq0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dwrpx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g7jxm"]
+
+[sub_resource type="Theme" id="Theme_nrnbx"]
+default_font = ExtResource("7_ecwwl")
+default_font_size = 50
+
+[sub_resource type="Animation" id="Animation_l48gv"]
+resource_name = "menumovement"
+length = 360.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menuoverlay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 180, 360),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1920, -1080), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ecwwl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menuoverlay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kk3ma"]
+_data = {
+&"RESET": SubResource("Animation_ecwwl"),
+&"menumovement": SubResource("Animation_l48gv")
+}
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_nrnbx")
+
+[node name="Menubg" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_l48gv")
+
+[node name="Menuoverlay" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 3840.0
+offset_bottom = 2160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ecwwl")
+
+[node name="Logo" type="AnimatedSprite2D" parent="."]
+position = Vector2(917, 287)
+sprite_frames = SubResource("SpriteFrames_dwrpx")
+animation = &"logoanimation"
+autoplay = "logoanimation"
+frame_progress = 0.8267476
+
+[node name="About" type="Node2D" parent="."]
+
+[node name="Prefrences" type="Node2D" parent="."]
+
+[node name="TNewGame" type="RichTextLabel" parent="."]
+offset_left = 1456.0
+offset_top = 51.0
+offset_right = 1866.0
+offset_bottom = 116.0
+theme = SubResource("Theme_kk3ma")
+bbcode_enabled = true
+text = "[center][wave]Back
+[/wave][/center]"
+
+[node name="Menulist" type="Node2D" parent="."]
+
+[node name="BAbout" type="Button" parent="Menulist"]
+offset_left = 782.0
+offset_top = 634.0
+offset_right = 1067.0
+offset_bottom = 716.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nrnbx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iqepy")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_h1wq0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dwrpx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g7jxm")
+script = ExtResource("9_iqepy")
+
+[node name="TAbout" type="RichTextLabel" parent="Menulist/BAbout"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = 15.0
+offset_right = 354.0
+offset_bottom = 80.0
+mouse_filter = 2
+theme = SubResource("Theme_nrnbx")
+bbcode_enabled = true
+text = "[center][wave]About
+[/wave][/center]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TPreferences" type="RichTextLabel" parent="Menulist"]
+offset_left = 737.0
+offset_top = 500.0
+offset_right = 1147.0
+offset_bottom = 565.0
+theme = SubResource("Theme_kk3ma")
+bbcode_enabled = true
+text = "[center][wave]Preferences[/wave][/center]"
+
+[node name="TScore" type="RichTextLabel" parent="Menulist"]
+offset_left = 735.0
+offset_top = 571.0
+offset_right = 1145.0
+offset_bottom = 636.0
+theme = SubResource("Theme_kk3ma")
+bbcode_enabled = true
+text = "[center][wave]Scoreboard[/wave][/center]"
+
+[node name="TExit" type="RichTextLabel" parent="Menulist"]
+offset_left = 717.0
+offset_top = 725.0
+offset_right = 1127.0
+offset_bottom = 790.0
+theme = SubResource("Theme_kk3ma")
+bbcode_enabled = true
+text = "[center][wave]Exit[/wave][/center]"
+
+[node name="TNewGame" type="RichTextLabel" parent="Menulist"]
+offset_left = 724.0
+offset_top = 418.0
+offset_right = 1134.0
+offset_bottom = 483.0
+theme = SubResource("Theme_kk3ma")
+bbcode_enabled = true
+text = "[center][wave]New Game[/wave][/center]"
+
+[node name="APMenu" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kk3ma")
+}
+autoplay = "menumovement"
+
+[connection signal="button_up" from="Menulist/BAbout" to="Menulist/BAbout" method="_on_button_up"]
+[connection signal="mouse_entered" from="Menulist/BAbout" to="Menulist/BAbout" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Menulist/BAbout" to="Menulist/BAbout" method="_on_mouse_exited"]
+[connection signal="pressed" from="Menulist/BAbout" to="Menulist/BAbout" method="_on_pressed"]
