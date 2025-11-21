@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://kbjh2plbis4u"]
+[gd_scene load_steps=6 format=3 uid="uid://kbjh2plbis4u"]
 
 [ext_resource type="Texture2D" uid="uid://c455gyvr7hoey" path="res://background_game_2.png" id="1_3hls8"]
 [ext_resource type="Texture2D" uid="uid://brfx3exieeaaj" path="res://rock_tile.png" id="2_ihfcg"]
 [ext_resource type="Texture2D" uid="uid://b8afq3xai4kt0" path="res://ground_tile.png" id="3_rka8t"]
 [ext_resource type="Texture2D" uid="uid://6r6slq2rg20e" path="res://bounce_tile.png" id="4_5hph3"]
+[ext_resource type="Texture2D" uid="uid://d0ies5i7oon4d" path="res://overlay.png" id="5_rka8t"]
 
 [node name="Level1" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [106.0, 191.0]
@@ -24,3 +25,9 @@ texture = ExtResource("3_rka8t")
 [node name="BounceTile" type="Sprite2D" parent="."]
 position = Vector2(999, 457)
 texture = ExtResource("4_5hph3")
+
+[node name="Gameoverlay" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("5_rka8t")
+metadata/_edit_use_anchors_ = true
