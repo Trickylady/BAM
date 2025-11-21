@@ -1,22 +1,20 @@
-extends Button
+extends Node2D
 
-@onready var label = $TAbout
-
-var base_text := "About"
-var hover_color := "#6c098c"
+var buttons : Array[Button]
+var hover_color := "#4b294b"
 var pressed_color := "#4b6d5f"
 
 func _ready():
 	update_label_color("white")
+	get_all_buttons()
 
-func _on_Button_pressed():
-	update_label_color(pressed_color)
+func get_all_buttons():
+	for child in get_children():
+		if child is Button:
+			buttons.append(child)
 
-func update_label_color(color: String):
+func update_label_color(color: String, label):
 	label.text = "[color=%s][wave amp=20 freq=7]%s[/wave][/color]" % [color, base_text]
-
-func _on_button_up() -> void:
-	update_label_color("white")
 
 func _on_pressed() -> void:
 	update_label_color(pressed_color)

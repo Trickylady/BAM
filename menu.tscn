@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bsvt1jv36bvdt" path="res://logo3.png" id="5_iqepy"]
 [ext_resource type="Texture2D" uid="uid://bfjii4j85iyxi" path="res://logo4.png" id="6_h1wq0"]
 [ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://ComicaRegular.otf" id="7_ecwwl"]
-[ext_resource type="Script" uid="uid://ts7qcjrm0yfm" path="res://b_about.gd" id="9_iqepy"]
+[ext_resource type="Script" uid="uid://b8ur2jaacwchh" path="res://menulist.gd" id="9_nrnbx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dwrpx"]
 animations = [{
@@ -54,6 +54,21 @@ default_font_size = 50
 default_font = ExtResource("7_ecwwl")
 default_font_size = 50
 
+[sub_resource type="Animation" id="Animation_ecwwl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menuoverlay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_l48gv"]
 resource_name = "menumovement"
 length = 360.0
@@ -69,21 +84,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-1920, -1080), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ecwwl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Menuoverlay:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kk3ma"]
@@ -134,6 +134,7 @@ text = "[center][wave]Back
 [/wave][/center]"
 
 [node name="Menulist" type="Node2D" parent="."]
+script = ExtResource("9_nrnbx")
 
 [node name="BAbout" type="Button" parent="Menulist"]
 offset_left = 782.0
@@ -145,7 +146,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_iqepy")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_h1wq0")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_dwrpx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g7jxm")
-script = ExtResource("9_iqepy")
 
 [node name="TAbout" type="RichTextLabel" parent="Menulist/BAbout"]
 layout_mode = 0
@@ -204,8 +204,3 @@ libraries = {
 &"": SubResource("AnimationLibrary_kk3ma")
 }
 autoplay = "menumovement"
-
-[connection signal="button_up" from="Menulist/BAbout" to="Menulist/BAbout" method="_on_button_up"]
-[connection signal="mouse_entered" from="Menulist/BAbout" to="Menulist/BAbout" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Menulist/BAbout" to="Menulist/BAbout" method="_on_mouse_exited"]
-[connection signal="pressed" from="Menulist/BAbout" to="Menulist/BAbout" method="_on_pressed"]
