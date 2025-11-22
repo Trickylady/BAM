@@ -1,0 +1,116 @@
+[gd_scene load_steps=19 format=3 uid="uid://dommwaim2746h"]
+
+[ext_resource type="Texture2D" uid="uid://67bwyd7tpmo8" path="res://extra_snake_front_1.png" id="1_jmwgi"]
+[ext_resource type="Texture2D" uid="uid://dhtt8c5s5suxs" path="res://extra_snake_front_2.png" id="2_g2u8i"]
+[ext_resource type="Texture2D" uid="uid://wxcw21bqb72l" path="res://extra_snake_side_1.png" id="3_otto8"]
+[ext_resource type="Texture2D" uid="uid://vax3qmg3v8gy" path="res://extra_snake_side_2.png" id="4_8q82m"]
+[ext_resource type="Texture2D" uid="uid://t0w0q56vkc55" path="res://extra_snake_back_1.png" id="5_epc7x"]
+[ext_resource type="Texture2D" uid="uid://btpdw5tgqdux1" path="res://extra_snake_back_2.png" id="6_o7rgc"]
+[ext_resource type="Texture2D" uid="uid://cbanm8078juc3" path="res://enemy_dead_1.png" id="7_kdav3"]
+[ext_resource type="Texture2D" uid="uid://bl8jpno6rdagb" path="res://enemy_dead_2.png" id="8_jpbtr"]
+[ext_resource type="Texture2D" uid="uid://bg3rqljwn3q63" path="res://enemy_dead_3.png" id="9_qgdfx"]
+[ext_resource type="Texture2D" uid="uid://ccnnp4vagjpt6" path="res://enemy_dead_4.png" id="10_qku5p"]
+[ext_resource type="Texture2D" uid="uid://btmkhhyokm17g" path="res://enemy_dead_5.png" id="11_l1fjw"]
+[ext_resource type="Texture2D" uid="uid://tgl412n4f8m1" path="res://snake_front_1.png" id="12_b5wqg"]
+[ext_resource type="Texture2D" uid="uid://xbgyfo40a30b" path="res://snake_front_2.png" id="13_hgro5"]
+[ext_resource type="Texture2D" uid="uid://b8a2lvpdxlxiq" path="res://snake_side_1.png" id="14_18rq2"]
+[ext_resource type="Texture2D" uid="uid://ckteregdr5ggn" path="res://snake_side_2.png" id="15_ccdwq"]
+[ext_resource type="Texture2D" uid="uid://cp2mc7fd3ny0k" path="res://snake_back_1.png" id="16_0jgdh"]
+[ext_resource type="Texture2D" uid="uid://dktvoqckd60ka" path="res://snake_back_2.png" id="17_6wg26"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qskgw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jmwgi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g2u8i")
+}],
+"loop": true,
+"name": &"extrasnakedown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_otto8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8q82m")
+}],
+"loop": true,
+"name": &"extrasnakeside",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_epc7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o7rgc")
+}],
+"loop": true,
+"name": &"extrasnakeup",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_kdav3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jpbtr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qgdfx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_qku5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_l1fjw")
+}],
+"loop": false,
+"name": &"snakedead",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_b5wqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_hgro5")
+}],
+"loop": true,
+"name": &"snakewalkdown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_18rq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ccdwq")
+}],
+"loop": true,
+"name": &"snakewalkside",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_0jgdh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_6wg26")
+}],
+"loop": true,
+"name": &"snakewalkup",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D"]
+
+[node name="Snake" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qskgw")
+animation = &"snakedead"
+frame = 4
+frame_progress = 1.0

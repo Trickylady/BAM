@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://kbjh2plbis4u"]
+[gd_scene load_steps=21 format=4 uid="uid://kbjh2plbis4u"]
 
 [ext_resource type="Texture2D" uid="uid://c455gyvr7hoey" path="res://background_game_2.png" id="1_3hls8"]
 [ext_resource type="Texture2D" uid="uid://brfx3exieeaaj" path="res://rock_tile.png" id="2_ihfcg"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://d4k6w0cj6j8gd" path="res://player.tscn" id="6_5hph3"]
 [ext_resource type="Texture2D" uid="uid://bnnny7od3cbm1" path="res://crystal.png" id="7_j7kpp"]
 [ext_resource type="Texture2D" uid="uid://cl4iu46ei7g5h" path="res://dragon_icon.png" id="8_bjebc"]
+[ext_resource type="Texture2D" uid="uid://n8e0leay807f" path="res://life_full.png" id="9_1pe0h"]
+[ext_resource type="Texture2D" uid="uid://d0du11c0tecg7" path="res://life_half.png" id="10_27bay"]
+[ext_resource type="Texture2D" uid="uid://b2bo2yw631hm8" path="res://life_empty.png" id="11_sof0w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rka8t"]
 texture = ExtResource("4_5hph3")
@@ -129,3 +132,27 @@ metadata/_edit_use_anchors_ = true
 [node name="DragonIcon" type="Sprite2D" parent="."]
 position = Vector2(113, 88)
 texture = ExtResource("8_bjebc")
+
+[node name="LifeFull" type="Sprite2D" parent="."]
+position = Vector2(57, 188)
+texture = ExtResource("9_1pe0h")
+
+[node name="LifeFull2" type="Sprite2D" parent="."]
+position = Vector2(125, 190)
+texture = ExtResource("9_1pe0h")
+
+[node name="LifeFull3" type="Sprite2D" parent="."]
+position = Vector2(189, 189)
+texture = ExtResource("9_1pe0h")
+
+[node name="LifeFull4" type="Sprite2D" parent="."]
+position = Vector2(58, 254)
+texture = ExtResource("9_1pe0h")
+
+[node name="LifeHalf" type="Sprite2D" parent="."]
+position = Vector2(127, 249)
+texture = ExtResource("10_27bay")
+
+[node name="LifeEmpty" type="Sprite2D" parent="."]
+position = Vector2(191, 251)
+texture = ExtResource("11_sof0w")
