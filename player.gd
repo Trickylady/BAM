@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+class_name Player
+
 @export var tile_size := 72
 @export var move_time := 0.25   # how long to move one tile
 @onready var bomb_placement_sys: BombPlacementSys = $BombPlacementSys
@@ -42,3 +45,6 @@ func _physics_process(delta):
 		position = position.move_toward(target_position, tile_size / move_time * delta)
 		if position == target_position:
 			moving = false
+			
+func die():
+	print("DIE")

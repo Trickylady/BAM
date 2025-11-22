@@ -2,6 +2,7 @@ extends Area2D
 class_name bomb
 
 
+
 var explosion_size = 1
 
 
