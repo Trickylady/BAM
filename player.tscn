@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d4k6w0cj6j8gd"]
+[gd_scene load_steps=25 format=3 uid="uid://d4k6w0cj6j8gd"]
 
 [ext_resource type="Texture2D" uid="uid://rqxektrc1enw" path="res://dragon_front_1.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dd1353alu4xf6" path="res://player.gd" id="1_onrkg"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://df7dl2fwjxleu" path="res://dragon_walk_2.png" id="18_hl5qd"]
 [ext_resource type="Texture2D" uid="uid://oik13k32f7ot" path="res://dragon_walk_3.png" id="19_ek41f"]
 [ext_resource type="Texture2D" uid="uid://mg18grkydxxk" path="res://dragon_back_2.png" id="20_khis8"]
+[ext_resource type="Script" uid="uid://v8gtekhp60k7" path="res://bomb_placement_sys.gd" id="21_5tmop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 
@@ -158,18 +159,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_pbfsw"]
+
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 5
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("1_4flbx")
 
 [node name="Dragon" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b88wv")
 animation = &"fireside"
 frame = 4
 frame_progress = 1.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pbfsw")
+frame_progress = 0.041666083
+
+[node name="BombPlacementSys" type="Node" parent="."]
+script = ExtResource("21_5tmop")
