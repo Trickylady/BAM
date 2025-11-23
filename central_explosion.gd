@@ -10,24 +10,36 @@ class_name CenteralExplosion
 
 const DIRECTIONAL_EXPLOSION = preload("res://directional_explosion.tscn")
 
+var animation_names = ["up", "right", "down", "left"]
+var anim_dirs: Array[Vector2] = [
+	Vector2(0, -70),
+	Vector2(70, 0),
+	Vector2(0, 70),
+	Vector2(-70, 0)
+]
+
 var size = 1
 
 func _ready() -> void:
 	check_raycasts()
 	
 func check_raycasts():
-	var up_raycast = raycasts[0]
-	up_raycast.target_position = up_raycast.target_position * size
-	up_raycast.force_raycast_update()
-	if !up_raycast.is_colliding():
-		create_explosion_for_size(size, "up", Vector2(0, -70))
+	for i in raycasts.size():
+		check_raycast_directions(animation_names[i], raycasts[i], anim_dirs[i])
+
+func check_raycast_directions(anim_name: String, raycast: RayCast2D, animDir: Vector2):
+	raycast.target_position = raycast.target_position * size
+	raycast.force_raycast_update()
+	if !raycast.is_colliding():
+		create_explosion_for_size(size, anim_name, animDir)
 	else:
-		var size_of_explosion = calculate_size_of_explosion(up_raycast)
-		var collider = up_raycast.get_collider()
-		if size_of_explosion != null:
-			create_explosion_for_size(size, "up", Vector2(0, -70))
-			
-		execute_explosion_collision()
+		var size_explosion = calculate_size_of_explosion(raycast)
+		var collider = raycast.get_collider()
+		if size_explosion != null:
+			create_explosion_for_size(size_explosion, anim_name, animDir)
+		execute_explosion_collision(collider)
+	
+	
 		
 func create_explosion_for_size(size: int, animation_name: String, animation_position: Vector2):
 	for i in size:
@@ -41,7 +53,7 @@ func create_explosion_animation_slice(anim_name: String, anim_position: Vector2)
 	var directional_explosion = DIRECTIONAL_EXPLOSION.instantiate()
 	directional_explosion.position = anim_position
 	add_child(directional_explosion)
-	directional_explosion.play_animation(anim_name)
+	directional_explosion.play_anim(anim_name)
 
 func calculate_size_of_explosion(raycast: RayCast2D):
 	var collider = raycast.get_collider()
@@ -53,7 +65,7 @@ func calculate_size_of_explosion(raycast: RayCast2D):
 		return size_of_explosion_before_collider
 		
 func execute_explosion_collision(collider: Object):
-	if collider is BrickWall:
-		(collider as BrickWAll).destroy()
+	if collider is GroundTile:
+		(collider as GroundTile).destroy()
 	
 		

@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm0ud10tqwi5g"]
+[gd_scene load_steps=4 format=3 uid="uid://dm0ud10tqwi5g"]
 
+[ext_resource type="Script" uid="uid://bte15jw6eo6ms" path="res://ground_tile.gd" id="1_lm3os"]
 [ext_resource type="Texture2D" uid="uid://b8afq3xai4kt0" path="res://ground_tile.png" id="1_tfdjb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lm3os"]
 size = Vector2(70, 70)
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[node name="GroundTile" type="StaticBody2D"]
+script = ExtResource("1_lm3os")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lm3os")
