@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 class_name Player
 
-@export var tile_size := 72
+@export var tile_size := 70
 @export var move_time := 0.25   # how long to move one tile
 @onready var bomb_placement_sys: BombPlacementSys = $BombPlacementSys
 

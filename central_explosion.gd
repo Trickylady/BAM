@@ -22,6 +22,16 @@ var size = 1
 
 func _ready() -> void:
 	check_raycasts()
+	# Auto-remove this node after a short delay
+	var timer := Timer.new()
+	timer.wait_time = 0.2  # adjust to match explosion duration
+	timer.one_shot = true
+	add_child(timer)
+	timer.start()
+	timer.timeout.connect(_on_timeout)
+
+func _on_timeout():
+	queue_free()
 	
 func check_raycasts():
 	for i in raycasts.size():
@@ -54,6 +64,12 @@ func create_explosion_animation_slice(anim_name: String, anim_position: Vector2)
 	directional_explosion.position = anim_position
 	add_child(directional_explosion)
 	directional_explosion.play_anim(anim_name)
+	
+	directional_explosion.connect("animation_finished", Callable(self, "_on_explosion_finished").bind(directional_explosion))
+
+func _on_explosion_finished(anim_name: String, explosion_node: Node):
+	explosion_node.queue_free()
+
 
 func calculate_size_of_explosion(raycast: RayCast2D):
 	var collider = raycast.get_collider()
