@@ -12,49 +12,49 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_kdwu2")
 }],
-"loop": true,
+"loop": false,
 "name": &"down_end",
-"speed": 5.0
+"speed": 100.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_kdwu2")
 }],
-"loop": true,
+"loop": false,
 "name": &"down_middle",
-"speed": 5.0
+"speed": 100.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_q1apl")
 }],
-"loop": true,
+"loop": false,
 "name": &"left_end",
-"speed": 5.0
+"speed": 100.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_q1apl")
 }],
-"loop": true,
+"loop": false,
 "name": &"left_middle",
-"speed": 5.0
+"speed": 100.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_q1apl")
 }],
-"loop": true,
+"loop": false,
 "name": &"right_end",
-"speed": 5.0
+"speed": 100.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_q1apl")
 }],
-"loop": true,
+"loop": false,
 "name": &"right_middle",
-"speed": 5.0
+"speed": 100.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -81,7 +81,6 @@ shape = SubResource("RectangleShape2D_n2f2l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2lrv4")
-animation = &"down_end"
-frame_progress = 0.7771083
+animation = &"right_middle"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

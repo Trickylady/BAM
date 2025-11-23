@@ -4,6 +4,7 @@ class_name DirectionalExplosion
 func play_anim(animation_name: String):
 	animated_sprite_2d.play(animation_name)
 
+
 func _ready():
 	# Connect the body_entered signal
 	body_entered.connect(_on_body_entered)

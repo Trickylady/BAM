@@ -28,7 +28,7 @@ func check_raycasts():
 		check_raycast_directions(animation_names[i], raycasts[i], anim_dirs[i])
 
 func check_raycast_directions(anim_name: String, raycast: RayCast2D, animDir: Vector2):
-	raycast.target_position = raycast.target_position * size
+	raycast.target_position = animDir * size
 	raycast.force_raycast_update()
 	if !raycast.is_colliding():
 		create_explosion_for_size(size, anim_name, animDir)
@@ -44,9 +44,9 @@ func check_raycast_directions(anim_name: String, raycast: RayCast2D, animDir: Ve
 func create_explosion_for_size(size: int, animation_name: String, animation_position: Vector2):
 	for i in size:
 		if i < size - 1:
-			create_explosion_animation_slice("%_middle" % animation_name, animation_position * (i+1))
+			create_explosion_animation_slice("%s_middle" % animation_name, animation_position * (i+1))
 		else:
-			create_explosion_animation_slice("%_end" % animation_name, animation_position * (i+1))
+			create_explosion_animation_slice("%s_end" % animation_name, animation_position * (i+1))
 			
 
 func create_explosion_animation_slice(anim_name: String, anim_position: Vector2):
