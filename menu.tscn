@@ -147,7 +147,7 @@ focus_mode = 0
 flat = true
 metadata/_edit_group_ = true
 
-[node name="TNewGame" type="RichTextLabel" parent="ButtonBack"]
+[node name="TBack" type="RichTextLabel" parent="ButtonBack"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -311,12 +311,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HSlider3" type="HSlider" parent="Preferencestab"]
+[node name="SliderMaster" type="HSlider" parent="Preferencestab"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 675.0
-offset_top = 744.0
+offset_top = 649.0
 offset_right = 1277.0
-offset_bottom = 784.0
+offset_bottom = 689.0
+
+[node name="SliderMusic" type="HSlider" parent="Preferencestab"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 675.0
+offset_top = 705.0
+offset_right = 1277.0
+offset_bottom = 745.0
+
+[node name="SliderSFX" type="HSlider" parent="Preferencestab"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 675.0
+offset_top = 760.0
+offset_right = 1277.0
+offset_bottom = 800.0
 
 [node name="Push" type="RichTextLabel" parent="Preferencestab"]
 layout_mode = 0
@@ -364,9 +381,9 @@ horizontal_alignment = 2
 [node name="SFX" type="RichTextLabel" parent="Preferencestab"]
 layout_mode = 0
 offset_left = 1047.0
-offset_top = 731.0
+offset_top = 743.0
 offset_right = 1277.0
-offset_bottom = 761.0
+offset_bottom = 773.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("7_ecwwl")
 theme_override_font_sizes/normal_font_size = 25
@@ -407,20 +424,6 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 2
 
-[node name="HSlider" type="HSlider" parent="Preferencestab"]
-layout_mode = 0
-offset_left = 675.0
-offset_top = 705.0
-offset_right = 1277.0
-offset_bottom = 745.0
-
-[node name="HSlider2" type="HSlider" parent="Preferencestab"]
-layout_mode = 0
-offset_left = 675.0
-offset_top = 649.0
-offset_right = 1277.0
-offset_bottom = 689.0
-
 [node name="movebuttons" type="Sprite2D" parent="Preferencestab"]
 position = Vector2(1204, 507)
 texture = ExtResource("9_h1wq0")
@@ -436,3 +439,4 @@ texture = ExtResource("11_g7jxm")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_dwrpx")
 autoplay = true
+bus = &"Music"

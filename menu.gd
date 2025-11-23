@@ -12,11 +12,8 @@ func _ready():
 		btn.pressed.connect(update_label_color.bind("#4b6d5f", label, label.text))
 		btn.mouse_entered.connect(update_label_color.bind("#4b294b", label, label.text))
 		btn.mouse_exited.connect(update_label_color.bind("white", label, label.text))
-	$Menulist.show()
-	$ButtonBack.hide()
-	$Scoreboardtab.hide()
-	$Abouttab.hide()
-	$Preferencestab.hide()
+	_backtomenu()
+	%ButtonBack.hide()
 	%ButtonNewGame.pressed.connect(_on_new_game)
 	%ButtonAbout.pressed.connect(_about)
 	%ButtonPreferences.pressed.connect(_preferences)
@@ -34,28 +31,28 @@ func _on_new_game() -> void:
 	Input.mouse_mode =Input.MOUSE_MODE_HIDDEN
 
 func _backtomenu() -> void:
-	$ButtonBack.hide()
+	%ButtonBack.hide()
 	$Abouttab.hide()
 	$Menulist.show()
 	$Scoreboardtab.hide()
 	$Preferencestab.hide()
 
 func _about() -> void:
-	$ButtonBack.show()
+	%ButtonBack.show()
 	$Abouttab.show()
 	$Menulist.hide()
 	$Scoreboardtab.hide()
 	$Preferencestab.hide()
 
 func _preferences() -> void:
-	$ButtonBack.show()
+	%ButtonBack.show()
 	$Abouttab.hide()
 	$Menulist.hide()
 	$Scoreboardtab.hide()
 	$Preferencestab.show()
 
 func _scoreboard() -> void:
-	$ButtonBack.show()
+	%ButtonBack.show()
 	$Abouttab.hide()
 	$Menulist.hide()
 	$Scoreboardtab.show()
