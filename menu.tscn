@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dkvx72mdk1m41"]
+[gd_scene load_steps=27 format=3 uid="uid://dkvx72mdk1m41"]
 
 [ext_resource type="Texture2D" uid="uid://nxgwwpcy3hhf" path="res://menu_bg.png" id="1_l48gv"]
 [ext_resource type="Script" uid="uid://bh1br8v38gclv" path="res://menu.gd" id="1_nrnbx"]
@@ -8,15 +8,18 @@
 [ext_resource type="Texture2D" uid="uid://bsvt1jv36bvdt" path="res://logo3.png" id="5_iqepy"]
 [ext_resource type="Texture2D" uid="uid://bfjii4j85iyxi" path="res://logo4.png" id="6_h1wq0"]
 [ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://ComicaRegular.otf" id="7_ecwwl"]
+[ext_resource type="Texture2D" uid="uid://bpu8vcqcb6t2b" path="res://slider_icon.png" id="9_g7jxm"]
 [ext_resource type="Texture2D" uid="uid://bh3wlyyibjiws" path="res://buttons.png" id="9_h1wq0"]
 [ext_resource type="Texture2D" uid="uid://ciuavur1tn16q" path="res://ctrl.png" id="10_dwrpx"]
+[ext_resource type="StyleBox" uid="uid://db8ot54qw065d" path="res://SLIDERSTYLE.tres" id="10_oxnod"]
 [ext_resource type="Texture2D" uid="uid://cnsu5gta2473u" path="res://spacebar.png" id="11_g7jxm"]
+[ext_resource type="StyleBox" uid="uid://ctu7v8oe0t3bt" path="res://slideroverstyle.tres" id="11_gd0jp"]
 [ext_resource type="AudioStream" uid="uid://cxk4kxnux4el4" path="res://menumusic.mp3" id="12_dwrpx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dwrpx"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 10.0,
 "texture": ExtResource("3_kk3ma")
 }, {
 "duration": 1.0,
@@ -36,7 +39,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"logoanimation",
-"speed": 15.0
+"speed": 10.0
 }]
 
 [sub_resource type="Theme" id="Theme_kk3ma"]
@@ -112,53 +115,16 @@ texture = ExtResource("1_l48gv")
 
 [node name="Menuoverlay" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -540.0
-offset_right = 2880.0
-offset_bottom = 1620.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 3840.0
+offset_bottom = 2160.0
 texture = ExtResource("2_ecwwl")
 
 [node name="Logo" type="AnimatedSprite2D" parent="."]
-position = Vector2(917, 287)
+position = Vector2(982, 244)
 sprite_frames = SubResource("SpriteFrames_dwrpx")
 animation = &"logoanimation"
 autoplay = "logoanimation"
-frame_progress = 0.8267476
-
-[node name="ButtonBack" type="Button" parent="." groups=["buttons"]]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -285.0
-offset_top = 36.0
-offset_right = -30.0
-offset_bottom = 96.0
-grow_horizontal = 0
-focus_mode = 0
-flat = true
-metadata/_edit_group_ = true
-
-[node name="TBack" type="RichTextLabel" parent="ButtonBack"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = SubResource("Theme_kk3ma")
-bbcode_enabled = true
-text = "[center][wave]Back
-[/wave][/center]"
+frame_progress = 0.9404832
 
 [node name="Menulist" type="VBoxContainer" parent="."]
 visible = false
@@ -303,7 +269,32 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="abouttext" type="RichTextLabel" parent="Abouttab"]
+layout_mode = 0
+offset_left = 746.0
+offset_top = 409.0
+offset_right = 1232.0
+offset_bottom = 806.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("7_ecwwl")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center][font_size=32]Camsdono[/font_size]
+coding
+stuff
+
+[font_size=32]Trickylady[/font_size]
+concept
+art
+other stuff
+
+[font_size=32]Music & SFX[/font_size]
+Pixabay
+
+[/center]"
+
 [node name="Preferencestab" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -318,6 +309,14 @@ offset_left = 675.0
 offset_top = 649.0
 offset_right = 1277.0
 offset_bottom = 689.0
+theme_override_icons/grabber = ExtResource("9_g7jxm")
+theme_override_icons/grabber_highlight = ExtResource("9_g7jxm")
+theme_override_icons/grabber_disabled = ExtResource("9_g7jxm")
+theme_override_styles/slider = ExtResource("10_oxnod")
+theme_override_styles/grabber_area = ExtResource("11_gd0jp")
+theme_override_styles/grabber_area_highlight = ExtResource("11_gd0jp")
+max_value = 1.0
+step = 0.1
 
 [node name="SliderMusic" type="HSlider" parent="Preferencestab"]
 unique_name_in_owner = true
@@ -326,6 +325,14 @@ offset_left = 675.0
 offset_top = 705.0
 offset_right = 1277.0
 offset_bottom = 745.0
+theme_override_icons/grabber = ExtResource("9_g7jxm")
+theme_override_icons/grabber_highlight = ExtResource("9_g7jxm")
+theme_override_icons/grabber_disabled = ExtResource("9_g7jxm")
+theme_override_styles/slider = ExtResource("10_oxnod")
+theme_override_styles/grabber_area = ExtResource("11_gd0jp")
+theme_override_styles/grabber_area_highlight = ExtResource("11_gd0jp")
+max_value = 1.0
+step = 0.1
 
 [node name="SliderSFX" type="HSlider" parent="Preferencestab"]
 unique_name_in_owner = true
@@ -334,6 +341,14 @@ offset_left = 675.0
 offset_top = 760.0
 offset_right = 1277.0
 offset_bottom = 800.0
+theme_override_icons/grabber = ExtResource("9_g7jxm")
+theme_override_icons/grabber_highlight = ExtResource("9_g7jxm")
+theme_override_icons/grabber_disabled = ExtResource("9_g7jxm")
+theme_override_styles/slider = ExtResource("10_oxnod")
+theme_override_styles/grabber_area = ExtResource("11_gd0jp")
+theme_override_styles/grabber_area_highlight = ExtResource("11_gd0jp")
+max_value = 1.0
+step = 0.1
 
 [node name="Push" type="RichTextLabel" parent="Preferencestab"]
 layout_mode = 0
@@ -436,7 +451,39 @@ texture = ExtResource("10_dwrpx")
 position = Vector2(790, 484)
 texture = ExtResource("11_g7jxm")
 
+[node name="ButtonBack" type="Button" parent="." groups=["buttons"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -285.0
+offset_top = 36.0
+offset_right = -30.0
+offset_bottom = 96.0
+grow_horizontal = 0
+focus_mode = 0
+flat = true
+metadata/_edit_group_ = true
+
+[node name="TBack" type="RichTextLabel" parent="ButtonBack"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_kk3ma")
+bbcode_enabled = true
+text = "[center][wave]Back
+[/wave][/center]"
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_dwrpx")
 autoplay = true
 bus = &"Music"
+
+[connection signal="value_changed" from="Preferencestab/SliderMaster" to="." method="_on_slider_master_value_changed"]
+[connection signal="value_changed" from="Preferencestab/SliderMusic" to="." method="_on_slider_music_value_changed"]
+[connection signal="value_changed" from="Preferencestab/SliderSFX" to="." method="_on_slider_sfx_value_changed"]
