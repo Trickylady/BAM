@@ -6,8 +6,19 @@ class_name Player
 @export var tile_size := 70
 @export var move_time := 0.25   # how long to move one tile
 @onready var bomb_placement_sys: BombPlacementSys = $BombPlacementSys
+@onready var lifefulltex: Texture2D =  load("res://life_full.png")
+@onready var lifehalftex: Texture2D =  load("res://life_half.png")
+@onready var life_empty_tex: Texture2D = load("res://life_empty.png")
+
+@onready var heart1: Sprite2D = $"../Heart"
+@onready var heart2: Sprite2D = $"../Heart2"
+@onready var heart3: Sprite2D = $"../Heart3"
+@onready var heart4: Sprite2D = $"../Heart4"
+@onready var heart5: Sprite2D = $"../Heart5"
+@onready var heart6: Sprite2D = $"../Heart6"
 
 var max_bombs_at_once = 1
+var lives = 5.5
 
 var target_position: Vector2
 var moving := false
@@ -47,4 +58,9 @@ func _physics_process(delta):
 			moving = false
 			
 func die():
-	print("DIE")
+	if lives > 0:
+		lives -= 0.5
+		
+		if lives > 5.0:
+			if lives == 5.5:
+				heart6.texture = lifefulltex

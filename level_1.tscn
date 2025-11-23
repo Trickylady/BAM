@@ -45,7 +45,7 @@ offset_bottom = 1080.0
 texture = ExtResource("1_3hls8")
 
 [node name="Player" parent="." instance=ExtResource("6_5hph3")]
-position = Vector2(360, 996)
+position = Vector2(360, 994)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 position = Vector2(671, 406)
@@ -62,27 +62,27 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(113, 88)
 texture = ExtResource("8_bjebc")
 
-[node name="LifeFull" type="Sprite2D" parent="."]
+[node name="Heart" type="Sprite2D" parent="."]
 position = Vector2(57, 188)
 texture = ExtResource("9_1pe0h")
 
-[node name="LifeFull2" type="Sprite2D" parent="."]
+[node name="Heart2" type="Sprite2D" parent="."]
 position = Vector2(125, 190)
 texture = ExtResource("9_1pe0h")
 
-[node name="LifeFull3" type="Sprite2D" parent="."]
+[node name="Heart3" type="Sprite2D" parent="."]
 position = Vector2(189, 189)
 texture = ExtResource("9_1pe0h")
 
-[node name="LifeFull4" type="Sprite2D" parent="."]
+[node name="Heart4" type="Sprite2D" parent="."]
 position = Vector2(58, 254)
 texture = ExtResource("9_1pe0h")
 
-[node name="LifeHalf" type="Sprite2D" parent="."]
+[node name="Heart5" type="Sprite2D" parent="."]
 position = Vector2(127, 249)
 texture = ExtResource("10_27bay")
 
-[node name="LifeEmpty" type="Sprite2D" parent="."]
+[node name="Heart6" type="Sprite2D" parent="."]
 position = Vector2(191, 251)
 texture = ExtResource("11_sof0w")
 
