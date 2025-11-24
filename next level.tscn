@@ -1,0 +1,122 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjvbbfd47l6wy"]
+
+[ext_resource type="Script" uid="uid://crwo72i05muo8" path="res://next_level.gd" id="1_areho"]
+[ext_resource type="Texture2D" uid="uid://wvuwv5qgry1q" path="res://gamescreens.png" id="2_qykyp"]
+[ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://ComicaRegular.otf" id="3_s1ma6"]
+
+[sub_resource type="Theme" id="Theme_g1o2j"]
+default_font = ExtResource("3_s1ma6")
+default_font_size = 50
+
+[node name="Nextlevel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_areho")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1943.0
+offset_bottom = 1104.0
+color = Color(0, 0, 0, 0.4862745)
+
+[node name="Gamescreens" type="Sprite2D" parent="."]
+position = Vector2(918, 591)
+texture = ExtResource("2_qykyp")
+
+[node name="textreg2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 721.0
+offset_top = 548.0
+offset_right = 1111.0
+offset_bottom = 591.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_s1ma6")
+theme_override_font_sizes/normal_font_size = 29
+bbcode_enabled = true
+text = "[center]Score: ####[/center]
+"
+
+[node name="textreg" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 753.0
+offset_top = 492.0
+offset_right = 1143.0
+offset_bottom = 535.0
+theme_override_colors/default_color = Color(0.5137255, 0.4745098, 0.3764706, 1)
+theme_override_fonts/normal_font = ExtResource("3_s1ma6")
+theme_override_font_sizes/normal_font_size = 29
+bbcode_enabled = true
+text = "[center]Good job![/center]
+"
+
+[node name="headertext" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 719.0
+offset_top = 419.0
+offset_right = 1151.0
+offset_bottom = 491.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_s1ma6")
+theme_override_font_sizes/normal_font_size = 60
+text = "Level 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Nextbutton" type="Button" parent="." groups=["buttons"]]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1008.0
+offset_top = 602.0
+offset_right = 1155.0
+offset_bottom = 691.0
+grow_horizontal = 0
+focus_mode = 0
+flat = true
+metadata/_edit_group_ = true
+
+[node name="TBack" type="RichTextLabel" parent="Nextbutton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_g1o2j")
+bbcode_enabled = true
+text = "[center][wave]Next
+[/wave][/center]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuBack" type="Button" parent="." groups=["buttons"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 687.0
+offset_top = 601.0
+offset_right = 856.0
+offset_bottom = 690.0
+grow_horizontal = 0
+focus_mode = 0
+flat = true
+metadata/_edit_group_ = true
+
+[node name="TBack" type="RichTextLabel" parent="MenuBack"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_g1o2j")
+bbcode_enabled = true
+text = "[center][wave] Menu
+[/wave][/center]"
+horizontal_alignment = 1
+vertical_alignment = 1
