@@ -1,6 +1,2 @@
-extends StaticBody2D
-
+extends CharacterBody2D
 class_name Bouncytiles
-
-func push_bounce() -> void:
-	pass
