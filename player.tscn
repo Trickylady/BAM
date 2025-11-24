@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d4k6w0cj6j8gd"]
+[gd_scene load_steps=30 format=3 uid="uid://d4k6w0cj6j8gd"]
 
 [ext_resource type="Texture2D" uid="uid://rqxektrc1enw" path="res://dragon_front_1.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dd1353alu4xf6" path="res://player.gd" id="1_onrkg"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dhq3f1qtrk8rf" path="res://shield_dragon_back_3.png" id="19_iruf7"]
 [ext_resource type="Texture2D" uid="uid://mg18grkydxxk" path="res://dragon_back_2.png" id="20_khis8"]
 [ext_resource type="Script" uid="uid://v8gtekhp60k7" path="res://bomb_placement_sys.gd" id="21_5tmop"]
+[ext_resource type="Texture2D" uid="uid://c1g51mx1ndbjp" path="res://dragon_back_1.png" id="25_qtqh7"]
 [ext_resource type="AudioStream" uid="uid://2awwor0lg4fh" path="res://sfx_you_died.mp3" id="26_j5n4i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
@@ -169,10 +170,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("17_tkwlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hiqhm")
 }],
 "loop": true,
 "name": &"walkdown",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -189,24 +193,24 @@ animations = [{
 }],
 "loop": true,
 "name": &"walkside",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("20_khis8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_634y6")
-}, {
-"duration": 1.0,
 "texture": ExtResource("20_khis8")
 }, {
 "duration": 1.0,
 "texture": ExtResource("14_634y6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_qtqh7")
 }],
 "loop": true,
 "name": &"walkup",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -218,7 +222,8 @@ shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Dragon" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b88wv")
-animation = &"walkdown"
+animation = &"walkup"
+frame_progress = 0.9182259
 
 [node name="info" type="Label" parent="Dragon"]
 unique_name_in_owner = true
