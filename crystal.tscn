@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lm3os"]
 size = Vector2(67, 65)
 
-[node name="crystal" type="Area2D"]
+[node name="crystal" type="Area2D" groups=["crystals"]]
 collision_layer = 4
 script = ExtResource("1_kxb6e")
 

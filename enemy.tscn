@@ -110,19 +110,21 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2u8i"]
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 32
 collision_mask = 95
 script = ExtResource("1_g2u8i")
-tile_size = null
-move_time = null
 
-[node name="Snake" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_qskgw")
-animation = &"snakewalkside"
+animation = &"snakewalkdown"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g2u8i")
+
+[node name="RayPlayerDetect" type="RayCast2D" parent="."]
+collision_mask = 199
 
 [node name="movementrays" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -142,3 +144,22 @@ collision_mask = 70
 [node name="Rayright" type="RayCast2D" parent="movementrays"]
 target_position = Vector2(70, 0)
 collision_mask = 70
+
+[node name="SFXShoot" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXDie" type="AudioStreamPlayer" parent="."]
+
+[node name="info" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -301.0
+offset_top = -183.0
+offset_right = 301.0
+offset_bottom = -43.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "info"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3

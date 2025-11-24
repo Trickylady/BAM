@@ -260,6 +260,7 @@ libraries = {
 autoplay = "menumovement"
 
 [node name="Scoreboardtab" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -298,7 +299,22 @@ Pixabay
 
 [/center]"
 
+[node name="abouttext2" type="RichTextLabel" parent="Abouttab"]
+layout_mode = 0
+offset_left = 951.0
+offset_top = 486.0
+offset_right = 1083.0
+offset_bottom = 518.0
+theme_override_colors/default_color = Color(0.50980395, 0.46666667, 0.38039216, 1)
+theme_override_fonts/normal_font = ExtResource("7_ecwwl")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center][font_size=15
+]Irad's protégée[/font_size]
+[/center]"
+
 [node name="Preferencestab" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

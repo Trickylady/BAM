@@ -224,26 +224,31 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 511
+collision_mask = 478
 script = ExtResource("1_onrkg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")
 
-[node name="Dragon" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_b88wv")
-animation = &"idledown"
-
-[node name="info" type="Label" parent="Dragon"]
+[node name="info" type="Label" parent="."]
 unique_name_in_owner = true
 visible = false
-offset_left = -81.0
-offset_top = -84.0
-offset_right = 77.0
-offset_bottom = -15.0
+offset_left = -301.0
+offset_top = -183.0
+offset_right = 301.0
+offset_bottom = -43.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
+text = "info"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_b88wv")
+animation = &"walkdown"
 
 [node name="BombPlacementSys" type="Node" parent="."]
 script = ExtResource("21_5tmop")

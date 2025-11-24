@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwksbuiiwqjt8"]
+
+[ext_resource type="Script" uid="uid://beyll6cvr0lr3" path="res://pickup.gd" id="1_amdaw"]
+[ext_resource type="Texture2D" uid="uid://bnnny7od3cbm1" path="res://crystal.png" id="2_0tmqx"]
+[ext_resource type="AudioStream" uid="uid://dmet31qg6ta3y" path="res://sfx_crystal_pickup.mp3" id="3_bwgqt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lm3os"]
+size = Vector2(67, 65)
+
+[node name="pickup" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_amdaw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_lm3os")
+
+[node name="crystalsprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_0tmqx")
+
+[node name="SFXcrystal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bwgqt")
+bus = &"SFX"

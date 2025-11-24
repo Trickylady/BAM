@@ -48,4 +48,5 @@ collision_mask = 6
 
 [node name="SFXExplosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vq6fe")
+autoplay = true
 bus = &"SFX"
