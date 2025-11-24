@@ -29,6 +29,8 @@ animations = [{
 size = Vector2(57, 71)
 
 [node name="Bomb" type="Area2D"]
+collision_layer = 8
+collision_mask = 16
 script = ExtResource("1_nfxiy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -48,6 +50,7 @@ autostart = true
 
 [node name="SFXbombdrop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_6w74q")
+autoplay = true
 bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

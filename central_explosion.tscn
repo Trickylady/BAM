@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2p7gekgdxofo"]
+[gd_scene load_steps=6 format=3 uid="uid://d2p7gekgdxofo"]
 
 [ext_resource type="Texture2D" uid="uid://dggwu7j50gr0g" path="res://explosion_bomb_location.png" id="1_7vp3v"]
 [ext_resource type="Script" uid="uid://drqubaxx8k877" path="res://central_explosion.gd" id="1_78kel"]
+[ext_resource type="AudioStream" uid="uid://dl6j25f2jh7s0" path="res://SFX_bomb_explode.mp3" id="3_vq6fe"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_78kel"]
 animations = [{
@@ -44,3 +45,7 @@ collision_mask = 6
 [node name="RayCastLeft" type="RayCast2D" parent="RayCasts"]
 target_position = Vector2(-70, 0)
 collision_mask = 6
+
+[node name="SFXExplosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vq6fe")
+bus = &"SFX"
