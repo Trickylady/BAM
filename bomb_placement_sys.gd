@@ -4,7 +4,7 @@ class_name BombPlacementSys
 
 const BOMB_SCENE = preload("res://bomb.tscn")
 
-const TILE_SIZE = 71
+const TILE_SIZE = 71.5
 
 var bombs_placed = 0
 var explosion_size = 1

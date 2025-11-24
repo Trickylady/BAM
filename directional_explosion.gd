@@ -21,4 +21,5 @@ func _on_body_entered(body: Node) -> void:
 			body.queue_free()  # or call enemy damage logic
 
 func _on_animation_finished():
+	
 	queue_free()

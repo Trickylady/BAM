@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d4k6w0cj6j8gd"]
+[gd_scene load_steps=34 format=3 uid="uid://d4k6w0cj6j8gd"]
 
 [ext_resource type="Texture2D" uid="uid://rqxektrc1enw" path="res://dragon_front_1.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dd1353alu4xf6" path="res://player.gd" id="1_onrkg"]
@@ -21,12 +21,16 @@
 [ext_resource type="Texture2D" uid="uid://dtopch86wmf8g" path="res://dragon_front_2.png" id="17_tkwlq"]
 [ext_resource type="Texture2D" uid="uid://cgtpkds0t1fpj" path="res://shield_dragon_back_2.png" id="18_2wuci"]
 [ext_resource type="Texture2D" uid="uid://df7dl2fwjxleu" path="res://dragon_walk_2.png" id="18_hl5qd"]
+[ext_resource type="Texture2D" uid="uid://ddinuxskk1m4i" path="res://shield_dragon_back_1.png" id="19_634y6"]
 [ext_resource type="Texture2D" uid="uid://oik13k32f7ot" path="res://dragon_walk_3.png" id="19_ek41f"]
 [ext_resource type="Texture2D" uid="uid://dhq3f1qtrk8rf" path="res://shield_dragon_back_3.png" id="19_iruf7"]
 [ext_resource type="Texture2D" uid="uid://mg18grkydxxk" path="res://dragon_back_2.png" id="20_khis8"]
 [ext_resource type="Script" uid="uid://v8gtekhp60k7" path="res://bomb_placement_sys.gd" id="21_5tmop"]
 [ext_resource type="Texture2D" uid="uid://c1g51mx1ndbjp" path="res://dragon_back_1.png" id="25_qtqh7"]
 [ext_resource type="AudioStream" uid="uid://2awwor0lg4fh" path="res://sfx_you_died.mp3" id="26_j5n4i"]
+[ext_resource type="AudioStream" uid="uid://jodilnd107ln" path="res://sfx_dragon_hurt.mp3" id="29_efrwb"]
+[ext_resource type="AudioStream" uid="uid://d1oae8bqo1ksq" path="res://sfx_you_got_hit_by_snake_venom.mp3" id="30_hiqhm"]
+[ext_resource type="AudioStream" uid="uid://cauoti1j2dw2s" path="res://sfx_push.mp3" id="31_tkwlq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 
@@ -155,11 +159,17 @@ animations = [{
 "texture": ExtResource("18_2wuci")
 }, {
 "duration": 1.0,
+"texture": ExtResource("19_634y6")
+}, {
+"duration": 1.0,
 "texture": ExtResource("19_iruf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_634y6")
 }],
 "loop": true,
 "name": &"shieldwalkup",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -222,8 +232,7 @@ shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Dragon" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b88wv")
-animation = &"walkup"
-frame_progress = 0.35994828
+animation = &"idledown"
 
 [node name="info" type="Label" parent="Dragon"]
 unique_name_in_owner = true
@@ -241,4 +250,16 @@ script = ExtResource("21_5tmop")
 
 [node name="SFXDie" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_j5n4i")
+bus = &"SFX"
+
+[node name="SFXHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_efrwb")
+bus = &"SFX"
+
+[node name="SFXHurtProjectile" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("30_hiqhm")
+bus = &"SFX"
+
+[node name="SFXPush" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("31_tkwlq")
 bus = &"SFX"

@@ -13,7 +13,8 @@ config_version=5
 config/name="BAM"
 run/main_scene="uid://dkvx72mdk1m41"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="uid://duqvi7u77nx8g"
+config/icon="uid://cl4iu46ei7g5h"
 
 [autoload]
 

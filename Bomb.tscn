@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://rfngiw51iyei"]
+[gd_scene load_steps=7 format=3 uid="uid://rfngiw51iyei"]
 
 [ext_resource type="Texture2D" uid="uid://d60aeclqfs5n" path="res://bomb_1.png" id="1_4fn8o"]
 [ext_resource type="Script" uid="uid://cu2gwqq4keg31" path="res://bomb.gd" id="1_nfxiy"]
 [ext_resource type="Texture2D" uid="uid://bcgl8pwk5ynh4" path="res://bomb_2.png" id="2_nfxiy"]
+[ext_resource type="AudioStream" uid="uid://bugbabfw8f7qk" path="res://sfx_bomb_drop.mp3" id="4_6w74q"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6w74q"]
 animations = [{
@@ -31,10 +32,10 @@ size = Vector2(57, 71)
 script = ExtResource("1_nfxiy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_6w74q")
 autoplay = "default"
-frame = 1
-frame_progress = 0.13353574
+frame_progress = 0.6960339
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)
@@ -44,5 +45,9 @@ shape = SubResource("RectangleShape2D_bwkwj")
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="SFXbombdrop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6w74q")
+bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
