@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://kbjh2plbis4u"]
+[gd_scene load_steps=15 format=4 uid="uid://kbjh2plbis4u"]
 
 [ext_resource type="Texture2D" uid="uid://c455gyvr7hoey" path="res://background_game_2.png" id="1_3hls8"]
 [ext_resource type="Texture2D" uid="uid://brfx3exieeaaj" path="res://rock_tile.png" id="2_ihfcg"]
@@ -8,9 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d4k6w0cj6j8gd" path="res://player.tscn" id="6_5hph3"]
 [ext_resource type="Texture2D" uid="uid://cl4iu46ei7g5h" path="res://dragon_icon.png" id="8_bjebc"]
 [ext_resource type="Texture2D" uid="uid://n8e0leay807f" path="res://life_full.png" id="9_1pe0h"]
-[ext_resource type="Texture2D" uid="uid://d0du11c0tecg7" path="res://life_half.png" id="10_27bay"]
 [ext_resource type="PackedScene" uid="uid://dm0ud10tqwi5g" path="res://ground_tile.tscn" id="11_1pe0h"]
-[ext_resource type="Texture2D" uid="uid://b2bo2yw631hm8" path="res://life_empty.png" id="11_sof0w"]
 [ext_resource type="AudioStream" uid="uid://dv13arg3jxjqk" path="res://gametrack.mp3" id="12_27bay"]
 [ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://ComicaRegular.otf" id="13_sof0w"]
 
@@ -75,11 +73,11 @@ texture = ExtResource("9_1pe0h")
 
 [node name="Heart5" type="Sprite2D" parent="."]
 position = Vector2(127, 249)
-texture = ExtResource("10_27bay")
+texture = ExtResource("9_1pe0h")
 
 [node name="Heart6" type="Sprite2D" parent="."]
 position = Vector2(191, 251)
-texture = ExtResource("11_sof0w")
+texture = ExtResource("9_1pe0h")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_27bay")
@@ -97,12 +95,12 @@ theme_override_font_sizes/font_size = 25
 text = "x1"
 
 [connection signal="body_entered" from="TileMapLayer2/crystal" to="TileMapLayer2/crystal" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@149072" to="TileMapLayer2/@Area2D@149072" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@149073" to="TileMapLayer2/@Area2D@149073" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@149074" to="TileMapLayer2/@Area2D@149074" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@149075" to="TileMapLayer2/@Area2D@149075" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@149076" to="TileMapLayer2/@Area2D@149076" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@149077" to="TileMapLayer2/@Area2D@149077" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@149078" to="TileMapLayer2/@Area2D@149078" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@149079" to="TileMapLayer2/@Area2D@149079" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@149080" to="TileMapLayer2/@Area2D@149080" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@32515" to="TileMapLayer2/@Area2D@32515" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@32516" to="TileMapLayer2/@Area2D@32516" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@32517" to="TileMapLayer2/@Area2D@32517" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@32518" to="TileMapLayer2/@Area2D@32518" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@32519" to="TileMapLayer2/@Area2D@32519" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@32520" to="TileMapLayer2/@Area2D@32520" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@32521" to="TileMapLayer2/@Area2D@32521" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@32522" to="TileMapLayer2/@Area2D@32522" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@32523" to="TileMapLayer2/@Area2D@32523" method="_on_body_entered"]

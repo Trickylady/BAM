@@ -18,7 +18,7 @@ class_name Player
 @onready var heart6: Sprite2D = $"../Heart6"
 
 var max_bombs_at_once = 5
-var health = 5.5
+var health = 6
 var direction: Vector2i = Vector2i.ZERO
 var is_dead: bool = false
 
@@ -89,9 +89,29 @@ func _process(_delta: float) -> void:
 
 func take_damage(amount: float):
 	health -= amount
-	print("damage taken")
+	updateHearts()
 	if health <= 0:
 		die()
+		
+func updateHearts():
+	var hearts = [heart1, heart2, heart3, heart4, heart5, heart6]
+	
+	# Clamp health between 0 and number of hearts
+	var clamped_health = clamp(health, 0, hearts.size())
+	
+	# Full hearts count
+	var full_hearts = int(clamped_health)
+	# Fractional part (e.g. 0.5)
+	var half_heart = clamped_health - full_hearts >= 0.5
+	
+	for i in range(hearts.size()):
+		if i < full_hearts:
+			hearts[i].texture = lifefulltex
+		elif i == full_hearts and half_heart:
+			hearts[i].texture = lifehalftex
+		else:
+			hearts[i].texture = life_empty_tex
+	
 
 func die():
 	$SFXDie.play()

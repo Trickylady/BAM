@@ -19,5 +19,5 @@ func play_anim(animation_name: String):
 	animated_sprite_2d.play(animation_name)
 
 func _on_body_entered(body: Node) -> void:
-	if body.has_method("die"):
-		body.die()
+	if body.has_method("take_damage"):
+		body.take_damage(0.5)

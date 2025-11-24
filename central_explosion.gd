@@ -22,6 +22,9 @@ var size = 1
 
 func _ready() -> void:
 	check_raycasts()
+	
+	connect("body_entered", Callable(self, "_on_body_entered"))
+
 	# Auto-remove this node after a short delay
 	var timer := Timer.new()
 	timer.wait_time = 0.2  # adjust to match explosion duration
@@ -83,5 +86,15 @@ func calculate_size_of_explosion(raycast: RayCast2D):
 func execute_explosion_collision(collider: Object):
 	if collider is GroundTile:
 		(collider as GroundTile).destroy()
+		
+
+func damage_overlapping_bodies():
+	for body in get_overlapping_bodies():
+		if body is Player:
+			(body as Player).take_damage(0.5)
+
 	
+func _on_body_entered(body: Node) -> void:
+	if body is Player:
+		(body as Player).take_damage(0.5)
 		
