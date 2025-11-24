@@ -17,10 +17,14 @@ class_name Player
 @onready var heart5: Sprite2D = $"../Heart5"
 @onready var heart6: Sprite2D = $"../Heart6"
 
+@onready var pointTxt: RichTextLabel = $"../Gameoverlay/Points"
+
 var max_bombs_at_once = 5
 var health = 6
 var direction: Vector2i = Vector2i.ZERO
 var is_dead: bool = false
+var collectedPoints = 0
+var pointsPerCrystal = 1
 
 var target_position: Vector2
 var moving := false
@@ -28,9 +32,14 @@ var moving := false
 func _ready():
 	#position = position.snapped(Vector2(tile_size, tile_size)/2)
 	target_position = position
+	updatePointUI()
 
 func pick_up_crystal(): #hey Cam this function is called by crystal.gd :D
-	print("crystal picked up")
+	collectedPoints += pointsPerCrystal
+	updatePointUI()
+	
+func updatePointUI():
+	pointTxt.text = "Points: " + str(collectedPoints) 
 
 func _physics_process(delta):
 	

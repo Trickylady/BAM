@@ -51,6 +51,23 @@ offset_bottom = 1080.0
 texture = ExtResource("5_rka8t")
 metadata/_edit_use_anchors_ = true
 
+[node name="Points" type="RichTextLabel" parent="Gameoverlay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 34.0
+offset_top = -253.0
+offset_right = 216.0
+offset_bottom = -213.0
+grow_vertical = 2
+pivot_offset = Vector2(37, 6)
+theme_override_fonts/normal_font = ExtResource("13_sof0w")
+theme_override_font_sizes/normal_font_size = 24
+text = "Points: 3333"
+autowrap_mode = 0
+vertical_alignment = 1
+
 [node name="DragonIcon" type="Sprite2D" parent="."]
 position = Vector2(113, 88)
 texture = ExtResource("8_bjebc")
@@ -95,12 +112,12 @@ theme_override_font_sizes/font_size = 25
 text = "x1"
 
 [connection signal="body_entered" from="TileMapLayer2/crystal" to="TileMapLayer2/crystal" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@32515" to="TileMapLayer2/@Area2D@32515" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@32516" to="TileMapLayer2/@Area2D@32516" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@32517" to="TileMapLayer2/@Area2D@32517" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@32518" to="TileMapLayer2/@Area2D@32518" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@32519" to="TileMapLayer2/@Area2D@32519" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@32520" to="TileMapLayer2/@Area2D@32520" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@32521" to="TileMapLayer2/@Area2D@32521" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@32522" to="TileMapLayer2/@Area2D@32522" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@32523" to="TileMapLayer2/@Area2D@32523" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@69134" to="TileMapLayer2/@Area2D@69134" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@69135" to="TileMapLayer2/@Area2D@69135" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@69136" to="TileMapLayer2/@Area2D@69136" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@69137" to="TileMapLayer2/@Area2D@69137" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@69138" to="TileMapLayer2/@Area2D@69138" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@69139" to="TileMapLayer2/@Area2D@69139" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@69140" to="TileMapLayer2/@Area2D@69140" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@69141" to="TileMapLayer2/@Area2D@69141" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@69142" to="TileMapLayer2/@Area2D@69142" method="_on_body_entered"]
