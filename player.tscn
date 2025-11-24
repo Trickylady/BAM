@@ -223,10 +223,11 @@ shape = SubResource("RectangleShape2D_onrkg")
 [node name="Dragon" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b88wv")
 animation = &"walkup"
-frame_progress = 0.9182259
+frame_progress = 0.35994828
 
 [node name="info" type="Label" parent="Dragon"]
 unique_name_in_owner = true
+visible = false
 offset_left = -81.0
 offset_top = -84.0
 offset_right = 77.0
