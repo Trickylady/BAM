@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dommwaim2746h"]
+[gd_scene load_steps=21 format=3 uid="uid://dommwaim2746h"]
 
+[ext_resource type="Script" uid="uid://c667dy50m3ab2" path="res://enemy.gd" id="1_g2u8i"]
 [ext_resource type="Texture2D" uid="uid://67bwyd7tpmo8" path="res://extra_snake_front_1.png" id="1_jmwgi"]
 [ext_resource type="Texture2D" uid="uid://dhtt8c5s5suxs" path="res://extra_snake_front_2.png" id="2_g2u8i"]
 [ext_resource type="Texture2D" uid="uid://wxcw21bqb72l" path="res://extra_snake_side_1.png" id="3_otto8"]
@@ -107,10 +108,37 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2u8i"]
+
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 95
+script = ExtResource("1_g2u8i")
+tile_size = null
+move_time = null
 
 [node name="Snake" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qskgw")
-animation = &"snakedead"
-frame = 4
-frame_progress = 1.0
+animation = &"snakewalkside"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g2u8i")
+
+[node name="movementrays" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Raydown" type="RayCast2D" parent="movementrays"]
+target_position = Vector2(0, 70)
+collision_mask = 70
+
+[node name="Rayup" type="RayCast2D" parent="movementrays"]
+target_position = Vector2(0, -70)
+collision_mask = 70
+
+[node name="Rayleft" type="RayCast2D" parent="movementrays"]
+target_position = Vector2(-70, 0)
+collision_mask = 70
+
+[node name="Rayright" type="RayCast2D" parent="movementrays"]
+target_position = Vector2(70, 0)
+collision_mask = 70

@@ -65,7 +65,7 @@ func create_explosion_animation_slice(anim_name: String, anim_position: Vector2)
 	add_child(directional_explosion)
 	directional_explosion.play_anim(anim_name)
 	
-	directional_explosion.connect("animation_finished", Callable(self, "_on_explosion_finished").bind(directional_explosion))
+	#directional_explosion.connect("animation_finished", Callable(self, "_on_explosion_finished").bind(directional_explosion))
 
 func _on_explosion_finished(anim_name: String, explosion_node: Node):
 	explosion_node.queue_free()

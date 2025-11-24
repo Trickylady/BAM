@@ -48,7 +48,6 @@ position = Vector2(357, 1001)
 collision_mask = 255
 
 [node name="Gameoverlay" type="TextureRect" parent="."]
-visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("5_rka8t")
@@ -63,17 +62,14 @@ position = Vector2(57, 188)
 texture = ExtResource("9_1pe0h")
 
 [node name="Heart2" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(125, 190)
 texture = ExtResource("9_1pe0h")
 
 [node name="Heart3" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(189, 189)
 texture = ExtResource("9_1pe0h")
 
 [node name="Heart4" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(58, 254)
 texture = ExtResource("9_1pe0h")
 
@@ -101,12 +97,12 @@ theme_override_font_sizes/font_size = 25
 text = "x1"
 
 [connection signal="body_entered" from="TileMapLayer2/crystal" to="TileMapLayer2/crystal" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@81863" to="TileMapLayer2/@Area2D@81863" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@81864" to="TileMapLayer2/@Area2D@81864" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@81865" to="TileMapLayer2/@Area2D@81865" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@81866" to="TileMapLayer2/@Area2D@81866" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@81867" to="TileMapLayer2/@Area2D@81867" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@81868" to="TileMapLayer2/@Area2D@81868" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@81869" to="TileMapLayer2/@Area2D@81869" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@81870" to="TileMapLayer2/@Area2D@81870" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer2/@Area2D@81871" to="TileMapLayer2/@Area2D@81871" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@149072" to="TileMapLayer2/@Area2D@149072" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@149073" to="TileMapLayer2/@Area2D@149073" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@149074" to="TileMapLayer2/@Area2D@149074" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@149075" to="TileMapLayer2/@Area2D@149075" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@149076" to="TileMapLayer2/@Area2D@149076" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@149077" to="TileMapLayer2/@Area2D@149077" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@149078" to="TileMapLayer2/@Area2D@149078" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@149079" to="TileMapLayer2/@Area2D@149079" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@149080" to="TileMapLayer2/@Area2D@149080" method="_on_body_entered"]

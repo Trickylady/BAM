@@ -26,7 +26,7 @@ var target_position: Vector2
 var moving := false
 
 func _ready():
-	#position = position.snapped(Vector2(tile_size, tile_size))
+	#position = position.snapped(Vector2(tile_size, tile_size)/2)
 	target_position = position
 
 func pick_up_crystal(): #hey Cam this function is called by crystal.gd :D
