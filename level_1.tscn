@@ -1,31 +1,26 @@
-[gd_scene load_steps=16 format=4 uid="uid://kbjh2plbis4u"]
+[gd_scene load_steps=17 format=4 uid="uid://kbjh2plbis4u"]
 
 [ext_resource type="Texture2D" uid="uid://c455gyvr7hoey" path="res://background_game_2.png" id="1_3hls8"]
 [ext_resource type="Texture2D" uid="uid://brfx3exieeaaj" path="res://rock_tile.png" id="2_ihfcg"]
-[ext_resource type="Texture2D" uid="uid://6r6slq2rg20e" path="res://bounce_tile.png" id="4_5hph3"]
+[ext_resource type="PackedScene" uid="uid://xhfv6aog6ekj" path="res://crystal.tscn" id="4_27bay"]
 [ext_resource type="Texture2D" uid="uid://d0ies5i7oon4d" path="res://overlay.png" id="5_rka8t"]
+[ext_resource type="PackedScene" uid="uid://b86ggxfii7sjj" path="res://bouncytiles.tscn" id="5_sof0w"]
 [ext_resource type="PackedScene" uid="uid://d4k6w0cj6j8gd" path="res://player.tscn" id="6_5hph3"]
-[ext_resource type="Texture2D" uid="uid://bnnny7od3cbm1" path="res://crystal.png" id="7_j7kpp"]
 [ext_resource type="Texture2D" uid="uid://cl4iu46ei7g5h" path="res://dragon_icon.png" id="8_bjebc"]
 [ext_resource type="Texture2D" uid="uid://n8e0leay807f" path="res://life_full.png" id="9_1pe0h"]
 [ext_resource type="Texture2D" uid="uid://d0du11c0tecg7" path="res://life_half.png" id="10_27bay"]
 [ext_resource type="PackedScene" uid="uid://dm0ud10tqwi5g" path="res://ground_tile.tscn" id="11_1pe0h"]
 [ext_resource type="Texture2D" uid="uid://b2bo2yw631hm8" path="res://life_empty.png" id="11_sof0w"]
+[ext_resource type="AudioStream" uid="uid://dv13arg3jxjqk" path="res://gametrack.mp3" id="12_27bay"]
+[ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://ComicaRegular.otf" id="13_sof0w"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ggavl"]
+scenes/1/scene = ExtResource("11_1pe0h")
+scenes/2/scene = ExtResource("4_27bay")
+scenes/3/scene = ExtResource("5_sof0w")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rr72"]
 texture = ExtResource("2_ihfcg")
-texture_region_size = Vector2i(70, 70)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-35, -35, 35, -35, 35, 35, -35, 35)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gyffv"]
-texture = ExtResource("4_5hph3")
-texture_region_size = Vector2i(70, 70)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-35, -35, 35, -35, 35, 35, -35, 35)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1pe0h"]
-texture = ExtResource("7_j7kpp")
 texture_region_size = Vector2i(70, 70)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-35, -35, 35, -35, 35, 35, -35, 35)
@@ -34,8 +29,7 @@ texture_region_size = Vector2i(70, 70)
 tile_size = Vector2i(70, 70)
 physics_layer_0/collision_layer = 3
 sources/2 = SubResource("TileSetAtlasSource_5rr72")
-sources/3 = SubResource("TileSetAtlasSource_gyffv")
-sources/4 = SubResource("TileSetAtlasSource_1pe0h")
+sources/1 = SubResource("TileSetScenesCollectionSource_ggavl")
 
 [node name="Level1" type="Node2D"]
 
@@ -44,15 +38,17 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("1_3hls8")
 
-[node name="Player" parent="." instance=ExtResource("6_5hph3")]
-position = Vector2(360, 994)
-
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 position = Vector2(671, 406)
-tile_map_data = PackedByteArray("AAD8//z/AgAAAAAAAAD8//7/AgAAAAAAAAD8/wAAAgAAAAAAAAD8/wIAAgAAAAAAAAD8/wQAAgAAAAAAAAD8/wYAAgAAAAAAAAD+/wYAAgAAAAAAAAD+/wQAAgAAAAAAAAD+/wIAAgAAAAAAAAD+/wAAAgAAAAAAAAD+//7/AgAAAAAAAAD+//z/AgAAAAAAAAAAAPz/AgAAAAAAAAAAAP7/AgAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAYAAgAAAAAAAAACAAYAAgAAAAAAAAACAAQAAgAAAAAAAAACAAIAAgAAAAAAAAACAAAAAgAAAAAAAAACAPz/AgAAAAAAAAAEAPz/AgAAAAAAAAAEAP7/AgAAAAAAAAAEAAAAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAYAAgAAAAAAAAAGAAYAAgAAAAAAAAAGAAQAAgAAAAAAAAAGAAIAAgAAAAAAAAAGAP7/AgAAAAAAAAAGAPz/AgAAAAAAAAAIAPz/AgAAAAAAAAAIAP7/AgAAAAAAAAAIAAAAAgAAAAAAAAAIAAIAAgAAAAAAAAAIAAQAAgAAAAAAAAAIAAYAAgAAAAAAAAAKAAYAAgAAAAAAAAAKAAQAAgAAAAAAAAAKAAIAAgAAAAAAAAAKAAAAAgAAAAAAAAAKAP7/AgAAAAAAAAAKAPz/AgAAAAAAAAAMAPz/AgAAAAAAAAAMAP7/AgAAAAAAAAAMAAAAAgAAAAAAAAAMAAIAAgAAAAAAAAAMAAQAAgAAAAAAAAAMAAYAAgAAAAAAAAAOAAYAAgAAAAAAAAAOAAQAAgAAAAAAAAAOAAIAAgAAAAAAAAAOAAAAAgAAAAAAAAAOAP7/AgAAAAAAAAAOAPz/AgAAAAAAAAADAAIAAgAAAAAAAAAFAAIAAgAAAAAAAAAJAAYAAgAAAAAAAAALAAYAAgAAAAAAAAAIAAgAAgAAAAAAAAAJAAgAAgAAAAAAAAAKAAgAAgAAAAAAAAALAAgAAgAAAAAAAAAMAAgAAgAAAAAAAAALAPz/AgAAAAAAAAAJAPz/AgAAAAAAAAD//wcAAwAAAAAAAAADAAYAAwAAAAAAAAAIAPv/AwAAAAAAAAANAP7/BAAAAAAAAAANAP3/BAAAAAAAAAANAPz/BAAAAAAAAAD7////BAAAAAAAAAD7//7/BAAAAAAAAAD8////BAAAAAAAAAD7/wAABAAAAAAAAAD+//v/BAAAAAAAAAD9//v/BAAAAAAAAAD8//v/BAAAAAAAAAD7/wYAAgAAAAAAAAABAAgAAgAAAAAAAAABAAcAAgAAAAAAAAAGAAAAAgAAAAAAAAAEAAIAAgAAAAAAAAACAP7/AgAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD8//z/AgAAAAAAAAD8//7/AgAAAAAAAAD8/wAAAgAAAAAAAAD8/wIAAgAAAAAAAAD8/wQAAgAAAAAAAAD8/wYAAgAAAAAAAAD+/wYAAgAAAAAAAAD+/wQAAgAAAAAAAAD+/wIAAgAAAAAAAAD+/wAAAgAAAAAAAAD+//7/AgAAAAAAAAD+//z/AgAAAAAAAAAAAPz/AgAAAAAAAAAAAP7/AgAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAYAAgAAAAAAAAACAAYAAgAAAAAAAAACAAQAAgAAAAAAAAACAAIAAgAAAAAAAAACAAAAAgAAAAAAAAACAPz/AgAAAAAAAAAEAPz/AgAAAAAAAAAEAP7/AgAAAAAAAAAEAAAAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAYAAgAAAAAAAAAGAAYAAgAAAAAAAAAGAAQAAgAAAAAAAAAGAAIAAgAAAAAAAAAGAP7/AgAAAAAAAAAGAPz/AgAAAAAAAAAIAPz/AgAAAAAAAAAIAP7/AgAAAAAAAAAIAAAAAgAAAAAAAAAIAAIAAgAAAAAAAAAIAAQAAgAAAAAAAAAIAAYAAgAAAAAAAAAKAAYAAgAAAAAAAAAKAAQAAgAAAAAAAAAKAAIAAgAAAAAAAAAKAAAAAgAAAAAAAAAKAP7/AgAAAAAAAAAKAPz/AgAAAAAAAAAMAPz/AgAAAAAAAAAMAP7/AgAAAAAAAAAMAAAAAgAAAAAAAAAMAAIAAgAAAAAAAAAMAAQAAgAAAAAAAAAMAAYAAgAAAAAAAAAOAAYAAgAAAAAAAAAOAAQAAgAAAAAAAAAOAAIAAgAAAAAAAAAOAAAAAgAAAAAAAAAOAP7/AgAAAAAAAAAOAPz/AgAAAAAAAAADAAIAAgAAAAAAAAAFAAIAAgAAAAAAAAAJAAYAAgAAAAAAAAALAAYAAgAAAAAAAAAIAAgAAgAAAAAAAAAJAAgAAgAAAAAAAAAKAAgAAgAAAAAAAAALAAgAAgAAAAAAAAAMAAgAAgAAAAAAAAALAPz/AgAAAAAAAAAJAPz/AgAAAAAAAAD//wcAAQAAAAAAAwADAAYAAQAAAAAAAwANAP7/AQAAAAAAAgANAP3/AQAAAAAAAgANAPz/AQAAAAAAAgD7////AQAAAAAAAgD7//7/AQAAAAAAAgD8////AQAAAAAAAgD7/wAAAQAAAAAAAgD+//v/AQAAAAAAAgD9//v/AQAAAAAAAgD8//v/AQAAAAAAAgAGAAAAAgAAAAAAAAAEAAIAAgAAAAAAAAACAP7/AgAAAAAAAAD6/wgAAgAAAAAAAAD6/wcAAgAAAAAAAAD6/wYAAgAAAAAAAAD6/wUAAgAAAAAAAAD6/wQAAgAAAAAAAAD6/wMAAgAAAAAAAAD6/wIAAgAAAAAAAAD7/wYAAgAAAAAAAAD6/wkAAgAAAAAAAAD7/wkAAgAAAAAAAAD8/wkAAgAAAAAAAAD9/wkAAgAAAAAAAAD+/wkAAgAAAAAAAAD//wkAAgAAAAAAAAAAAAkAAgAAAAAAAAABAAkAAgAAAAAAAAACAAkAAgAAAAAAAAADAAkAAgAAAAAAAAAEAAkAAgAAAAAAAAAFAAkAAgAAAAAAAAAGAAkAAgAAAAAAAAAHAAkAAgAAAAAAAAAIAAkAAgAAAAAAAAAJAAkAAgAAAAAAAAAKAAkAAgAAAAAAAAALAAkAAgAAAAAAAAAMAAkAAgAAAAAAAAANAAkAAgAAAAAAAAAOAAkAAgAAAAAAAAAPAAkAAgAAAAAAAAAQAAkAAgAAAAAAAAARAAkAAgAAAAAAAAARAAgAAgAAAAAAAAARAAcAAgAAAAAAAAARAAYAAgAAAAAAAAARAAUAAgAAAAAAAAARAAQAAgAAAAAAAAARAAMAAgAAAAAAAAARAAIAAgAAAAAAAAARAAEAAgAAAAAAAAARAP//AgAAAAAAAAARAAAAAgAAAAAAAAARAP7/AgAAAAAAAAD6/wEAAgAAAAAAAAD6/wAAAgAAAAAAAAD6////AgAAAAAAAAD6//7/AgAAAAAAAAD6//3/AgAAAAAAAAD6//z/AgAAAAAAAAD6//v/AgAAAAAAAAD6//r/AgAAAAAAAAD7//r/AgAAAAAAAAD8//r/AgAAAAAAAAD+//r/AgAAAAAAAAD9//r/AgAAAAAAAAD///r/AgAAAAAAAAAAAPr/AgAAAAAAAAABAPr/AgAAAAAAAAACAPr/AgAAAAAAAAADAPr/AgAAAAAAAAAEAPr/AgAAAAAAAAAFAPr/AgAAAAAAAAAGAPr/AgAAAAAAAAAHAPr/AgAAAAAAAAAIAPr/AgAAAAAAAAAJAPr/AgAAAAAAAAAKAPr/AgAAAAAAAAALAPr/AgAAAAAAAAAMAPr/AgAAAAAAAAANAPr/AgAAAAAAAAAOAPr/AgAAAAAAAAAPAPr/AgAAAAAAAAAQAPr/AgAAAAAAAAARAPr/AgAAAAAAAAARAPv/AgAAAAAAAAARAPz/AgAAAAAAAAARAP3/AgAAAAAAAAD///v/AQAAAAAAAQAAAPv/AQAAAAAAAQABAPv/AQAAAAAAAQD9//z/AQAAAAAAAQD///z/AQAAAAAAAQABAPz/AQAAAAAAAQADAPz/AQAAAAAAAQAFAPz/AQAAAAAAAQAHAPz/AQAAAAAAAQAPAP//AQAAAAAAAQAOAP//AQAAAAAAAQANAP//AQAAAAAAAQAMAP//AQAAAAAAAQANAAAAAQAAAAAAAQAPAAAAAQAAAAAAAQAPAAEAAQAAAAAAAQAOAAEAAQAAAAAAAQANAAEAAQAAAAAAAQAQAAIAAQAAAAAAAQAPAAIAAQAAAAAAAQAQAAMAAQAAAAAAAQAPAAQAAQAAAAAAAQAPAAUAAQAAAAAAAQAPAAYAAQAAAAAAAQAPAAcAAQAAAAAAAQANAAcAAQAAAAAAAQAOAAUAAQAAAAAAAQALAAUAAQAAAAAAAQALAAQAAQAAAAAAAQAJAAQAAQAAAAAAAQAJAAUAAQAAAAAAAQAHAAMAAQAAAAAAAQAHAAIAAQAAAAAAAQAJAAIAAQAAAAAAAQAKAAEAAQAAAAAAAQALAAAAAQAAAAAAAQAGAAEAAQAAAAAAAQAFAAAAAQAAAAAAAQAFAP//AQAAAAAAAQAFAP7/AQAAAAAAAQAFAP3/AQAAAAAAAQAGAP3/AQAAAAAAAQAHAP3/AQAAAAAAAQADAP7/AQAAAAAAAQD///7/AQAAAAAAAQD9//7/AQAAAAAAAQD7//3/AQAAAAAAAQD7/wEAAQAAAAAAAQD9/wAAAQAAAAAAAQD9////AQAAAAAAAQD//wAAAQAAAAAAAQD//wEAAQAAAAAAAQABAAAAAQAAAAAAAQABAP//AQAAAAAAAQACAAEAAQAAAAAAAQABAAIAAQAAAAAAAQABAAMAAQAAAAAAAQAAAAMAAQAAAAAAAQABAAQAAQAAAAAAAQABAAYAAQAAAAAAAQAAAAcAAQAAAAAAAQAAAAgAAQAAAAAAAQD+/wcAAQAAAAAAAQD9/wcAAQAAAAAAAQD8/wcAAQAAAAAAAQD7/wcAAQAAAAAAAQD9/wYAAQAAAAAAAQD+/wUAAQAAAAAAAQD9/wQAAQAAAAAAAQD8/wMAAQAAAAAAAQADAAQAAQAAAAAAAQAFAAQAAQAAAAAAAQAFAAYAAQAAAAAAAQAHAAYAAQAAAAAAAQAHAAcAAQAAAAAAAQAHAAgAAQAAAAAAAQAMAP3/AQAAAAAAAQAIAPv/AQAAAAAAAwA=")
 tile_set = SubResource("TileSet_27bay")
 
+[node name="Player" parent="." instance=ExtResource("6_5hph3")]
+position = Vector2(357, 1001)
+collision_mask = 255
+
 [node name="Gameoverlay" type="TextureRect" parent="."]
+visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("5_rka8t")
@@ -67,14 +63,17 @@ position = Vector2(57, 188)
 texture = ExtResource("9_1pe0h")
 
 [node name="Heart2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(125, 190)
 texture = ExtResource("9_1pe0h")
 
 [node name="Heart3" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(189, 189)
 texture = ExtResource("9_1pe0h")
 
 [node name="Heart4" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(58, 254)
 texture = ExtResource("9_1pe0h")
 
@@ -86,239 +85,28 @@ texture = ExtResource("10_27bay")
 position = Vector2(191, 251)
 texture = ExtResource("11_sof0w")
 
-[node name="GroundTiles" type="Node2D" parent="."]
-
-[node name="GroundTile" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(638, 92)
-
-[node name="GroundTile2" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(709, 92)
-collision_mask = 4
-
-[node name="GroundTile3" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(780, 92)
-
-[node name="GroundTile4" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(780, 161)
-
-[node name="GroundTile5" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(639, 161)
-
-[node name="GroundTile6" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(499, 161)
-
-[node name="GroundTile7" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(359, 230)
-
-[node name="GroundTile8" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(499, 301)
-
-[node name="GroundTile9" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(639, 301)
-
-[node name="GroundTile10" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(780, 372)
-
-[node name="GroundTile11" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(780, 442)
-
-[node name="GroundTile12" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(638, 442)
-
-[node name="GroundTile13" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(638, 511)
-
-[node name="GroundTile14" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(848, 511)
-
-[node name="GroundTile15" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(778, 580)
-
-[node name="GroundTile16" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(778, 651)
-
-[node name="GroundTile18" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(778, 721)
-
-[node name="GroundTile19" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(919, 721)
-
-[node name="GroundTile20" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1059, 721)
-
-[node name="GroundTile21" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1199, 651)
-
-[node name="GroundTile22" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1199, 581)
-
-[node name="GroundTile23" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1339, 581)
-
-[node name="GroundTile24" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1409, 510)
-
-[node name="GroundTile25" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1480, 441)
-
-[node name="GroundTile26" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1549, 371)
-
-[node name="GroundTile27" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1618, 371)
-
-[node name="GroundTile28" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1689, 371)
-
-[node name="GroundTile29" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1759, 370)
-
-[node name="GroundTile30" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1759, 441)
-
-[node name="GroundTile31" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1619, 441)
-
-[node name="GroundTile32" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1479, 441)
-
-[node name="GroundTile33" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1619, 511)
-
-[node name="GroundTile34" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1690, 511)
-
-[node name="GroundTile35" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1760, 511)
-
-[node name="GroundTile36" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1759, 581)
-
-[node name="GroundTile37" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1830, 581)
-
-[node name="GroundTile38" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1830, 652)
-
-[node name="GroundTile39" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1758, 722)
-
-[node name="GroundTile40" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1758, 792)
-
-[node name="GroundTile41" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1688, 792)
-
-[node name="GroundTile42" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1758, 862)
-
-[node name="GroundTile43" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1758, 932)
-
-[node name="GroundTile44" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1619, 932)
-
-[node name="GroundTile45" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1479, 790)
-
-[node name="GroundTile46" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1479, 720)
-
-[node name="GroundTile47" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1339, 721)
-
-[node name="GroundTile48" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1339, 791)
-
-[node name="GroundTile49" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1199, 861)
-
-[node name="GroundTile50" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1199, 931)
-
-[node name="GroundTile51" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1199, 1001)
-
-[node name="GroundTile52" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1059, 861)
-
-[node name="GroundTile53" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(779, 861)
-
-[node name="GroundTile54" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(710, 931)
-
-[node name="GroundTile55" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(710, 1000)
-
-[node name="GroundTile56" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(569, 930)
-
-[node name="GroundTile57" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(499, 930)
-
-[node name="GroundTile58" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(429, 930)
-
-[node name="GroundTile59" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(359, 930)
-
-[node name="GroundTile60" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(499, 860)
-
-[node name="GroundTile61" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(568, 791)
-
-[node name="GroundTile62" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(498, 721)
-
-[node name="GroundTile63" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(429, 651)
-
-[node name="GroundTile64" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(359, 511)
-
-[node name="GroundTile65" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(499, 441)
-
-[node name="GroundTile66" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(499, 371)
-
-[node name="GroundTile67" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(919, 301)
-
-[node name="GroundTile68" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(919, 161)
-
-[node name="GroundTile69" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1059, 161)
-
-[node name="GroundTile70" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1059, 231)
-
-[node name="GroundTile71" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1059, 301)
-
-[node name="GroundTile72" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1059, 371)
-
-[node name="GroundTile73" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1059, 441)
-
-[node name="GroundTile74" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1129, 511)
-
-[node name="GroundTile75" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1129, 231)
-
-[node name="GroundTile76" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1199, 231)
-
-[node name="GroundTile77" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1199, 161)
-
-[node name="GroundTile78" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(1550, 231)
-
-[node name="GroundTile17" parent="GroundTiles" instance=ExtResource("11_1pe0h")]
-position = Vector2(708, 651)
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_27bay")
+autoplay = true
+bus = &"Music"
+
+[node name="lives" type="Label" parent="."]
+offset_left = 161.0
+offset_top = 29.0
+offset_right = 201.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("13_sof0w")
+theme_override_font_sizes/font_size = 25
+text = "x1"
+
+[connection signal="body_entered" from="TileMapLayer2/crystal" to="TileMapLayer2/crystal" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@81863" to="TileMapLayer2/@Area2D@81863" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@81864" to="TileMapLayer2/@Area2D@81864" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@81865" to="TileMapLayer2/@Area2D@81865" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@81866" to="TileMapLayer2/@Area2D@81866" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@81867" to="TileMapLayer2/@Area2D@81867" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@81868" to="TileMapLayer2/@Area2D@81868" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@81869" to="TileMapLayer2/@Area2D@81869" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@81870" to="TileMapLayer2/@Area2D@81870" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayer2/@Area2D@81871" to="TileMapLayer2/@Area2D@81871" method="_on_body_entered"]

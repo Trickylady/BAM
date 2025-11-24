@@ -264,6 +264,11 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="vb_entry" type="VBoxContainer" parent="Scoreboardtab"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Abouttab" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
@@ -271,10 +276,10 @@ offset_bottom = 40.0
 
 [node name="abouttext" type="RichTextLabel" parent="Abouttab"]
 layout_mode = 0
-offset_left = 746.0
-offset_top = 409.0
-offset_right = 1232.0
-offset_bottom = 806.0
+offset_left = 747.0
+offset_top = 380.0
+offset_right = 1233.0
+offset_bottom = 777.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("7_ecwwl")
 theme_override_font_sizes/normal_font_size = 24
@@ -294,11 +299,14 @@ Pixabay
 [/center]"
 
 [node name="Preferencestab" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -44.0
+offset_right = -5.0
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 2
 
