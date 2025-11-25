@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d4k6w0cj6j8gd"]
+[gd_scene load_steps=42 format=3 uid="uid://d4k6w0cj6j8gd"]
 
 [ext_resource type="Texture2D" uid="uid://rqxektrc1enw" path="res://graphics/dragon/dragon_front_1.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dd1353alu4xf6" path="res://instances/player.gd" id="1_onrkg"]
@@ -33,6 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://2awwor0lg4fh" path="res://audio/sfx_you_died.mp3" id="26_j5n4i"]
 [ext_resource type="AudioStream" uid="uid://jodilnd107ln" path="res://audio/sfx_dragon_hurt.mp3" id="29_efrwb"]
 [ext_resource type="AudioStream" uid="uid://cauoti1j2dw2s" path="res://audio/sfx_push.mp3" id="31_tkwlq"]
+[ext_resource type="AudioStream" uid="uid://d34k8jhtek7yk" path="res://audio/sfx_unable_to_push.mp3" id="32_cxe1a"]
 [ext_resource type="Texture2D" uid="uid://cbanm8078juc3" path="res://graphics/snake/enemy_dead_1.png" id="32_snyl3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
@@ -344,6 +345,11 @@ libraries = {
 }
 
 [node name="SFXs" type="Node" parent="."]
+
+[node name="SFXCantPush" type="AudioStreamPlayer" parent="SFXs"]
+unique_name_in_owner = true
+stream = ExtResource("32_cxe1a")
+bus = &"SFX"
 
 [node name="SFXDie" type="AudioStreamPlayer" parent="SFXs"]
 unique_name_in_owner = true

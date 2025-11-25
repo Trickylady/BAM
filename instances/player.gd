@@ -111,14 +111,14 @@ func try_push() -> void:
 	var label: PopupLabel = preload("res://instances/popup_label.tscn").instantiate()
 	if collider is Bouncytiles:
 		%SFXPush.play()
-		label.text = "Bouncy bouncy"
+		label.text = "Bounce!"
 		collider.push(direction)
 	elif collider is GroundTile:
-		%SFXPush.play()
-		label.text = "Ciccio pasticcio"
+		%SFXCantPush.play()
+		label.text = "Can't!"
 	else:
-		%SFXHurt.play()
-		label.text = "Ow"
+		%SFXCantPush.play()
+		label.text = "No!"
 	add_child(label)
 
 
