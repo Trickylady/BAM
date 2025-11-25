@@ -1,22 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://7yuy7lxikuw0"]
+[gd_scene load_steps=6 format=3 uid="uid://df15u6aa4rj2"]
 
-[ext_resource type="Script" uid="uid://oas7q7ye1syt" path="res://scenes/gameover.gd" id="1_kctv7"]
-[ext_resource type="Texture2D" uid="uid://wvuwv5qgry1q" path="res://graphics/backgrounds/gamescreens.png" id="2_2nw6q"]
-[ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://theme/ComicaRegular.otf" id="3_w3x71"]
-[ext_resource type="Texture2D" uid="uid://bpbjqjgym6m30" path="res://graphics/dragon/dragon_dead_1.png" id="4_af4fq"]
+[ext_resource type="Script" uid="uid://dsb31ob1pquja" path="res://scenes/in_game_menu.gd" id="1_0rq4b"]
+[ext_resource type="Texture2D" uid="uid://wvuwv5qgry1q" path="res://graphics/backgrounds/gamescreens.png" id="2_efgmv"]
+[ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://theme/ComicaRegular.otf" id="3_r4chg"]
+[ext_resource type="PackedScene" uid="uid://dcvyl4604fibw" path="res://scenes/preferencestab.tscn" id="4_efgmv"]
 
-[sub_resource type="Theme" id="Theme_h8i2o"]
-default_font = ExtResource("3_w3x71")
+[sub_resource type="Theme" id="Theme_g1o2j"]
+default_font = ExtResource("3_r4chg")
 default_font_size = 50
 
-[node name="Gameover" type="Control"]
+[node name="InGameMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_kctv7")
+script = ExtResource("1_0rq4b")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -34,16 +34,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -446.0
-offset_top = -279.0
-offset_right = 446.0
-offset_bottom = 279.0
+offset_left = -557.0
+offset_top = -372.0
+offset_right = 557.0
+offset_bottom = 372.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="NinePatchRect" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("2_2nw6q")
+texture = ExtResource("2_efgmv")
 region_rect = Rect2(0, 0, 639, 422)
 patch_margin_bottom = 109
 
@@ -60,63 +60,30 @@ layout_mode = 2
 [node name="headertext" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("3_w3x71")
+theme_override_fonts/normal_font = ExtResource("3_r4chg")
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "[shake]GAME OVER[/shake]"
+text = "[shake]Game paused[/shake]"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Preferencestab" parent="MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_efgmv")]
 layout_mode = 2
-alignment = 1
-
-[node name="DragonDead1" type="TextureRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("4_af4fq")
-
-[node name="textreg" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/default_color = Color(0.5137255, 0.4745098, 0.3764706, 1)
-theme_override_fonts/normal_font = ExtResource("3_w3x71")
-theme_override_font_sizes/normal_font_size = 29
-bbcode_enabled = true
-text = "[center]You got BAM'ed![/center]
-"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextScore" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("3_w3x71")
-theme_override_font_sizes/normal_font_size = 29
-bbcode_enabled = true
-text = "Score: ####
-"
-fit_content = true
-horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="scoreboardbtn" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" groups=["buttons"]]
-unique_name_in_owner = true
-visible = false
+[node name="continue" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" groups=["buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 flat = true
 metadata/_edit_group_ = true
 
-[node name="TBack" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/scoreboardbtn"]
+[node name="TBack" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/continue"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -125,9 +92,9 @@ offset_right = 17.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = SubResource("Theme_h8i2o")
+theme = SubResource("Theme_g1o2j")
 bbcode_enabled = true
-text = "[center][wave]Scoreboard
+text = "[center][wave]Continue
 [/wave][/center]"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -147,11 +114,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = SubResource("Theme_h8i2o")
+theme = SubResource("Theme_g1o2j")
 bbcode_enabled = true
-text = "[wave]Back to Menu[/wave]"
+text = "[center][wave]Back to Menu
+[/wave][/center]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/MenuBack" to="." method="_on_menu_back_pressed"]

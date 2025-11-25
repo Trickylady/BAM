@@ -21,6 +21,15 @@ var explosion_size: int = 1
 
 func _ready() -> void:
 	check_raycasts()
+	await get_tree().process_frame
+	await get_tree().process_frame
+	for body: Node2D in get_overlapping_bodies():
+		check_body(body)
+
+
+func check_body(body: PhysicsBody2D) -> void:
+	if body.has_method("die"):
+		body.die()
 
 
 func check_raycasts():
@@ -79,5 +88,4 @@ func calculate_size_of_explosion(raycast: RayCast2D):
 
 
 func _on_body_entered(body: Node) -> void:
-	if body is Player:
-		body.die()
+	check_body(body)
