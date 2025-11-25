@@ -54,4 +54,13 @@ collision_mask = 33
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 shape = SubResource("CircleShape2D_3hmjs")
 
+[node name="Label" type="Label" parent="."]
+offset_left = -89.0
+offset_top = -160.0
+offset_right = 89.0
+offset_bottom = -40.0
+text = "info"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
