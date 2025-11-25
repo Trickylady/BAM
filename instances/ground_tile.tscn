@@ -39,13 +39,8 @@ collision_layer = 4
 script = ExtResource("1_lm3os")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_lm3os")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("1_tfdjb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8q5sq")

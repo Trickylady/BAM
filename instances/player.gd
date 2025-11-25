@@ -42,13 +42,16 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("plant_bomb"):
+	if Input.is_action_just_pressed(&"plant_bomb"):
 		bomb_placement_sys.place_bomb()
+	
+	if not moving and Input.is_action_just_pressed(&"push"):
+		try_push()
 	
 	if not moving:
 		var input = Vector2(
-			Input.get_action_strength("right") - Input.get_action_strength("left"),
-			Input.get_action_strength("down") - Input.get_action_strength("up")
+			Input.get_action_strength(&"right") - Input.get_action_strength(&"left"),
+			Input.get_action_strength(&"down") - Input.get_action_strength(&"up")
 		)
 		
 		if input != Vector2.ZERO:
@@ -56,6 +59,7 @@ func _physics_process(delta: float) -> void:
 			elif input.y < 0: direction = Vector2.UP
 			elif input.x > 0: direction = Vector2.RIGHT
 			elif input.x < 0: direction = Vector2.LEFT
+			%RayCastTiles.target_position = direction * Mng.TILE_SIZE
 			var next_pos = position + direction * Mng.TILE_SIZE
 			
 			if not test_move(global_transform, direction * Mng.TILE_SIZE):
@@ -92,7 +96,22 @@ func _process(_delta: float) -> void:
 
 
 func try_push() -> void:
-	%SFXHurt.play()
+	if not %RayCastTiles.is_colliding():
+		return
+	
+	var collider = %RayCastTiles.get_collider()
+	var label: PopupLabel = preload("res://instances/popup_label.tscn").instantiate()
+	if collider is Bouncytiles:
+		%SFXPush.play()
+		label.text = "Bouncy bouncy"
+		collider.push(direction)
+	elif collider is GroundTile:
+		%SFXPush.play()
+		label.text = "Ciccio pasticcio"
+	else:
+		%SFXHurt.play()
+		label.text = "Ow"
+	add_child(label)
 
 
 func take_damage(amount: float) -> void:
