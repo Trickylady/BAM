@@ -99,6 +99,7 @@ func _on_level_ready() -> void:
 	Mng.level.player.bombs_updated.connect(update_bombs)
 	
 	update_all()
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 
 func _on_scores_updated() -> void:

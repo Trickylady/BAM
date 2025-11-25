@@ -318,8 +318,7 @@ autowrap_mode = 3
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_b88wv")
-animation = &"shieldwalkdown"
-frame_progress = 0.534632
+animation = &"idledown"
 
 [node name="BombPlacementSys" type="Node" parent="."]
 script = ExtResource("21_5tmop")
