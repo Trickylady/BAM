@@ -28,7 +28,7 @@ var bombs_placed: int = 0:
 		bombs_updated.emit()
 var explosion_size: int = Mng.START_EXPLOSION_SIZE:
 	set(value):
-		explosion_size = min(value, 1)
+		explosion_size = max(value, 1)
 		bombs_updated.emit()
 
 signal bombs_updated
@@ -39,6 +39,7 @@ signal bombs_updated
 func _ready():
 	position = position.snapped(Mng.TILE_SIZE)
 	target_position = position
+	%Sprite.play("idledown")
 
 
 func _physics_process(delta: float) -> void:
