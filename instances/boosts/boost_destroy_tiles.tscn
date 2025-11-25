@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5nf6kksy3s88"]
 
 [ext_resource type="Script" uid="uid://beyll6cvr0lr3" path="res://instances/pickup.gd" id="1_7mr40"]
-[ext_resource type="Texture2D" uid="uid://cc5mgudni27sm" path="res://graphics/boosts/boost_destroy_all_tiles.png" id="2_7mr40"]
+[ext_resource type="Texture2D" uid="uid://brrnk8p38lyg8" path="res://graphics/boosts/boost_destroy_all_tiles.png" id="2_7mr40"]
 [ext_resource type="AudioStream" uid="uid://dk80p0o1q20bl" path="res://audio/sfx_destroy_tiles.mp3" id="3_ey5x2"]
 [ext_resource type="PackedScene" uid="uid://b642aatdgeg2h" path="res://instances/collect_particles.tscn" id="4_qxk37"]
 

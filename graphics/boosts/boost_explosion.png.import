@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brrnk8p38lyg8"
-path="res://.godot/imported/boost_destroy_all_tiles.png-298b89027a0bd3314120684d32e7bcf7.ctex"
+uid="uid://cc5mgudni27sm"
+path="res://.godot/imported/boost_explosion.png-e8a029d3ee2dc7809e51fbcc60c584a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/boosts/boost_destroy_all_tiles.png"
-dest_files=["res://.godot/imported/boost_destroy_all_tiles.png-298b89027a0bd3314120684d32e7bcf7.ctex"]
+source_file="res://graphics/boosts/boost_explosion.png"
+dest_files=["res://.godot/imported/boost_explosion.png-e8a029d3ee2dc7809e51fbcc60c584a1.ctex"]
 
 [params]
 
