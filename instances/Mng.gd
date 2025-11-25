@@ -6,6 +6,7 @@ const TILE_SIZE: Vector2 = Vector2(70, 70)
 const GROUND_TILE_POINTS: int = 10
 const ENEMY_KILLED_POINTS: int = 250
 const ENEMY_KILLED_MULTIPLIER_CRYSTALS: float = 2.5
+const BOOST_SPEED_MULTIPLIER: float = 1.8
 const PLAYER_MAX_HEALTH: float = 6.0
 const START_LIVES: int = 3
 const START_MAX_BOMBS: int = 5

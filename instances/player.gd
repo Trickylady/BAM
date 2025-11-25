@@ -2,14 +2,18 @@ extends CharacterBody2D
 class_name Player
 
 
-@export var move_time := 0.25   # how long to move one tile
+@export var walk_speed := Mng.TILE_SIZE.x * 4.0
 
 @onready var bomb_placement_sys: BombPlacementSys = $BombPlacementSys
 
 var direction: Vector2 = Vector2.ZERO
 var is_dead: bool = false: set = set_is_dead
+var is_invincible: bool = false: set = set_is_invincible
+var has_speed_boost: bool = false
+var has_shield_boost: bool = false
 var target_position: Vector2
 var moving := false
+
 
 #region Bombs
 var max_bombs_at_once: int = Mng.START_MAX_BOMBS:
@@ -20,7 +24,7 @@ var bombs_placed: int = 0:
 	set(value):
 		bombs_placed = value
 		bombs_updated.emit()
-var explosion_size: int = 1:
+var explosion_size: int = 2:
 	set(value):
 		explosion_size = clamp(value, 0, 10)
 		bombs_updated.emit()
@@ -57,7 +61,11 @@ func _physics_process(delta: float) -> void:
 				moving = true
 	
 	if moving:
-		position = position.move_toward(target_position, Mng.TILE_SIZE.x / move_time * delta)
+		var final_speed: float = walk_speed
+		if has_speed_boost:
+			final_speed *= Mng.BOOST_SPEED_MULTIPLIER
+		final_speed *= delta
+		position = position.move_toward(target_position, final_speed)
 		if position == target_position:
 			moving = false
 
@@ -82,9 +90,14 @@ func _process(_delta: float) -> void:
 
 
 func take_damage(amount: float) -> void:
+	if is_invincible:
+		return
+	is_invincible = true
 	Mng.dragon_health -= amount
 	if Mng.dragon_health <= 0.0:
 		die()
+	else:
+		%SFXHurt.play()
 
 
 func pick_up(obj: PickUp) -> void:
@@ -94,9 +107,11 @@ func pick_up(obj: PickUp) -> void:
 		PickUp.Type.CRYSTAL:
 			pass
 		PickUp.Type.SPEED:
-			pass
+			has_speed_boost = true
+			%TimerSpeedBoost.start()
 		PickUp.Type.SHIELD:
-			pass
+			has_shield_boost = true
+			%TimerShieldBoost.start()
 		PickUp.Type.EXTRA_BOMB:
 			max_bombs_at_once += 1
 		PickUp.Type.DESTROY_TILES:
@@ -114,7 +129,7 @@ func die() -> void:
 		return
 	Mng.dragon_health = 0
 	is_dead = true
-	$SFXDie.play()
+	%SFXDie.play()
 	%Sprite.play("dragondead")
 	await get_tree().create_timer(Mng.RESPAWN_TIME_AFTER_DEATH).timeout
 	Mng.dragon_lives -= 1
@@ -129,8 +144,9 @@ func respawn() -> void:
 	%Sprite.play("idledown")
 	Mng.dragon_health = Mng.PLAYER_MAX_HEALTH
 	is_dead = false
-	position = Mng.level.player_start_position
+	position = position.snapped(Mng.TILE_SIZE) #Mng.level.player_start_position
 	target_position = position
+	is_invincible = true
 	$SpawnParticles.emitting = true
 
 
@@ -139,3 +155,17 @@ func set_is_dead(value: bool) -> void:
 	$Collision.set_deferred(&"disabled", value)
 	set_process(not value)
 	set_physics_process(not value)
+
+
+func set_is_invincible(value: bool) -> void:
+	is_invincible = value
+	if is_invincible:
+		# the animation player will call set_is_invincible(false) at the end
+		%AnimationInvincible.play(&"invincible")
+	
+
+
+func _on_timer_speed_boost_timeout() -> void:
+	has_speed_boost = false
+func _on_timer_shield_boost_timeout() -> void:
+	has_shield_boost = false
