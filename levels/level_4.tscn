@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=4 uid="uid://dsboh14pd8pex"]
+
+[ext_resource type="Script" uid="uid://cl2o7p6kowh5j" path="res://instances/level.gd" id="1_0fd8o"]
+[ext_resource type="Texture2D" uid="uid://c455gyvr7hoey" path="res://graphics/backgrounds/background_game_2.png" id="2_dmnu2"]
+[ext_resource type="TileSet" uid="uid://c0lm024okjnxd" path="res://instances/game_tileset.tres" id="3_sc6c1"]
+[ext_resource type="PackedScene" uid="uid://dommwaim2746h" path="res://instances/enemy.tscn" id="4_ng40l"]
+[ext_resource type="PackedScene" uid="uid://d4k6w0cj6j8gd" path="res://instances/player.tscn" id="5_04hp8"]
+[ext_resource type="PackedScene" uid="uid://cynssg52b3qtw" path="res://scenes/gameoverlay.tscn" id="6_8hlpj"]
+[ext_resource type="AudioStream" uid="uid://dv13arg3jxjqk" path="res://audio/gametrack.mp3" id="7_qhnv2"]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_0fd8o")
+metadata/_edit_lock_ = true
+
+[node name="GameBG" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_dmnu2")
+metadata/_edit_lock_ = true
+
+[node name="Arena" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(290, 21)
+metadata/_edit_lock_ = true
+
+[node name="Explosions" type="Node2D" parent="Arena"]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="TileMapBoosts" type="TileMapLayer" parent="Arena"]
+position = Vector2(-35, -35)
+tile_set = ExtResource("3_sc6c1")
+metadata/_edit_lock_ = true
+
+[node name="TileMapLevel" type="TileMapLayer" parent="Arena"]
+unique_name_in_owner = true
+position = Vector2(-35, -35)
+tile_map_data = PackedByteArray("AAAAAAAAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAYAAgAAAAAAAAAAAAcAAgAAAAAAAAAAAAgAAgAAAAAAAAAAAAkAAgAAAAAAAAAAAAoAAgAAAAAAAAAAAAsAAgAAAAAAAAAAAAwAAgAAAAAAAAAAAA0AAgAAAAAAAAAAAA4AAgAAAAAAAAAAAA8AAgAAAAAAAAABAAAAAgAAAAAAAAABAA8AAgAAAAAAAAACAAAAAgAAAAAAAAACAA8AAgAAAAAAAAADAAAAAgAAAAAAAAADAA8AAgAAAAAAAAAEAAAAAgAAAAAAAAAEAA8AAgAAAAAAAAAFAAAAAgAAAAAAAAAFAA8AAgAAAAAAAAAGAAAAAgAAAAAAAAAGAA8AAgAAAAAAAAAHAAAAAgAAAAAAAAAHAA8AAgAAAAAAAAAIAAAAAgAAAAAAAAAIAA8AAgAAAAAAAAAJAAAAAgAAAAAAAAAJAA8AAgAAAAAAAAAKAAAAAgAAAAAAAAAKAA8AAgAAAAAAAAALAAAAAgAAAAAAAAALAA8AAgAAAAAAAAAMAAAAAgAAAAAAAAAMAA8AAgAAAAAAAAANAAAAAgAAAAAAAAANAA8AAgAAAAAAAAAOAAAAAgAAAAAAAAAOAA8AAgAAAAAAAAAPAAAAAgAAAAAAAAAPAA8AAgAAAAAAAAAQAAAAAgAAAAAAAAAQAA8AAgAAAAAAAAARAAAAAgAAAAAAAAARAA8AAgAAAAAAAAASAAAAAgAAAAAAAAASAA8AAgAAAAAAAAATAAAAAgAAAAAAAAATAA8AAgAAAAAAAAAUAAAAAgAAAAAAAAAUAA8AAgAAAAAAAAAVAAAAAgAAAAAAAAAVAA8AAgAAAAAAAAAWAAAAAgAAAAAAAAAWAA8AAgAAAAAAAAAXAAAAAgAAAAAAAAAXAAIAAgAAAAAAAAAXAAMAAgAAAAAAAAAXAAQAAgAAAAAAAAAXAAUAAgAAAAAAAAAXAAYAAgAAAAAAAAAXAAcAAgAAAAAAAAAXAAgAAgAAAAAAAAAXAAkAAgAAAAAAAAAXAAoAAgAAAAAAAAAXAAsAAgAAAAAAAAAXAAwAAgAAAAAAAAAXAA0AAgAAAAAAAAAXAA4AAgAAAAAAAAAXAA8AAgAAAAAAAAAXAAEAAgAAAAAAAAA=")
+tile_set = ExtResource("3_sc6c1")
+metadata/_edit_lock_ = true
+
+[node name="Bombs" type="Node2D" parent="Arena"]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="Enemies" type="Node2D" parent="Arena"]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="Enemy1" parent="Arena/Enemies" instance=ExtResource("4_ng40l")]
+position = Vector2(211, 769)
+
+[node name="Player" parent="Arena" instance=ExtResource("5_04hp8")]
+unique_name_in_owner = true
+position = Vector2(137, 89)
+collision_mask = 255
+
+[node name="Bullets" type="Node2D" parent="Arena"]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="Gameoverlay" parent="." instance=ExtResource("6_8hlpj")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_qhnv2")
+autoplay = true
+bus = &"Music"
+
+[node name="TimerRedMode" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="TimerLevel" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="TimerRedMode" to="." method="_on_timer_red_mode_timeout"]
+[connection signal="timeout" from="TimerLevel" to="." method="_on_timer_red_mode_timeout"]

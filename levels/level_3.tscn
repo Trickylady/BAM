@@ -1,21 +1,21 @@
-[gd_scene load_steps=8 format=4 uid="uid://b8alahjyfcvsf"]
+[gd_scene load_steps=8 format=4 uid="uid://23yqp4h5odrw"]
 
-[ext_resource type="Script" uid="uid://cl2o7p6kowh5j" path="res://instances/level.gd" id="1_76ugp"]
-[ext_resource type="Texture2D" uid="uid://c455gyvr7hoey" path="res://graphics/backgrounds/background_game_2.png" id="2_e8p81"]
-[ext_resource type="TileSet" uid="uid://c0lm024okjnxd" path="res://instances/game_tileset.tres" id="3_55gdq"]
-[ext_resource type="PackedScene" uid="uid://dommwaim2746h" path="res://instances/enemy.tscn" id="4_crte6"]
-[ext_resource type="PackedScene" uid="uid://d4k6w0cj6j8gd" path="res://instances/player.tscn" id="5_hq01p"]
-[ext_resource type="PackedScene" uid="uid://cynssg52b3qtw" path="res://scenes/gameoverlay.tscn" id="6_fjysh"]
-[ext_resource type="AudioStream" uid="uid://dv13arg3jxjqk" path="res://audio/gametrack.mp3" id="7_bcewn"]
+[ext_resource type="Script" uid="uid://cl2o7p6kowh5j" path="res://instances/level.gd" id="1_1xfnq"]
+[ext_resource type="Texture2D" uid="uid://c455gyvr7hoey" path="res://graphics/backgrounds/background_game_2.png" id="2_6uckl"]
+[ext_resource type="TileSet" uid="uid://c0lm024okjnxd" path="res://instances/game_tileset.tres" id="3_d6jip"]
+[ext_resource type="PackedScene" uid="uid://dommwaim2746h" path="res://instances/enemy.tscn" id="4_kkm8t"]
+[ext_resource type="PackedScene" uid="uid://d4k6w0cj6j8gd" path="res://instances/player.tscn" id="5_cpuyl"]
+[ext_resource type="PackedScene" uid="uid://cynssg52b3qtw" path="res://scenes/gameoverlay.tscn" id="6_mf7v1"]
+[ext_resource type="AudioStream" uid="uid://dv13arg3jxjqk" path="res://audio/gametrack.mp3" id="7_7trqu"]
 
 [node name="Level2" type="Node2D"]
-script = ExtResource("1_76ugp")
+script = ExtResource("1_1xfnq")
 metadata/_edit_lock_ = true
 
 [node name="GameBG" type="TextureRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("2_e8p81")
+texture = ExtResource("2_6uckl")
 metadata/_edit_lock_ = true
 
 [node name="Arena" type="Node2D" parent="."]
@@ -29,14 +29,14 @@ metadata/_edit_lock_ = true
 
 [node name="TileMapBoosts" type="TileMapLayer" parent="Arena"]
 position = Vector2(-35, -35)
-tile_set = ExtResource("3_55gdq")
+tile_set = ExtResource("3_d6jip")
 metadata/_edit_lock_ = true
 
 [node name="TileMapLevel" type="TileMapLayer" parent="Arena"]
 unique_name_in_owner = true
 position = Vector2(-35, -35)
 tile_map_data = PackedByteArray("AAAAAAAAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAYAAgAAAAAAAAAAAAcAAgAAAAAAAAAAAAgAAgAAAAAAAAAAAAkAAgAAAAAAAAAAAAoAAgAAAAAAAAAAAAsAAgAAAAAAAAAAAAwAAgAAAAAAAAAAAA0AAgAAAAAAAAAAAA4AAgAAAAAAAAAAAA8AAgAAAAAAAAABAAAAAgAAAAAAAAABAA8AAgAAAAAAAAACAAAAAgAAAAAAAAACAA8AAgAAAAAAAAADAAAAAgAAAAAAAAADAA8AAgAAAAAAAAAEAAAAAgAAAAAAAAAEAA8AAgAAAAAAAAAFAAAAAgAAAAAAAAAFAA8AAgAAAAAAAAAGAAAAAgAAAAAAAAAGAA8AAgAAAAAAAAAHAAAAAgAAAAAAAAAHAA8AAgAAAAAAAAAIAAAAAgAAAAAAAAAIAA8AAgAAAAAAAAAJAAAAAgAAAAAAAAAJAA8AAgAAAAAAAAAKAAAAAgAAAAAAAAAKAA8AAgAAAAAAAAALAAAAAgAAAAAAAAALAA8AAgAAAAAAAAAMAAAAAgAAAAAAAAAMAA8AAgAAAAAAAAANAAAAAgAAAAAAAAANAA8AAgAAAAAAAAAOAAAAAgAAAAAAAAAOAA8AAgAAAAAAAAAPAAAAAgAAAAAAAAAPAA8AAgAAAAAAAAAQAAAAAgAAAAAAAAAQAA8AAgAAAAAAAAARAAAAAgAAAAAAAAARAA8AAgAAAAAAAAASAAAAAgAAAAAAAAASAA8AAgAAAAAAAAATAAAAAgAAAAAAAAATAA8AAgAAAAAAAAAUAAAAAgAAAAAAAAAUAA8AAgAAAAAAAAAVAAAAAgAAAAAAAAAVAA8AAgAAAAAAAAAWAAAAAgAAAAAAAAAWAA8AAgAAAAAAAAAXAAAAAgAAAAAAAAAXAAIAAgAAAAAAAAAXAAMAAgAAAAAAAAAXAAQAAgAAAAAAAAAXAAUAAgAAAAAAAAAXAAYAAgAAAAAAAAAXAAcAAgAAAAAAAAAXAAgAAgAAAAAAAAAXAAkAAgAAAAAAAAAXAAoAAgAAAAAAAAAXAAsAAgAAAAAAAAAXAAwAAgAAAAAAAAAXAA0AAgAAAAAAAAAXAA4AAgAAAAAAAAAXAA8AAgAAAAAAAAAXAAEAAgAAAAAAAAA=")
-tile_set = ExtResource("3_55gdq")
+tile_set = ExtResource("3_d6jip")
 metadata/_edit_lock_ = true
 
 [node name="Bombs" type="Node2D" parent="Arena"]
@@ -47,24 +47,24 @@ metadata/_edit_lock_ = true
 unique_name_in_owner = true
 metadata/_edit_lock_ = true
 
-[node name="Enemy1" parent="Arena/Enemies" instance=ExtResource("4_crte6")]
+[node name="Enemy1" parent="Arena/Enemies" instance=ExtResource("4_kkm8t")]
 position = Vector2(211, 769)
 
-[node name="Player" parent="Arena" instance=ExtResource("5_hq01p")]
+[node name="Player" parent="Arena" instance=ExtResource("5_cpuyl")]
 unique_name_in_owner = true
-position = Vector2(73, 982)
+position = Vector2(137, 89)
 collision_mask = 255
 
 [node name="Bullets" type="Node2D" parent="Arena"]
 unique_name_in_owner = true
 metadata/_edit_lock_ = true
 
-[node name="Gameoverlay" parent="." instance=ExtResource("6_fjysh")]
+[node name="Gameoverlay" parent="." instance=ExtResource("6_mf7v1")]
 unique_name_in_owner = true
 visible = false
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_bcewn")
+stream = ExtResource("7_7trqu")
 autoplay = true
 bus = &"Music"
 
