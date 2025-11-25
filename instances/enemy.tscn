@@ -114,15 +114,15 @@ animations = [{
 collision_layer = 32
 collision_mask = 94
 script = ExtResource("1_g2u8i")
-move_time = null
-see_distance = null
-shoot_cooldown = null
-bullet_speed = null
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_qskgw")
 animation = &"snakewalkdown"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_eg6e4")
+one_way_collision = true
 
 [node name="RayPlayerDetect" type="RayCast2D" parent="."]
 collision_mask = 199
@@ -164,9 +164,3 @@ text = "info"
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_eg6e4")
-one_way_collision = true
-
-[connection signal="tree_entered" from="CollisionShape2D" to="." method="_on_collision_shape_2d_tree_entered"]
