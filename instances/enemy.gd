@@ -97,10 +97,3 @@ func die() -> void:
 	%Sprite.play("snakedead")
 	await %Sprite.animation_finished
 	queue_free()
-	
-	
-
-
-func _on_collision_shape_2d_tree_entered(body: Node) -> void:
-	if body.is_in_group("Player"):
-		die()
