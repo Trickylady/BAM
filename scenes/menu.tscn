@@ -160,6 +160,7 @@ grow_vertical = 2
 
 [node name="ButtonTest" type="Button" parent="TabContainer/Main/Menulist" groups=["buttons"]]
 process_mode = 3
+visible = false
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 focus_mode = 0

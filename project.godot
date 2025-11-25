@@ -13,6 +13,7 @@ config_version=5
 config/name="BAM"
 run/main_scene="uid://dkvx72mdk1m41"
 config/features=PackedStringArray("4.5", "Forward Plus")
+boot_splash/bg_color=Color(0.50980395, 0.46666667, 0.38039216, 1)
 boot_splash/image="uid://duqvi7u77nx8g"
 config/icon="uid://cl4iu46ei7g5h"
 
