@@ -60,6 +60,8 @@ func check_raycast_directions(anim_name: String, raycast: RayCast2D, animDir: Ve
 			create_explosion_for_size(size_explosion, anim_name, animDir)
 		if collider is GroundTile:
 			collider.destroy()
+		if collider is Bouncytiles:
+			collider.push(raycast.target_position.normalized())
 
 
 func create_explosion_for_size(calculated_size: int, animation_name: String, animation_position: Vector2):
