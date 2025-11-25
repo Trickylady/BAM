@@ -2,6 +2,8 @@ extends Control
 
 
 func _ready() -> void:
+	if Mng.is_publish: %ButtonTest.hide()
+	if Mng.is_web: %ButtonExit.hide()
 	Input.mouse_mode =Input.MOUSE_MODE_VISIBLE
 	for btn: Button in get_tree().get_nodes_in_group("buttons"):
 		if not btn.get_child_count() == 1:

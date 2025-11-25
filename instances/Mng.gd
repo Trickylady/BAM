@@ -1,6 +1,8 @@
 extends Node
 
 const TILE_SIZE: Vector2 = Vector2(70, 70)
+var is_publish: bool = true
+var is_web: bool = true
 
 #region Game Modifiers
 # level
@@ -49,7 +51,13 @@ signal health_updated
 
 #region Levels management
 const LEVELS_FOLDER: String = "res://levels/"
-var level_filenames: Array[String] = []
+var level_filenames: Array[String] = [
+	"level_1.tscn",
+	"level_2.tscn",
+	"level_3.tscn",
+	"level_4.tscn",
+	"level_5.tscn",
+]
 var levels_tot:
 	get: return level_filenames.size()
 var level: Level:
@@ -64,9 +72,14 @@ signal level_ready
 
 func _ready() -> void:
 	Input.set_custom_mouse_cursor(preload("res://theme/cursor.png"))
-	level_filenames = _get_all_levels()
+	#level_filenames = _get_all_levels() # cannot be used in builds
+	if is_publish:
+		AudioServer.set_bus_volume_linear(0, 0.8)
+		AudioServer.set_bus_volume_linear(1, 0.8)
+		AudioServer.set_bus_volume_linear(2, 0.8)
 
 
+# cannot be used in builds
 func _get_all_levels() -> Array[String]:
 	var found: Array[String] = []
 	for filename: String in DirAccess.get_files_at("res://levels/"):

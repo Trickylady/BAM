@@ -158,8 +158,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ButtonTest" type="Button" parent="TabContainer/Main/Menulist" groups=["buttons"]]
+unique_name_in_owner = true
 process_mode = 3
-visible = false
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 focus_mode = 0
@@ -269,6 +269,7 @@ custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
 [node name="ButtonExit" type="Button" parent="TabContainer/Main/Menulist" groups=["buttons"]]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 focus_mode = 0
