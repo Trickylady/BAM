@@ -1,18 +1,20 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var bomb_placement_sys: BombPlacementSys = $BombPlacementSys
 
 @export var walk_speed := Mng.TILE_SIZE.x * 4.0
 
-@onready var bomb_placement_sys: BombPlacementSys = $BombPlacementSys
-
 var direction: Vector2 = Vector2.ZERO
+var target_position: Vector2
+var moving := false
+
 var is_dead: bool = false: set = set_is_dead
 var is_invincible: bool = false: set = set_is_invincible
 var has_speed_boost: bool = false
 var has_shield_boost: bool = false
-var target_position: Vector2
-var moving := false
+
+signal died
 
 
 #region Bombs
@@ -26,7 +28,7 @@ var bombs_placed: int = 0:
 		bombs_updated.emit()
 var explosion_size: int = 2:
 	set(value):
-		explosion_size = clamp(value, 0, 10)
+		explosion_size = min(value, 1)
 		bombs_updated.emit()
 
 signal bombs_updated
@@ -89,6 +91,10 @@ func _process(_delta: float) -> void:
 			%Sprite.play("idleside")
 
 
+func try_push() -> void:
+	%SFXHurt.play()
+
+
 func take_damage(amount: float) -> void:
 	if is_invincible:
 		return
@@ -133,11 +139,7 @@ func die() -> void:
 	%Sprite.play("dragondead")
 	await get_tree().create_timer(Mng.RESPAWN_TIME_AFTER_DEATH).timeout
 	Mng.dragon_lives -= 1
-	if Mng.dragon_lives <= 0:
-		Mng.go_to_gameover_screen()
-	else:
-		Mng.level.clear_projectiles()
-		respawn()
+	died.emit()
 
 
 func respawn() -> void:

@@ -54,7 +54,7 @@ func _process(_delta: float) -> void:
 	%info.text = %Sprite.animation
 	%Sprite.flip_h = direction == Vector2.LEFT
 	
-	if Mng.level.is_extra_active:
+	if Mng.level.red_mode_active:
 		if direction == Vector2.UP and %Sprite.animation != "extrasnakeup":
 			%Sprite.play("extrasnakeup")
 		elif direction == Vector2.DOWN and %Sprite.animation != "extrasnakedown":
@@ -87,6 +87,7 @@ func shoot() -> void:
 
 
 func die() -> void:
+	if is_dead: return
 	is_dead = true
 	destroyed.emit()
 	$Collision.set_deferred(&"disabled", true)

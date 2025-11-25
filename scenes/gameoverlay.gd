@@ -6,6 +6,16 @@ class_name GameOverlay
 
 func _ready() -> void:
 	Mng.level_ready.connect(_on_level_ready)
+	%winscreen.hide()
+	%Gameover.hide()
+	%InGameMenu.hide()
+
+
+func _input(event: InputEvent) -> void:
+	if %winscreen.visible: return
+	if %Gameover.visible: return
+	if event.is_action_pressed(&"ui_cancel"):
+		toggle_menu()
 
 
 func update_all() -> void:
@@ -13,6 +23,27 @@ func update_all() -> void:
 	update_lives()
 	update_health()
 	update_bombs()
+
+
+func toggle_menu() -> void:
+	%InGameMenu.visible = !%InGameMenu.visible
+
+
+func go_to_win_screen() -> void:
+	%winscreen.show()
+	pause_game_arena(true)
+
+
+func go_to_game_over() -> void:
+	%Gameover.show()
+	pause_game_arena(true)
+
+
+func pause_game_arena(paused: bool) -> void:
+	if not Mng.level:
+		return
+	var mode = Node.PROCESS_MODE_DISABLED if paused else Node.PROCESS_MODE_INHERIT
+	Mng.level.arena.set_deferred("process_mode", mode)
 
 
 func update_lives() -> void:
@@ -44,6 +75,7 @@ func update_bombs() ->  void:
 	var tot: int = Mng.level.player.max_bombs_at_once
 	var placed: int = Mng.level.player.bombs_placed
 	%LabelBombs.text = "%d/%d" % [placed, tot]
+	%LabelBombPower.text = "%d tile(s)" % Mng.level.player.explosion_size
 
 
 func update_scores() -> void:
@@ -60,3 +92,7 @@ func _on_level_ready() -> void:
 
 func _on_scores_updated() -> void:
 	update_scores()
+
+
+func _on_in_game_menu_visibility_changed() -> void:
+	pause_game_arena(%InGameMenu.is_visible_in_tree())

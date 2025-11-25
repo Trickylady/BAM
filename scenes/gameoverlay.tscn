@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cynssg52b3qtw"]
+[gd_scene load_steps=12 format=3 uid="uid://cynssg52b3qtw"]
 
 [ext_resource type="Texture2D" uid="uid://d0ies5i7oon4d" path="res://graphics/backgrounds/overlay.png" id="1_emjtp"]
 [ext_resource type="Theme" uid="uid://ccq1etdjf802w" path="res://theme/game.theme" id="1_qxep4"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://do2howaa5acsr" path="res://scenes/gameoverlay.gd" id="2_moi16"]
 [ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://theme/ComicaRegular.otf" id="3_moi16"]
 [ext_resource type="Texture2D" uid="uid://n8e0leay807f" path="res://theme/life_full.png" id="4_p76xc"]
+[ext_resource type="PackedScene" uid="uid://df15u6aa4rj2" path="res://scenes/in_game_menu.tscn" id="7_q3otv"]
+[ext_resource type="PackedScene" uid="uid://cujr18ofi7m03" path="res://scenes/winscreen.tscn" id="7_ucdoa"]
+[ext_resource type="PackedScene" uid="uid://7yuy7lxikuw0" path="res://scenes/gameover.tscn" id="8_d7jtm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ucdoa"]
 font_size = 42
@@ -17,6 +20,7 @@ font_size = 32
 outline_size = 2
 
 [node name="Gameoverlay" type="TextureRect"]
+process_mode = 3
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme = ExtResource("1_qxep4")
@@ -148,3 +152,32 @@ horizontal_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="VBox"]
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 308.0
+offset_top = 35.0
+offset_right = -41.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InGameMenu" parent="MarginContainer" instance=ExtResource("7_q3otv")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="winscreen" parent="MarginContainer" instance=ExtResource("7_ucdoa")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Gameover" parent="MarginContainer" instance=ExtResource("8_d7jtm")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="visibility_changed" from="MarginContainer/InGameMenu" to="." method="_on_in_game_menu_visibility_changed"]

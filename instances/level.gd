@@ -14,12 +14,13 @@ class_name Level
 var enemy_list: Array[Node] = []
 var crystal_list: Array[Node] = []
 var player_start_position: Vector2
-var is_extra_active: bool = false # activates when all the crystals are collected
+var red_mode_active: bool = false # activates when all the crystals are collected
 
 
 signal all_crystals_collected
 signal destroy_all_triggered
 signal level_won
+signal level_lost
 
 
 func _ready() -> void:
@@ -28,6 +29,11 @@ func _ready() -> void:
 		enemy.destroyed.connect(_on_enemy_destroyed.bind(enemy))
 	
 	player_start_position = %Player.position
+	%TimerRedMode.wait_time = Mng.RED_MODE_DURATION
+	%TimerLevel.wait_time = Mng.LEVEL_TIME
+	
+	player.died.connect(_on_player_died)
+	
 	Mng.level = self
 
 
@@ -45,18 +51,34 @@ func kill_random_enemy() -> void:
 	random_enemy.die()
 
 
+func _on_player_died() -> void:
+	if Mng.dragon_lives <= 0:
+		level_lost.emit()
+		gameoverlay.go_to_game_over()
+	else:
+		clear_projectiles()
+		player.respawn()
+
+
 func _on_enemy_destroyed(enemy: Enemy) -> void:
 	enemy_list.erase(enemy)
-	var mult: float = Mng.ENEMY_KILLED_MULTIPLIER_CRYSTALS if is_extra_active else 1.0
+	var mult: float = Mng.RED_MODE_POINTS_MULTIPLIER if red_mode_active else 1.0
 	var scores: int = int(Mng.ENEMY_KILLED_POINTS * mult)
 	Mng.current_scores += scores
 	if enemy_list.is_empty():
 		level_won.emit()
+		await get_tree().create_timer(Mng.RESPAWN_TIME_AFTER_DEATH).timeout
+		gameoverlay.go_to_win_screen()
 
 
 # crystal_list is populated from the crystals themselevs in _ready and connected here
 func _on_crystal_collected(crystal: PickUp) -> void:
 	crystal_list.erase(crystal)
-	is_extra_active = crystal_list.is_empty()
-	if is_extra_active:
+	red_mode_active = crystal_list.is_empty()
+	if red_mode_active:
+		%TimerRedMode.start()
 		all_crystals_collected.emit()
+
+
+func _on_timer_red_mode_timeout() -> void:
+	red_mode_active = false

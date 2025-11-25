@@ -10,74 +10,100 @@ default_font_size = 50
 
 [node name="winscreen" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_ehxyi")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1943.0
-offset_bottom = 1104.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.4862745)
 
-[node name="Gamescreens" type="Sprite2D" parent="."]
-position = Vector2(918, 591)
-texture = ExtResource("2_pd04t")
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -446.0
+offset_top = -279.0
+offset_right = 446.0
+offset_bottom = 279.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="textreg2" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 721.0
-offset_top = 548.0
-offset_right = 1111.0
-offset_bottom = 591.0
+[node name="Background" type="NinePatchRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_pd04t")
+region_rect = Rect2(0, 0, 639, 422)
+patch_margin_bottom = 109
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 125
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="headertext" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("3_2gb7w")
-theme_override_font_sizes/normal_font_size = 29
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "[center]Score: ####[/center]
-"
+text = "[shake]BAM! Done![/shake]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="textreg" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 753.0
-offset_top = 492.0
-offset_right = 1143.0
-offset_bottom = 535.0
+[node name="textreg" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_colors/default_color = Color(0.5137255, 0.4745098, 0.3764706, 1)
 theme_override_fonts/normal_font = ExtResource("3_2gb7w")
 theme_override_font_sizes/normal_font_size = 29
 bbcode_enabled = true
 text = "[center]All finished!![/center]
 "
-
-[node name="headertext" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 719.0
-offset_top = 419.0
-offset_right = 1151.0
-offset_bottom = 491.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("3_2gb7w")
-theme_override_font_sizes/normal_font_size = 60
-text = "BAM! Done!"
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="scoreboardbtn" type="Button" parent="." groups=["buttons"]]
+[node name="TextScore" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 919.0
-offset_top = 596.0
-offset_right = 1208.0
-offset_bottom = 685.0
-grow_horizontal = 0
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_2gb7w")
+theme_override_font_sizes/normal_font_size = 29
+bbcode_enabled = true
+text = "[center]Score: ####[/center]
+"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="scoreboardbtn" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" groups=["buttons"]]
+layout_mode = 2
+size_flags_horizontal = 3
 focus_mode = 0
 flat = true
 metadata/_edit_group_ = true
 
-[node name="TBack" type="RichTextLabel" parent="scoreboardbtn"]
+[node name="TBack" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/scoreboardbtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,22 +119,14 @@ text = "[center][wave]Scoreboard
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuBack" type="Button" parent="." groups=["buttons"]]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 645.0
-offset_top = 596.0
-offset_right = 814.0
-offset_bottom = 685.0
-grow_horizontal = 0
+[node name="MenuBack" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" groups=["buttons"]]
+layout_mode = 2
+size_flags_horizontal = 3
 focus_mode = 0
 flat = true
 metadata/_edit_group_ = true
 
-[node name="TBack" type="RichTextLabel" parent="MenuBack"]
+[node name="TBack" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/MenuBack"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -122,3 +140,7 @@ text = "[center][wave] Menu
 [/wave][/center]"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/scoreboardbtn" to="." method="_on_scoreboardbtn_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/MenuBack" to="." method="_on_menu_back_pressed"]

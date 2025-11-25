@@ -3,13 +3,21 @@ extends Node
 const TILE_SIZE: Vector2 = Vector2(70, 70)
 
 #region Game Modifiers
+# level
+const LEVEL_TIME: float = 120.0 # seconds
+const RED_MODE_DURATION: float = 30.0 # seconds
+
+# general points
 const GROUND_TILE_POINTS: int = 10
 const ENEMY_KILLED_POINTS: int = 250
-const ENEMY_KILLED_MULTIPLIER_CRYSTALS: float = 2.5
+const RED_MODE_POINTS_MULTIPLIER: float = 2.5
+
+# player
 const BOOST_SPEED_MULTIPLIER: float = 1.8
 const PLAYER_MAX_HEALTH: float = 6.0
 const START_LIVES: int = 3
 const START_MAX_BOMBS: int = 5
+const START_EXPLOSION_SIZE: int = 1 # tiles
 const RESPAWN_TIME_AFTER_DEATH: float = 2.5 # seconds
 #endregion
 
@@ -36,7 +44,10 @@ var dragon_health: float = Mng.PLAYER_MAX_HEALTH:
 		health_updated.emit()
 
 signal health_updated
+#endregion
 
+
+#region Levels management
 const LEVELS_FOLDER: String = "res://levels/"
 var level_filenames: Array[String] = []
 
@@ -46,6 +57,7 @@ var level: Level:
 		level_ready.emit()
 
 signal level_ready
+#endregion
 
 
 
@@ -57,6 +69,8 @@ func _ready() -> void:
 func _get_all_levels() -> Array[String]:
 	var found: Array[String] = []
 	for filename: String in DirAccess.get_files_at("res://levels/"):
+		if filename.contains("test"):
+			continue
 		if filename.get_extension() == "tscn":
 			found.append(filename)
 	return found
@@ -64,12 +78,18 @@ func _get_all_levels() -> Array[String]:
 
 func go_to_main_menu() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	get_tree().change_scene_to_file("res://menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 
 func start_game() -> void:
 	reset_stats()
 	go_to_next_level()
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+
+func start_test_game() -> void:
+	reset_stats()
+	get_tree().change_scene_to_file("res://levels/level_test.tscn")
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 
@@ -85,19 +105,9 @@ func go_to_next_level() -> void:
 	current_level_num += 1
 	current_scores = 0
 	if current_level_num > level_filenames.size():
-		go_to_win_screen()
+		go_to_main_menu()
 		return
 	
 	var next_level_index: int = current_level_num - 1
 	var level_path: String = LEVELS_FOLDER.path_join(level_filenames[next_level_index])
 	get_tree().change_scene_to_file(level_path)
-
-
-func go_to_win_screen() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	get_tree().change_scene_to_file("res://scenes/winscreen.tscn")
-
-
-func go_to_gameover_screen() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
