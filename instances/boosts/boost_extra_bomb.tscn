@@ -11,7 +11,7 @@ size = Vector2(67, 65)
 [node name="extra_bomb" type="Area2D"]
 collision_layer = 4
 script = ExtResource("1_7b43t")
-type = 3
+type = 4
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.5)

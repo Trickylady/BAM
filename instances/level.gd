@@ -2,6 +2,7 @@ extends Node2D
 class_name Level
 
 
+@onready var gameoverlay: GameOverlay = %Gameoverlay
 @onready var arena: Node2D = %Arena
 @onready var enemies: Node2D = %Enemies
 @onready var bombs: Node2D = %Bombs

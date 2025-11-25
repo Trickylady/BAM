@@ -1,0 +1,41 @@
+[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://c0lm024okjnxd"]
+
+[ext_resource type="PackedScene" uid="uid://dm0ud10tqwi5g" path="res://instances/ground_tile.tscn" id="1_8uan7"]
+[ext_resource type="PackedScene" uid="uid://jve4lr7aijsq" path="res://instances/boosts/boost_speed.tscn" id="2_8ml1v"]
+[ext_resource type="PackedScene" uid="uid://k48cqfnw3gqh" path="res://instances/pot_of_gold.tscn" id="3_g5en1"]
+[ext_resource type="PackedScene" uid="uid://di3dj7ntphqdt" path="res://instances/boosts/boost_bigger_explosion.tscn" id="4_rgmso"]
+[ext_resource type="PackedScene" uid="uid://xhfv6aog6ekj" path="res://instances/crystal.tscn" id="5_bvkn0"]
+[ext_resource type="PackedScene" uid="uid://b86ggxfii7sjj" path="res://instances/bouncytiles.tscn" id="6_qdu17"]
+[ext_resource type="PackedScene" uid="uid://b5nf6kksy3s88" path="res://instances/boosts/boost_destroy_tiles.tscn" id="7_atads"]
+[ext_resource type="PackedScene" uid="uid://5hgpn3g3ioy4" path="res://instances/boosts/boost_extra_bomb.tscn" id="8_4ugvu"]
+[ext_resource type="PackedScene" uid="uid://784ptaq34hee" path="res://instances/boosts/boost_extra_health.tscn" id="9_gveqj"]
+[ext_resource type="PackedScene" uid="uid://8cvcqyq8ll36" path="res://instances/boosts/boost_extra_life.tscn" id="10_25c11"]
+[ext_resource type="PackedScene" uid="uid://cw0na708pkok3" path="res://instances/boosts/boost_kill_enemies.tscn" id="11_fmxha"]
+[ext_resource type="PackedScene" uid="uid://fmd7y7ul41iq" path="res://instances/boosts/boost_shield.tscn" id="12_sbw8w"]
+[ext_resource type="Texture2D" uid="uid://brfx3exieeaaj" path="res://graphics/tiles/rock_tile.png" id="13_bmdbw"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ggavl"]
+scenes/1/scene = ExtResource("1_8uan7")
+scenes/2/scene = ExtResource("5_bvkn0")
+scenes/3/scene = ExtResource("6_qdu17")
+scenes/4/scene = ExtResource("7_atads")
+scenes/5/scene = ExtResource("8_4ugvu")
+scenes/6/scene = ExtResource("9_gveqj")
+scenes/7/scene = ExtResource("10_25c11")
+scenes/8/scene = ExtResource("11_fmxha")
+scenes/9/scene = ExtResource("12_sbw8w")
+scenes/10/scene = ExtResource("2_8ml1v")
+scenes/11/scene = ExtResource("3_g5en1")
+scenes/12/scene = ExtResource("4_rgmso")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rr72"]
+texture = ExtResource("13_bmdbw")
+texture_region_size = Vector2i(70, 70)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-35, -35, 35, -35, 35, 35, -35, 35)
+
+[resource]
+tile_size = Vector2i(70, 70)
+physics_layer_0/collision_layer = 3
+sources/2 = SubResource("TileSetAtlasSource_5rr72")
+sources/1 = SubResource("TileSetScenesCollectionSource_ggavl")

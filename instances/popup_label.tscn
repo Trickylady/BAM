@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl6d772vmnfmu"]
+
+[ext_resource type="Script" uid="uid://c7kj346lgpojl" path="res://instances/popup_label.gd" id="1_51d78"]
+[ext_resource type="Theme" uid="uid://ccq1etdjf802w" path="res://theme/game.theme" id="1_ykenr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5hxuf"]
+font_size = 42
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PopupLabel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_ykenr")
+script = ExtResource("1_51d78")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -357.0
+offset_top = -185.0
+offset_right = 357.0
+offset_bottom = 22.0
+text = "Popup Label"
+label_settings = SubResource("LabelSettings_5hxuf")
+horizontal_alignment = 1
+vertical_alignment = 2

@@ -1,4 +1,3 @@
-@tool
 extends Area2D
 class_name PickUp
 
@@ -8,6 +7,7 @@ enum Type{
 	SPEED,
 	SHIELD,
 	EXTRA_BOMB,
+	BIGGER_EXPLOSION,
 	DESTROY_TILES,
 	KILL_ENEMY,
 	EXTRA_LIFE,
@@ -20,11 +20,26 @@ const Textures: Dictionary = {
 	Type.SPEED: preload("res://graphics/boosts/boost_speed.png"),
 	Type.SHIELD: preload("res://graphics/boosts/boost_shield.png"),
 	Type.EXTRA_BOMB: preload("res://graphics/boosts/boost_extrabomb.png"),
+	Type.BIGGER_EXPLOSION: preload("res://graphics/boosts/boost_extrabomb.png"),
 	Type.DESTROY_TILES: preload("res://graphics/boosts/boost_destroy_all_tiles.png"),
 	Type.KILL_ENEMY: preload("res://graphics/boosts/boost_kill_one_enemy.png"),
 	Type.EXTRA_LIFE: preload("res://graphics/boosts/boost_life.png"),
-	Type.EXTRA_HEALTH: preload("res://graphics/boosts/boost_health.png")
+	Type.EXTRA_HEALTH: preload("res://graphics/boosts/boost_health.png"),
 }
+
+const Labels: Dictionary = {
+	Type.CRYSTAL: "",
+	Type.POT_OF_GOLD: "Pot Of Gold",
+	Type.SPEED: "Speed",
+	Type.SHIELD: "Shield",
+	Type.EXTRA_BOMB: "Extra Bomb",
+	Type.BIGGER_EXPLOSION: "Bigger Explosion",
+	Type.DESTROY_TILES: "Destroy Tiles",
+	Type.KILL_ENEMY: "Kill Enemy",
+	Type.EXTRA_LIFE: "Extra Life",
+	Type.EXTRA_HEALTH: "Extra Health",
+}
+
 
 
 @export var type: Type = Type.CRYSTAL: set = set_type
@@ -62,7 +77,17 @@ func pick_up() -> void:
 	if collision_shape: collision_shape.set_deferred(&"disabled", true)
 	if particles: particles.emitting = true
 	if sfx: sfx.play()
+	add_label()
 	collected.emit()
+
+
+func add_label() -> void:
+	var label_text: String = Labels[type]
+	if not label_text: return
+	var popup_label: PopupLabel = preload("res://instances/popup_label.tscn").instantiate()
+	popup_label.text = label_text
+	Mng.level.gameoverlay.add_child(popup_label)
+	popup_label.global_position = global_position
 
 
 func _on_body_entered(body: PhysicsBody2D) -> void:
