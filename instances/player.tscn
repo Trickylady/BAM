@@ -227,6 +227,21 @@ animations = [{
 _data = [Vector2(0, 0.5799562), 0.0, 2.4425428, 0, 0, Vector2(1, 0), -3.0968077, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_4n7q4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_snyl3"]
 resource_name = "invincible"
 tracks/0/type = "value"
@@ -256,28 +271,13 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_4n7q4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8r68h"]
 _data = {
 &"RESET": SubResource("Animation_4n7q4"),
 &"invincible": SubResource("Animation_snyl3")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 470
 script = ExtResource("1_onrkg")
 

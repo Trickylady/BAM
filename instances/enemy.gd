@@ -90,10 +90,17 @@ func die() -> void:
 	if is_dead: return
 	is_dead = true
 	destroyed.emit()
-	$Collision.set_deferred(&"disabled", true)
+	$CollisionShape2D.set_deferred(&"disabled", true)
 	set_process(false)
 	set_physics_process(false)
 	$SFXDie.play()
 	%Sprite.play("snakedead")
 	await %Sprite.animation_finished
 	queue_free()
+	
+	
+
+
+func _on_collision_shape_2d_tree_entered(body: Node) -> void:
+	if body.is_in_group("Player"):
+		die()
