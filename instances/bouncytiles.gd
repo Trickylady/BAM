@@ -85,9 +85,6 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 		if body.is_invincible:
 			Mng.level.player.position = default_spawn_point
 
-
-
-
 	if body is Enemy:
 		body.die()
 	
