@@ -9,20 +9,12 @@ class_name Player
 		$BombPlacementSys.explosion_size = explosion_size
 @onready var bomb_placement_sys: BombPlacementSys = $BombPlacementSys
 
-
 var max_bombs_at_once = 5
-var health: float = Mng.PLAYER_MAX_HEALTH:
-	set(value):
-		health = clamp(value, 0, Mng.PLAYER_MAX_HEALTH)
-		health_updated.emit()
 
 var direction: Vector2i = Vector2i.ZERO
 var is_dead: bool = false
 var target_position: Vector2
 var moving := false
-
-
-signal health_updated
 
 func _ready():
 	position = position.snapped(Mng.TILE_SIZE)
@@ -86,9 +78,9 @@ func _process(_delta: float) -> void:
 
 
 func take_damage(amount: float) -> void:
-	health -= amount
+	Mng.dragon_health -= amount
 	#updateHearts()
-	if health <= 0.0:
+	if Mng.dragon_health <= 0.0:
 		die()
 
 

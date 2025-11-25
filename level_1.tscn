@@ -61,12 +61,28 @@ unique_name_in_owner = true
 [node name="Enemy1" parent="Arena/Enemies" instance=ExtResource("7_gyffv")]
 position = Vector2(357, 766)
 
+[node name="Enemy2" parent="Arena/Enemies" instance=ExtResource("7_gyffv")]
+position = Vector2(560, 911)
+
+[node name="Enemy3" parent="Arena/Enemies" instance=ExtResource("7_gyffv")]
+position = Vector2(840, 630)
+
+[node name="Enemy4" parent="Arena/Enemies" instance=ExtResource("7_gyffv")]
+position = Vector2(1262, 911)
+
+[node name="Enemy5" parent="Arena/Enemies" instance=ExtResource("7_gyffv")]
+position = Vector2(910, 350)
+
+[node name="Enemy6" parent="Arena/Enemies" instance=ExtResource("7_gyffv")]
+position = Vector2(1505, 105)
+
 [node name="Player" parent="Arena" instance=ExtResource("6_5hph3")]
 unique_name_in_owner = true
 position = Vector2(73, 982)
 collision_mask = 255
 
 [node name="Gameoverlay" parent="." instance=ExtResource("8_5rr72")]
+metadata/_edit_lock_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_27bay")
@@ -74,12 +90,12 @@ autoplay = true
 bus = &"Music"
 
 [connection signal="body_entered" from="Arena/TileMapLevel/crystal" to="Arena/TileMapLevel/crystal" method="_on_body_entered"]
-[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@31988" to="Arena/TileMapLevel/@Area2D@31988" method="_on_body_entered"]
-[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@31989" to="Arena/TileMapLevel/@Area2D@31989" method="_on_body_entered"]
-[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@31992" to="Arena/TileMapLevel/@Area2D@31992" method="_on_body_entered"]
-[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@31993" to="Arena/TileMapLevel/@Area2D@31993" method="_on_body_entered"]
-[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@31996" to="Arena/TileMapLevel/@Area2D@31996" method="_on_body_entered"]
-[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@32004" to="Arena/TileMapLevel/@Area2D@32004" method="_on_body_entered"]
-[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@32055" to="Arena/TileMapLevel/@Area2D@32055" method="_on_body_entered"]
-[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@32056" to="Arena/TileMapLevel/@Area2D@32056" method="_on_body_entered"]
-[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@32057" to="Arena/TileMapLevel/@Area2D@32057" method="_on_body_entered"]
+[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@39981" to="Arena/TileMapLevel/@Area2D@39981" method="_on_body_entered"]
+[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@39982" to="Arena/TileMapLevel/@Area2D@39982" method="_on_body_entered"]
+[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@39985" to="Arena/TileMapLevel/@Area2D@39985" method="_on_body_entered"]
+[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@39986" to="Arena/TileMapLevel/@Area2D@39986" method="_on_body_entered"]
+[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@39989" to="Arena/TileMapLevel/@Area2D@39989" method="_on_body_entered"]
+[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@39997" to="Arena/TileMapLevel/@Area2D@39997" method="_on_body_entered"]
+[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@40048" to="Arena/TileMapLevel/@Area2D@40048" method="_on_body_entered"]
+[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@40049" to="Arena/TileMapLevel/@Area2D@40049" method="_on_body_entered"]
+[connection signal="body_entered" from="Arena/TileMapLevel/@Area2D@40050" to="Arena/TileMapLevel/@Area2D@40050" method="_on_body_entered"]
