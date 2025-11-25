@@ -2,7 +2,7 @@ extends Node
 
 const TILE_SIZE: Vector2 = Vector2(70, 70)
 var is_publish: bool = true
-var is_web: bool = true
+var is_web: bool = false
 
 #region Game Modifiers
 # level

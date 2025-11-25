@@ -5,7 +5,6 @@ class_name Bouncytiles
 const MIN_SPEED = 10 # px/seconds
 
 var direction: Vector2
-var default_spawn_point: Vector2
 var speed: float
 var deceleration: float = 1.0
 var is_moving: bool:
@@ -18,10 +17,10 @@ var target_position: Vector2
 
 
 func _ready() -> void:
+	if Mng.is_publish:
+		%Label.hide()
 	target_position = position
-	if Mng.level.player:
-		default_spawn_point = Mng.level.player.position
-
+	
 	is_moving = false
 
 
@@ -77,14 +76,15 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 		return
 	position = position.snapped(Mng.TILE_SIZE) - Mng.TILE_SIZE/2.0
 	
-	if position == Mng.level.player.target_position:
+	if position == Mng.level.player.target_position + Mng.TILE_SIZE/2.0:
 		position = position - direction * Mng.TILE_SIZE
 
 	if body is Player:
 		body.take_damage(3.0)
-		if body.is_invincible:
-			Mng.level.player.position = default_spawn_point
 
 	if body is Enemy:
 		body.die()
-	
+
+
+#func find_empty_spot_around() -> Vector2:
+	#pass

@@ -15,6 +15,7 @@ func _ready() -> void:
 		btn.mouse_entered.connect(update_label_color.bind("#4b294b", label, label.text))
 		btn.mouse_exited.connect(update_label_color.bind("white", label, label.text))
 	%TabContainer.current_tab = 0
+	%ButtonBack.hide()
 
 
 func update_label_color(color: String, label: RichTextLabel, text: String) -> void:
