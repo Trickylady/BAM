@@ -5,6 +5,7 @@ class_name Bouncytiles
 const MIN_SPEED = 10 # px/seconds
 
 var direction: Vector2
+var default_spawn_point: Vector2
 var speed: float
 var deceleration: float = 1.0
 var is_moving: bool:
@@ -18,6 +19,9 @@ var target_position: Vector2
 
 func _ready() -> void:
 	target_position = position
+	if Mng.level.player:
+		default_spawn_point = Mng.level.player.position
+
 	is_moving = false
 
 
@@ -40,14 +44,17 @@ func push(_direction: Vector2, _speed: float = Mng.TILE_SIZE.x * 10.0) -> void:
 
 func _physics_process(delta: float) -> void:
 	position = position.move_toward(target_position, speed * delta)
+	
 	if position == target_position:
 		if speed <= 6 * MIN_SPEED:
+			# Always snap back to default position
 			is_moving = false
 			position = position.snapped(Mng.TILE_SIZE) - Mng.TILE_SIZE/2.0
+			target_position = position  # reset default
 			return
 		else:
 			next_position()
-	#target_position
+	
 	speed = lerpf(speed, MIN_SPEED, deceleration * delta)
 
 
@@ -68,13 +75,19 @@ func next_position() -> void:
 func _on_hit_area_body_entered(body: Node2D) -> void:
 	if not is_moving:
 		return
-	is_moving = false
 	position = position.snapped(Mng.TILE_SIZE) - Mng.TILE_SIZE/2.0
 	
 	if position == Mng.level.player.target_position:
 		position = position - direction * Mng.TILE_SIZE
-	
+
 	if body is Player:
 		body.take_damage(3.0)
+		if body.is_invincible:
+			Mng.level.player.position = default_spawn_point
+
+
+
+
 	if body is Enemy:
 		body.die()
+	
