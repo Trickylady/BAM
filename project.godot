@@ -99,3 +99,8 @@ right={
 2d_physics/layer_7="BounceTile"
 2d_physics/layer_8="Crystal"
 2d_physics/layer_9="Projectile"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
