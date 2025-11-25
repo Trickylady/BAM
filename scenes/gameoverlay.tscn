@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://cynssg52b3qtw"]
+
+[ext_resource type="Texture2D" uid="uid://d0ies5i7oon4d" path="res://graphics/backgrounds/overlay.png" id="1_emjtp"]
+[ext_resource type="Texture2D" uid="uid://cl4iu46ei7g5h" path="res://dragon_icon.png" id="2_ifxr2"]
+[ext_resource type="Script" uid="uid://do2howaa5acsr" path="res://scenes/gameoverlay.gd" id="2_moi16"]
+[ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://theme/ComicaRegular.otf" id="3_moi16"]
+[ext_resource type="Texture2D" uid="uid://n8e0leay807f" path="res://theme/life_full.png" id="4_p76xc"]
+[ext_resource type="Texture2D" uid="uid://d0du11c0tecg7" path="res://theme/life_half.png" id="5_x525y"]
+[ext_resource type="Texture2D" uid="uid://b2bo2yw631hm8" path="res://theme/life_empty.png" id="6_nvs7s"]
+
+[node name="Gameoverlay" type="TextureRect"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_emjtp")
+script = ExtResource("2_moi16")
+metadata/_edit_use_anchors_ = true
+
+[node name="DragonIcon" type="Sprite2D" parent="."]
+position = Vector2(113, 88)
+texture = ExtResource("2_ifxr2")
+
+[node name="lives" type="Label" parent="."]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 29.0
+offset_right = 201.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_moi16")
+theme_override_font_sizes/font_size = 25
+text = "x1"
+
+[node name="Heart" type="Sprite2D" parent="."]
+position = Vector2(57, 188)
+texture = ExtResource("4_p76xc")
+
+[node name="Heart2" type="Sprite2D" parent="."]
+position = Vector2(125, 190)
+texture = ExtResource("4_p76xc")
+
+[node name="Heart3" type="Sprite2D" parent="."]
+position = Vector2(189, 189)
+texture = ExtResource("4_p76xc")
+
+[node name="Heart4" type="Sprite2D" parent="."]
+position = Vector2(58, 254)
+texture = ExtResource("4_p76xc")
+
+[node name="Heart5" type="Sprite2D" parent="."]
+position = Vector2(127, 249)
+texture = ExtResource("5_x525y")
+
+[node name="Heart6" type="Sprite2D" parent="."]
+position = Vector2(191, 251)
+texture = ExtResource("6_nvs7s")

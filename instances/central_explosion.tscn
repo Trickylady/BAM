@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2p7gekgdxofo"]
+
+[ext_resource type="Texture2D" uid="uid://dggwu7j50gr0g" path="res://graphics/explosions/explosion_bomb_location.png" id="1_7vp3v"]
+[ext_resource type="Script" uid="uid://drqubaxx8k877" path="res://instances/central_explosion.gd" id="1_78kel"]
+[ext_resource type="AudioStream" uid="uid://dl6j25f2jh7s0" path="res://audio/SFX_bomb_explode.mp3" id="3_vq6fe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_78kel"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7vp3v")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vq6fe"]
+
+[node name="CentralExplosion" type="Area2D"]
+collision_layer = 16
+collision_mask = 37
+script = ExtResource("1_78kel")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_78kel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vq6fe")
+
+[node name="RayCasts" type="Node2D" parent="."]
+
+[node name="RayCastUp" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(0, -70)
+collision_mask = 70
+
+[node name="RayCastDown" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(0, 70)
+collision_mask = 70
+
+[node name="RayCastRight" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(70, 0)
+collision_mask = 70
+
+[node name="RayCastLeft" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(-70, 0)
+collision_mask = 70
+
+[node name="SFXExplosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vq6fe")
+autoplay = true
+bus = &"SFX"

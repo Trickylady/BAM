@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpdyihmekqwtw"]
+
+[ext_resource type="Script" uid="uid://bn2p42h12iujp" path="res://instances/bullet.gd" id="1_v8qja"]
+[ext_resource type="Texture2D" uid="uid://cy10ii8rt5i7b" path="res://graphics/bullet.png" id="2_t4vbm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qxf0c"]
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 256
+collision_mask = 71
+script = ExtResource("1_v8qja")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qxf0c")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_t4vbm")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="SFXHit" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

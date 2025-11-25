@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b86ggxfii7sjj"]
+
+[ext_resource type="Texture2D" uid="uid://6r6slq2rg20e" path="res://graphics/tiles/bounce_tile.png" id="2_urs72"]
+[ext_resource type="AudioStream" uid="uid://dg4vbgu18dgmb" path="res://audio/sfx_bounce_tile_wall_hit.mp3" id="3_8lcpo"]
+
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lm3os"]
+size = Vector2(66, 64)
+
+[node name="BouncyTIle" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 247
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_lm3os")
+
+[node name="bouncetile" type="Sprite2D" parent="."]
+texture = ExtResource("2_urs72")
+
+[node name="bounces" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8lcpo")
+bus = &"SFX"

@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://rfngiw51iyei"]
+
+[ext_resource type="Texture2D" uid="uid://d60aeclqfs5n" path="res://graphics/bomb_1.png" id="1_4fn8o"]
+[ext_resource type="Script" uid="uid://cu2gwqq4keg31" path="res://instances/bomb.gd" id="1_nfxiy"]
+[ext_resource type="Texture2D" uid="uid://bcgl8pwk5ynh4" path="res://graphics/bomb_2.png" id="2_nfxiy"]
+[ext_resource type="AudioStream" uid="uid://bugbabfw8f7qk" path="res://audio/sfx_bomb_drop.mp3" id="4_6w74q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6w74q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4fn8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nfxiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_4fn8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nfxiy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwkwj"]
+size = Vector2(57, 71)
+
+[node name="Bomb" type="Area2D" groups=["bombs"]]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("1_nfxiy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 3
+z_as_relative = false
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_6w74q")
+autoplay = "default"
+frame_progress = 0.6960339
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_bwkwj")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="SFXbombdrop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6w74q")
+autoplay = true
+bus = &"SFX"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
