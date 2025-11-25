@@ -5,11 +5,13 @@ class_name Enemy
 @export var move_time := 0.60   # how long to move one tile
 @export var see_distance: int = 4   # how long to move one tile
 
-var direction: Vector2i = Vector2i.ZERO
+var direction: Vector2 = Vector2.ZERO
 var target_position: Vector2
 var is_moving := false
 var is_shooting: bool = false
 var is_dead: bool = false
+
+signal destroyed
 
 
 
@@ -29,7 +31,7 @@ func find_new_target() -> void:
 		possible_targets.append(ray.target_position)
 	var random_dir: Vector2 = possible_targets.pick_random()
 	target_position = position + random_dir
-	direction = Vector2i(random_dir.normalized())
+	direction = Vector2(random_dir.normalized())
 	$RayPlayerDetect.target_position = Vector2(direction) * Mng.TILE_SIZE * see_distance
 
 
@@ -48,14 +50,22 @@ func _physics_process(delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	%info.text = %Sprite.animation
-	%Sprite.flip_h = direction == Vector2i.LEFT
+	%Sprite.flip_h = direction == Vector2.LEFT
 	
-	if direction == Vector2i.UP and %Sprite.animation != "snakewalkup":
-		%Sprite.play("snakewalkup")
-	elif direction == Vector2i.DOWN and %Sprite.animation != "snakewalkdown":
-		%Sprite.play("snakewalkdown")
-	elif direction.x != 0 and %Sprite.animation != "snakewalkside":
-		%Sprite.play("snakewalkside")
+	if Mng.level.is_extra_active:
+		if direction == Vector2.UP and %Sprite.animation != "extrasnakeup":
+			%Sprite.play("extrasnakeup")
+		elif direction == Vector2.DOWN and %Sprite.animation != "extrasnakedown":
+			%Sprite.play("extrasnakedown")
+		elif direction.x != 0 and %Sprite.animation != "extrasnakeside":
+			%Sprite.play("extrasnakeside")
+	else:
+		if direction == Vector2.UP and %Sprite.animation != "snakewalkup":
+			%Sprite.play("snakewalkup")
+		elif direction == Vector2.DOWN and %Sprite.animation != "snakewalkdown":
+			%Sprite.play("snakewalkdown")
+		elif direction.x != 0 and %Sprite.animation != "snakewalkside":
+			%Sprite.play("snakewalkside")
 
 
 func shoot() -> void:
@@ -66,7 +76,7 @@ func shoot() -> void:
 	await get_tree().create_timer(0.1).timeout
 	var bullet: Bullet = preload("res://instances/bullet.tscn").instantiate()
 	bullet.position = position
-	bullet.direction = Vector2(direction)
+	bullet.direction = direction
 	Mng.level.enemies.add_child(bullet)
 	await get_tree().create_timer(0.5).timeout
 	is_shooting = false
@@ -74,7 +84,12 @@ func shoot() -> void:
 
 
 func die() -> void:
+	is_dead = true
+	destroyed.emit()
+	$Collision.set_deferred(&"disabled", true)
+	set_process(false)
+	set_physics_process(false)
 	$SFXDie.play()
 	%Sprite.play("snakedead")
 	await %Sprite.animation_finished
-	print("player dead")
+	queue_free()

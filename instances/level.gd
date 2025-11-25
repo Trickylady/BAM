@@ -8,41 +8,42 @@ class_name Level
 @onready var enemies: Node2D = %Enemies
 @onready var bombs: Node2D = %Bombs
 @onready var explosions: Node2D = %Explosions
+@onready var player: Player = %Player
 
 
 var level_scores: int = 0
 var enemy_list: Array[Node] = []
 var crystal_list: Array[Node] = []
+var player_start_position: Vector2
+var is_extra_active: bool = false # activates when all the crystals are collected
 
 
 signal scores_updated
+signal all_crystals_collected
 signal level_won
 
 
 func _ready() -> void:
 	enemy_list = get_tree().get_nodes_in_group("enemies")
-	crystal_list = get_tree().get_nodes_in_group("crystals")
 	for enemy: Enemy in enemy_list:
-		enemy.tree_exited.connect(_on_enemy_freed.bind(enemy))
-	for crystal: Crystal in crystal_list:
-		crystal.tree_exited.connect(_on_crystal_freed.bind(crystal))
+		enemy.destroyed.connect(_on_enemy_destroyed.bind(enemy))
 	
+	player_start_position = %Player.position
 	Mng.level = self
 
 
-func check_win() -> void:
-	if enemy_list.is_empty():
-		level_won.emit()
-		print("Level won")
-
-
-func _on_enemy_freed(enemy: Enemy) -> void:
+func _on_enemy_destroyed(enemy: Enemy) -> void:
 	enemy_list.erase(enemy)
 	level_scores += Mng.ENEMY_KILLED_POINTS
-	check_win()
+	if enemy_list.is_empty():
+		level_won.emit()
 
-
-func _on_crystal_freed(crystal: Crystal) -> void:
+# crystal_list is populated from the crystals themselevs in _ready and connected here
+func _on_crystal_collected(crystal: Crystal) -> void:
 	crystal_list.erase(crystal)
 	level_scores += Mng.CRYSTAL_POINTS
 	scores_updated.emit(level_scores)
+	
+	is_extra_active = crystal_list.is_empty()
+	if is_extra_active:
+		all_crystals_collected.emit()

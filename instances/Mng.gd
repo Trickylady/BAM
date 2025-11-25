@@ -1,13 +1,17 @@
 extends Node
 
-
 const TILE_SIZE: Vector2 = Vector2(70, 70)
+
+#region Game Modifiers
 const CRYSTAL_POINTS: int = 250
 const ENEMY_KILLED_POINTS: int = 250
 const PLAYER_MAX_HEALTH: float = 6.0
 const START_LIVES: int = 3
+const RESPAWN_TIME_AFTER_DEATH: float = 2.5 # seconds
+#endregion
 
 
+#region Game Stats
 var global_scores: int = 0
 var current_level_num: int = 0
 
@@ -26,6 +30,7 @@ signal health_updated
 
 const LEVELS_FOLDER: String = "res://levels/"
 var level_filenames: Array[String] = []
+
 var level: Level:
 	set(value):
 		level = value
