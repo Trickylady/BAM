@@ -24,10 +24,16 @@ func update_all() -> void:
 	update_health()
 	update_bombs()
 	update_crystals()
+	%LabelLevel.text = "Level %d/%d" % [Mng.current_level_num, Mng.levels_tot]
 
 
 func toggle_menu() -> void:
 	%InGameMenu.visible = !%InGameMenu.visible
+
+
+func go_to_next_level_screen() -> void:
+	%next_level_screen.show()
+	pause_game_arena(true)
 
 
 func go_to_win_screen() -> void:

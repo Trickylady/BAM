@@ -79,7 +79,10 @@ func _on_enemy_destroyed(enemy: Enemy) -> void:
 	if enemy_list.is_empty():
 		level_won.emit()
 		await get_tree().create_timer(Mng.RESPAWN_TIME_AFTER_DEATH).timeout
-		gameoverlay.go_to_win_screen()
+		if Mng.current_level_num >= Mng.levels_tot:
+			gameoverlay.go_to_win_screen()
+		else:
+			gameoverlay.go_to_next_level_screen()
 
 
 # crystal_list is populated from the crystals themselevs in _ready and connected here

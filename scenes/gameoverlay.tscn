@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cynssg52b3qtw"]
+[gd_scene load_steps=13 format=3 uid="uid://cynssg52b3qtw"]
 
 [ext_resource type="Texture2D" uid="uid://d0ies5i7oon4d" path="res://graphics/backgrounds/overlay.png" id="1_emjtp"]
 [ext_resource type="Theme" uid="uid://ccq1etdjf802w" path="res://theme/game.theme" id="1_qxep4"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://df15u6aa4rj2" path="res://scenes/in_game_menu.tscn" id="7_q3otv"]
 [ext_resource type="PackedScene" uid="uid://cujr18ofi7m03" path="res://scenes/winscreen.tscn" id="7_ucdoa"]
 [ext_resource type="PackedScene" uid="uid://7yuy7lxikuw0" path="res://scenes/gameover.tscn" id="8_d7jtm"]
+[ext_resource type="PackedScene" uid="uid://c1n4y8ge2kf5a" path="res://scenes/next_level_screen.tscn" id="8_gwhy1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ucdoa"]
 font_size = 42
@@ -186,6 +187,11 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
+[node name="next_level_screen" parent="MarginContainer" instance=ExtResource("8_gwhy1")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
 [node name="winscreen" parent="MarginContainer" instance=ExtResource("7_ucdoa")]
 unique_name_in_owner = true
 visible = false
@@ -195,5 +201,17 @@ layout_mode = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+
+[node name="LabelLevel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+text = "Current Level"
+label_settings = SubResource("LabelSettings_ucdoa")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="visibility_changed" from="MarginContainer/InGameMenu" to="." method="_on_in_game_menu_visibility_changed"]

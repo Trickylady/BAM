@@ -50,7 +50,8 @@ signal health_updated
 #region Levels management
 const LEVELS_FOLDER: String = "res://levels/"
 var level_filenames: Array[String] = []
-
+var levels_tot:
+	get: return level_filenames.size()
 var level: Level:
 	set(value):
 		level = value
@@ -103,11 +104,13 @@ func reset_stats() -> void:
 
 func go_to_next_level() -> void:
 	current_level_num += 1
+	global_scores += current_scores
 	current_scores = 0
-	if current_level_num > level_filenames.size():
+	if current_level_num > levels_tot:
 		go_to_main_menu()
 		return
 	
 	var next_level_index: int = current_level_num - 1
 	var level_path: String = LEVELS_FOLDER.path_join(level_filenames[next_level_index])
 	get_tree().change_scene_to_file(level_path)
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
