@@ -77,7 +77,7 @@ func shoot() -> void:
 	var bullet: Bullet = preload("res://instances/bullet.tscn").instantiate()
 	bullet.position = position
 	bullet.direction = direction
-	Mng.level.enemies.add_child(bullet)
+	Mng.level.bullets.add_child(bullet)
 	await get_tree().create_timer(0.5).timeout
 	is_shooting = false
 	is_moving = true

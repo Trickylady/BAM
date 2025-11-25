@@ -1,55 +1,150 @@
-[gd_scene load_steps=8 format=3 uid="uid://cynssg52b3qtw"]
+[gd_scene load_steps=9 format=3 uid="uid://cynssg52b3qtw"]
 
 [ext_resource type="Texture2D" uid="uid://d0ies5i7oon4d" path="res://graphics/backgrounds/overlay.png" id="1_emjtp"]
+[ext_resource type="Theme" uid="uid://ccq1etdjf802w" path="res://theme/game.theme" id="1_qxep4"]
 [ext_resource type="Texture2D" uid="uid://cl4iu46ei7g5h" path="res://dragon_icon.png" id="2_ifxr2"]
 [ext_resource type="Script" uid="uid://do2howaa5acsr" path="res://scenes/gameoverlay.gd" id="2_moi16"]
 [ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://theme/ComicaRegular.otf" id="3_moi16"]
 [ext_resource type="Texture2D" uid="uid://n8e0leay807f" path="res://theme/life_full.png" id="4_p76xc"]
-[ext_resource type="Texture2D" uid="uid://d0du11c0tecg7" path="res://theme/life_half.png" id="5_x525y"]
-[ext_resource type="Texture2D" uid="uid://b2bo2yw631hm8" path="res://theme/life_empty.png" id="6_nvs7s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ucdoa"]
+font_size = 42
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d7jtm"]
+font_size = 32
+outline_size = 2
 
 [node name="Gameoverlay" type="TextureRect"]
 offset_right = 1920.0
 offset_bottom = 1080.0
+theme = ExtResource("1_qxep4")
 texture = ExtResource("1_emjtp")
 script = ExtResource("2_moi16")
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
-[node name="DragonIcon" type="Sprite2D" parent="."]
-position = Vector2(113, 88)
-texture = ExtResource("2_ifxr2")
-
-[node name="lives" type="Label" parent="."]
+[node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 161.0
-offset_top = 29.0
-offset_right = 201.0
-offset_bottom = 59.0
+offset_left = 39.0
+offset_top = 60.0
+offset_right = 223.0
+offset_bottom = 852.0
+
+[node name="DragonIcon" type="TextureRect" parent="VBox"]
+layout_mode = 2
+texture = ExtResource("2_ifxr2")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="LabelLives" type="Label" parent="VBox/DragonIcon"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 30.0
+grow_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_moi16")
 theme_override_font_sizes/font_size = 25
-text = "x1"
+text = "x10"
+label_settings = SubResource("LabelSettings_ucdoa")
+horizontal_alignment = 2
 
-[node name="Heart" type="Sprite2D" parent="."]
-position = Vector2(57, 188)
+[node name="Empty" type="Control" parent="VBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="GridHealth" type="GridContainer" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 3
+
+[node name="Heart1" type="TextureRect" parent="VBox/GridHealth"]
+layout_mode = 2
+size_flags_horizontal = 6
 texture = ExtResource("4_p76xc")
+stretch_mode = 5
 
-[node name="Heart2" type="Sprite2D" parent="."]
-position = Vector2(125, 190)
+[node name="Heart2" type="TextureRect" parent="VBox/GridHealth"]
+layout_mode = 2
+size_flags_horizontal = 6
 texture = ExtResource("4_p76xc")
+stretch_mode = 5
 
-[node name="Heart3" type="Sprite2D" parent="."]
-position = Vector2(189, 189)
+[node name="Heart3" type="TextureRect" parent="VBox/GridHealth"]
+layout_mode = 2
+size_flags_horizontal = 6
 texture = ExtResource("4_p76xc")
+stretch_mode = 5
 
-[node name="Heart4" type="Sprite2D" parent="."]
-position = Vector2(58, 254)
+[node name="Heart4" type="TextureRect" parent="VBox/GridHealth"]
+layout_mode = 2
+size_flags_horizontal = 6
 texture = ExtResource("4_p76xc")
+stretch_mode = 5
 
-[node name="Heart5" type="Sprite2D" parent="."]
-position = Vector2(127, 249)
-texture = ExtResource("5_x525y")
+[node name="Heart5" type="TextureRect" parent="VBox/GridHealth"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_p76xc")
+stretch_mode = 5
 
-[node name="Heart6" type="Sprite2D" parent="."]
-position = Vector2(191, 251)
-texture = ExtResource("6_nvs7s")
+[node name="Heart6" type="TextureRect" parent="VBox/GridHealth"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_p76xc")
+stretch_mode = 5
+
+[node name="Empty2" type="Control" parent="VBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBox"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Scores"
+horizontal_alignment = 1
+
+[node name="LabelScores" type="Label" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "000000"
+label_settings = SubResource("LabelSettings_d7jtm")
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Bomb Power"
+horizontal_alignment = 1
+
+[node name="LabelBombPower" type="Label" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_d7jtm")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Max Bombs"
+horizontal_alignment = 1
+
+[node name="LabelBombs" type="Label" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0/3"
+label_settings = SubResource("LabelSettings_d7jtm")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="VBox"]
+layout_mode = 2

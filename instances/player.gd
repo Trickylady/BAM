@@ -3,28 +3,36 @@ class_name Player
 
 
 @export var move_time := 0.25   # how long to move one tile
-@export var explosion_size: int = 1:
-	set(value):
-		explosion_size = clamp(value, 0, 10)
-		$BombPlacementSys.explosion_size = explosion_size
 
 @onready var bomb_placement_sys: BombPlacementSys = $BombPlacementSys
-
-var max_bombs_at_once = 5
 
 var direction: Vector2 = Vector2.ZERO
 var is_dead: bool = false: set = set_is_dead
 var target_position: Vector2
 var moving := false
 
+#region Bombs
+var max_bombs_at_once: int = Mng.START_MAX_BOMBS:
+	set(value):
+		max_bombs_at_once = value
+		bombs_updated.emit()
+var bombs_placed: int = 0:
+	set(value):
+		bombs_placed = value
+		bombs_updated.emit()
+var explosion_size: int = 1:
+	set(value):
+		explosion_size = clamp(value, 0, 10)
+		bombs_updated.emit()
+
+signal bombs_updated
+#endregion
+
+
 
 func _ready():
 	position = position.snapped(Mng.TILE_SIZE)
 	target_position = position
-
-
-func pick_up_crystal() -> void:
-	Mng.level.level_scores += Mng.CRYSTAL_POINTS
 
 
 func _physics_process(delta: float) -> void:
@@ -79,7 +87,31 @@ func take_damage(amount: float) -> void:
 		die()
 
 
+func pick_up(obj: PickUp) -> void:
+	Mng.current_scores += obj.points
+	
+	match obj.type:
+		PickUp.Type.CRYSTAL:
+			pass
+		PickUp.Type.SPEED:
+			pass
+		PickUp.Type.SHIELD:
+			pass
+		PickUp.Type.EXTRA_BOMB:
+			max_bombs_at_once += 1
+		PickUp.Type.DESTROY_TILES:
+			Mng.level.destroy_all_tiles()
+		PickUp.Type.KILL_ENEMY:
+			Mng.level.kill_random_enemy()
+		PickUp.Type.EXTRA_LIFE:
+			Mng.dragon_lives += 1
+		PickUp.Type.EXTRA_HEALTH:
+			Mng.dragon_health += 3.0
+
+
 func die() -> void:
+	if is_dead:
+		return
 	Mng.dragon_health = 0
 	is_dead = true
 	$SFXDie.play()
@@ -89,13 +121,16 @@ func die() -> void:
 	if Mng.dragon_lives <= 0:
 		Mng.go_to_gameover_screen()
 	else:
+		Mng.level.clear_projectiles()
 		respawn()
 
 
 func respawn() -> void:
 	%Sprite.play("idledown")
+	Mng.dragon_health = Mng.PLAYER_MAX_HEALTH
 	is_dead = false
 	position = Mng.level.player_start_position
+	target_position = position
 	$SpawnParticles.emitting = true
 
 

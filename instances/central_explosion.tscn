@@ -19,14 +19,16 @@ animations = [{
 
 [node name="CentralExplosion" type="Area2D"]
 collision_layer = 16
-collision_mask = 37
+collision_mask = 33
 script = ExtResource("1_78kel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_78kel")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vq6fe")
+
+[node name="Directionals" type="Node2D" parent="."]
 
 [node name="RayCasts" type="Node2D" parent="."]
 
@@ -50,3 +52,10 @@ collision_mask = 70
 stream = ExtResource("3_vq6fe")
 autoplay = true
 bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

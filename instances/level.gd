@@ -2,24 +2,22 @@ extends Node2D
 class_name Level
 
 
-@export var number: int = 1
-
 @onready var arena: Node2D = %Arena
 @onready var enemies: Node2D = %Enemies
 @onready var bombs: Node2D = %Bombs
 @onready var explosions: Node2D = %Explosions
+@onready var bullets: Node2D = %Bullets
 @onready var player: Player = %Player
 
 
-var level_scores: int = 0
 var enemy_list: Array[Node] = []
 var crystal_list: Array[Node] = []
 var player_start_position: Vector2
 var is_extra_active: bool = false # activates when all the crystals are collected
 
 
-signal scores_updated
 signal all_crystals_collected
+signal destroy_all_triggered
 signal level_won
 
 
@@ -32,18 +30,32 @@ func _ready() -> void:
 	Mng.level = self
 
 
+func clear_projectiles() -> void:
+	for child: Bullet in bullets.get_children():
+		child.queue_free()
+
+
+func destroy_all_tiles() -> void:
+	destroy_all_triggered.emit()
+
+
+func kill_random_enemy() -> void:
+	var random_enemy: Enemy = enemy_list.pick_random()
+	random_enemy.die()
+
+
 func _on_enemy_destroyed(enemy: Enemy) -> void:
 	enemy_list.erase(enemy)
-	level_scores += Mng.ENEMY_KILLED_POINTS
+	var mult: float = Mng.ENEMY_KILLED_MULTIPLIER_CRYSTALS if is_extra_active else 1.0
+	var scores: int = int(Mng.ENEMY_KILLED_POINTS * mult)
+	Mng.current_scores += scores
 	if enemy_list.is_empty():
 		level_won.emit()
 
+
 # crystal_list is populated from the crystals themselevs in _ready and connected here
-func _on_crystal_collected(crystal: Crystal) -> void:
+func _on_crystal_collected(crystal: PickUp) -> void:
 	crystal_list.erase(crystal)
-	level_scores += Mng.CRYSTAL_POINTS
-	scores_updated.emit(level_scores)
-	
 	is_extra_active = crystal_list.is_empty()
 	if is_extra_active:
 		all_crystals_collected.emit()

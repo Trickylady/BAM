@@ -8,7 +8,7 @@ var damage: float = 0.5
 
 
 func _ready() -> void:
-	$Sprite.rotation = direction.angle()
+	rotation = direction.angle()
 
 
 func _physics_process(delta: float) -> void:
@@ -16,10 +16,11 @@ func _physics_process(delta: float) -> void:
 
 
 func destroy() -> void:
+	$Sprite.hide()
 	$Collision.set_deferred(&"disabled", true)
-	if $SFXHit.stream:
-		$SFXHit.play()
-		await $SFXHit.finished
+	set_physics_process(false)
+	$SFXHit.play()
+	await $SFXHit.finished
 	queue_free()
 
 

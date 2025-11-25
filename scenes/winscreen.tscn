@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cujr18ofi7m03"]
 
-[ext_resource type="Script" uid="uid://b1agftvyjxaqx" path="res://winscreen.gd" id="1_ehxyi"]
-[ext_resource type="Texture2D" uid="uid://wvuwv5qgry1q" path="res://gamescreens.png" id="2_pd04t"]
-[ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://ComicaRegular.otf" id="3_2gb7w"]
+[ext_resource type="Script" uid="uid://b1agftvyjxaqx" path="res://scenes/winscreen.gd" id="1_ehxyi"]
+[ext_resource type="Texture2D" uid="uid://wvuwv5qgry1q" path="res://graphics/backgrounds/gamescreens.png" id="2_pd04t"]
+[ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://theme/ComicaRegular.otf" id="3_2gb7w"]
 
 [sub_resource type="Theme" id="Theme_g1o2j"]
 default_font = ExtResource("3_2gb7w")

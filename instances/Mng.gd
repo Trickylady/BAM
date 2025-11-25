@@ -3,16 +3,24 @@ extends Node
 const TILE_SIZE: Vector2 = Vector2(70, 70)
 
 #region Game Modifiers
-const CRYSTAL_POINTS: int = 250
+const GROUND_TILE_POINTS: int = 10
 const ENEMY_KILLED_POINTS: int = 250
+const ENEMY_KILLED_MULTIPLIER_CRYSTALS: float = 2.5
 const PLAYER_MAX_HEALTH: float = 6.0
 const START_LIVES: int = 3
+const START_MAX_BOMBS: int = 5
 const RESPAWN_TIME_AFTER_DEATH: float = 2.5 # seconds
 #endregion
 
 
 #region Game Stats
 var global_scores: int = 0
+var current_scores: int = 0:
+	set(value):
+		current_scores = value
+		scores_updated.emit()
+signal scores_updated
+
 var current_level_num: int = 0
 
 var dragon_lives: int = START_LIVES:
@@ -67,12 +75,14 @@ func start_game() -> void:
 func reset_stats() -> void:
 	current_level_num = 0
 	global_scores = 0
+	current_scores = 0
 	dragon_health = PLAYER_MAX_HEALTH
 	dragon_lives = START_LIVES
 
 
 func go_to_next_level() -> void:
 	current_level_num += 1
+	current_scores = 0
 	if current_level_num > level_filenames.size():
 		go_to_win_screen()
 		return

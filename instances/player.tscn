@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d4k6w0cj6j8gd"]
+[gd_scene load_steps=36 format=3 uid="uid://d4k6w0cj6j8gd"]
 
 [ext_resource type="Texture2D" uid="uid://rqxektrc1enw" path="res://graphics/dragon/dragon_front_1.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dd1353alu4xf6" path="res://instances/player.gd" id="1_onrkg"]
@@ -31,6 +31,7 @@
 [ext_resource type="AudioStream" uid="uid://jodilnd107ln" path="res://audio/sfx_dragon_hurt.mp3" id="29_efrwb"]
 [ext_resource type="AudioStream" uid="uid://d1oae8bqo1ksq" path="res://audio/sfx_you_got_hit_by_snake_venom.mp3" id="30_hiqhm"]
 [ext_resource type="AudioStream" uid="uid://cauoti1j2dw2s" path="res://audio/sfx_push.mp3" id="31_tkwlq"]
+[ext_resource type="Texture2D" uid="uid://cbanm8078juc3" path="res://graphics/snake/enemy_dead_1.png" id="32_snyl3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 
@@ -223,8 +224,12 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="Curve" id="Curve_wc7av"]
+_data = [Vector2(0, 0.5799562), 0.0, 2.4425428, 0, 0, Vector2(1, 0), -3.0968077, 0.0, 0, 0]
+point_count = 2
+
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 478
+collision_mask = 470
 script = ExtResource("1_onrkg")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
@@ -259,6 +264,7 @@ bus = &"SFX"
 
 [node name="SFXHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("29_efrwb")
+volume_db = 16.99
 bus = &"SFX"
 
 [node name="SFXHurtProjectile" type="AudioStreamPlayer" parent="."]
@@ -270,3 +276,15 @@ stream = ExtResource("31_tkwlq")
 bus = &"SFX"
 
 [node name="SpawnParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+texture = ExtResource("32_snyl3")
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.9
+direction = Vector2(0, -1)
+gravity = Vector2(0, 245)
+initial_velocity_min = 68.42
+initial_velocity_max = 210.54
+scale_amount_min = 0.2
+scale_amount_curve = SubResource("Curve_wc7av")

@@ -20,4 +20,4 @@ func update_label_color(color: String, label: RichTextLabel, text: String) -> vo
 
 
 func _backtomenubutton() -> void:
-	get_tree().change_scene_to_file("res://menu.tscn")
+	Mng.go_to_main_menu()

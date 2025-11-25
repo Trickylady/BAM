@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://fmd7y7ul41iq"]
+
+[ext_resource type="Script" uid="uid://beyll6cvr0lr3" path="res://instances/pickup.gd" id="1_eq5ej"]
+[ext_resource type="Texture2D" uid="uid://dfnnv0ot3p57x" path="res://graphics/boosts/boost_shield.png" id="2_eq5ej"]
+[ext_resource type="AudioStream" uid="uid://dmet31qg6ta3y" path="res://audio/sfx_crystal_pickup.mp3" id="3_gbuih"]
+[ext_resource type="PackedScene" uid="uid://b642aatdgeg2h" path="res://instances/collect_particles.tscn" id="4_xy3rq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lm3os"]
+size = Vector2(67, 65)
+
+[node name="shield" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_eq5ej")
+type = 2
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_lm3os")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_eq5ej")
+
+[node name="Sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gbuih")
+bus = &"SFX"
+
+[node name="CollectParticles" parent="." instance=ExtResource("4_xy3rq")]
+position = Vector2(0, 27)
+
+[connection signal="finished" from="Sfx" to="." method="_on_crystalpickup_finished"]

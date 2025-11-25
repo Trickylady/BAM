@@ -9,9 +9,9 @@ var is_exploded: bool = false
 func explode() -> void:
 	if is_exploded:
 		return
-	var central = preload("res://instances/central_explosion.tscn").instantiate()
+	var central: CenteralExplosion = preload("res://instances/central_explosion.tscn").instantiate()
 	central.position = position
-	central.size = explosion_size
+	central.explosion_size = explosion_size
 	Mng.level.explosions.add_child.call_deferred(central)
 	is_exploded = true
 	queue_free()

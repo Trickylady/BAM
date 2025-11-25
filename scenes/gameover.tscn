@@ -5,7 +5,6 @@
 [ext_resource type="FontFile" uid="uid://dwjvb2dyal3gh" path="res://theme/ComicaRegular.otf" id="3_w3x71"]
 [ext_resource type="Texture2D" uid="uid://bpbjqjgym6m30" path="res://graphics/dragon/dragon_dead_1.png" id="4_af4fq"]
 
-
 [sub_resource type="Theme" id="Theme_g1o2j"]
 default_font = ExtResource("3_w3x71")
 default_font_size = 50
