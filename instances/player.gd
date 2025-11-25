@@ -26,7 +26,7 @@ var bombs_placed: int = 0:
 	set(value):
 		bombs_placed = value
 		bombs_updated.emit()
-var explosion_size: int = 2:
+var explosion_size: int = Mng.START_EXPLOSION_SIZE:
 	set(value):
 		explosion_size = min(value, 1)
 		bombs_updated.emit()
@@ -139,6 +139,8 @@ func pick_up(obj: PickUp) -> void:
 			%TimerShieldBoost.start()
 		PickUp.Type.EXTRA_BOMB:
 			max_bombs_at_once += 1
+		PickUp.Type.BIGGER_EXPLOSION:
+			explosion_size += 1
 		PickUp.Type.DESTROY_TILES:
 			Mng.level.destroy_all_tiles()
 		PickUp.Type.KILL_ENEMY:

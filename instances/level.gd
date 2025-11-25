@@ -13,10 +13,19 @@ class_name Level
 
 var enemy_list: Array[Node] = []
 var crystal_list: Array[Node] = []
+var crystals_collected: int = 0:
+	set(value):
+		crystals_collected = value
+		crystals_collected_updated.emit()
+var crystals_total: int = 0:
+	set(value):
+		crystals_total = value
+		crystals_collected_updated.emit()
 var player_start_position: Vector2
 var red_mode_active: bool = false # activates when all the crystals are collected
 
 
+signal crystals_collected_updated
 signal all_crystals_collected
 signal destroy_all_triggered
 signal level_won
@@ -35,6 +44,8 @@ func _ready() -> void:
 	player.died.connect(_on_player_died)
 	
 	Mng.level = self
+	await get_tree().process_frame
+	crystals_total = crystal_list.size()
 
 
 func clear_projectiles() -> void:
@@ -74,6 +85,7 @@ func _on_enemy_destroyed(enemy: Enemy) -> void:
 # crystal_list is populated from the crystals themselevs in _ready and connected here
 func _on_crystal_collected(crystal: PickUp) -> void:
 	crystal_list.erase(crystal)
+	crystals_collected += 1
 	red_mode_active = crystal_list.is_empty()
 	if red_mode_active:
 		%TimerRedMode.start()

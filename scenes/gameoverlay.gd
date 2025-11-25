@@ -23,6 +23,7 @@ func update_all() -> void:
 	update_lives()
 	update_health()
 	update_bombs()
+	update_crystals()
 
 
 func toggle_menu() -> void:
@@ -48,6 +49,8 @@ func pause_game_arena(paused: bool) -> void:
 
 func update_lives() -> void:
 	%LabelLives.text = "x%d" % Mng.dragon_lives
+func update_crystals() -> void:
+	%LabelCrystals.text = "%d/%d" % [Mng.level.crystals_collected, Mng.level.crystals_total]
 
 
 func update_health() -> void:
@@ -86,7 +89,9 @@ func _on_level_ready() -> void:
 	Mng.scores_updated.connect(_on_scores_updated)
 	Mng.health_updated.connect(update_health)
 	Mng.lives_updated.connect(update_lives)
+	Mng.level.crystals_collected_updated.connect(update_crystals)
 	Mng.level.player.bombs_updated.connect(update_bombs)
+	
 	update_all()
 
 
