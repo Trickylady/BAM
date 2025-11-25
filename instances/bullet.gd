@@ -3,7 +3,7 @@ class_name Bullet
 
 
 var direction: Vector2
-var speed: float = Mng.TILE_SIZE.x
+var speed: float = Mng.TILE_SIZE.x * 4.0
 var damage: float = 0.5
 
 

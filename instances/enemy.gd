@@ -4,6 +4,8 @@ class_name Enemy
 
 @export var move_time := 0.60   # how long to move one tile
 @export var see_distance: int = 4   # how long to move one tile
+@export var shoot_cooldown: float = 0.8 # seconds
+@export var bullet_speed: float = Mng.TILE_SIZE.x * 4.0 # pixels/seconds
 
 var direction: Vector2 = Vector2.ZERO
 var target_position: Vector2
@@ -75,10 +77,11 @@ func shoot() -> void:
 	is_moving = false
 	await get_tree().create_timer(0.1).timeout
 	var bullet: Bullet = preload("res://instances/bullet.tscn").instantiate()
+	bullet.speed = bullet_speed
 	bullet.position = position
 	bullet.direction = direction
 	Mng.level.bullets.add_child(bullet)
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(shoot_cooldown).timeout
 	is_shooting = false
 	is_moving = true
 
