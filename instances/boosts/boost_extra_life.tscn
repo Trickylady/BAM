@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://beyll6cvr0lr3" path="res://instances/pickup.gd" id="1_jq6q3"]
 [ext_resource type="Texture2D" uid="uid://ddgx3tejm26sw" path="res://graphics/boosts/boost_life.png" id="2_jq6q3"]
-[ext_resource type="AudioStream" uid="uid://dmet31qg6ta3y" path="res://audio/sfx_crystal_pickup.mp3" id="3_y37t1"]
+[ext_resource type="AudioStream" uid="uid://noqaffa6wflk" path="res://audio/sfx_boost_extra_life.mp3" id="3_sjivc"]
 [ext_resource type="PackedScene" uid="uid://b642aatdgeg2h" path="res://instances/collect_particles.tscn" id="4_7qej2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lm3os"]
@@ -21,7 +21,7 @@ shape = SubResource("RectangleShape2D_lm3os")
 texture = ExtResource("2_jq6q3")
 
 [node name="Sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_y37t1")
+stream = ExtResource("3_sjivc")
 bus = &"SFX"
 
 [node name="CollectParticles" parent="." instance=ExtResource("4_7qej2")]
