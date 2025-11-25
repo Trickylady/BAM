@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://d4k6w0cj6j8gd"]
+[gd_scene load_steps=41 format=3 uid="uid://d4k6w0cj6j8gd"]
 
 [ext_resource type="Texture2D" uid="uid://rqxektrc1enw" path="res://graphics/dragon/dragon_front_1.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dd1353alu4xf6" path="res://instances/player.gd" id="1_onrkg"]
@@ -16,11 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://dxj14k3bp3fvt" path="res://graphics/dragon/dragon_back_3.png" id="14_634y6"]
 [ext_resource type="Texture2D" uid="uid://1s5capxgq2ew" path="res://graphics/dragon/dragon_walk_1.png" id="15_efrwb"]
 [ext_resource type="Texture2D" uid="uid://cr11g11ko3308" path="res://graphics/dragon/shield_dragon_walk_2.png" id="16_7hik5"]
+[ext_resource type="Texture2D" uid="uid://b13d0ylx4d0ht" path="res://graphics/dragon/shield_dragon_front_1.png" id="16_8r68h"]
 [ext_resource type="Texture2D" uid="uid://dqjo4foqfr56q" path="res://graphics/dragon/dragon_front_3.png" id="16_hiqhm"]
+[ext_resource type="Texture2D" uid="uid://b84w5fnkwh4jw" path="res://graphics/dragon/shield_dragon_front_2.png" id="17_cxe1a"]
 [ext_resource type="Texture2D" uid="uid://5j53jrq4mm4x" path="res://graphics/dragon/shield_dragon_walk_3.png" id="17_qtqh7"]
 [ext_resource type="Texture2D" uid="uid://dtopch86wmf8g" path="res://graphics/dragon/dragon_front_2.png" id="17_tkwlq"]
 [ext_resource type="Texture2D" uid="uid://cgtpkds0t1fpj" path="res://graphics/dragon/shield_dragon_back_2.png" id="18_2wuci"]
 [ext_resource type="Texture2D" uid="uid://df7dl2fwjxleu" path="res://graphics/dragon/dragon_walk_2.png" id="18_hl5qd"]
+[ext_resource type="Texture2D" uid="uid://b1d6gsgmttfyd" path="res://graphics/dragon/shield_dragon_front_3.png" id="18_k3gvf"]
 [ext_resource type="Texture2D" uid="uid://ddinuxskk1m4i" path="res://graphics/dragon/shield_dragon_back_1.png" id="19_634y6"]
 [ext_resource type="Texture2D" uid="uid://oik13k32f7ot" path="res://graphics/dragon/dragon_walk_3.png" id="19_ek41f"]
 [ext_resource type="Texture2D" uid="uid://dhq3f1qtrk8rf" path="res://graphics/dragon/shield_dragon_back_3.png" id="19_iruf7"]
@@ -135,10 +138,19 @@ animations = [{
 "name": &"shieldfireup",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_8r68h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_cxe1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_k3gvf")
+}],
 "loop": true,
 "name": &"shieldwalkdown",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -152,7 +164,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"shieldwalkside",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -306,7 +318,8 @@ autowrap_mode = 3
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_b88wv")
-animation = &"walkdown"
+animation = &"shieldwalkdown"
+frame_progress = 0.534632
 
 [node name="BombPlacementSys" type="Node" parent="."]
 script = ExtResource("21_5tmop")

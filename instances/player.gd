@@ -79,7 +79,14 @@ func _physics_process(delta: float) -> void:
 func _process(_delta: float) -> void:
 	%info.text = %Sprite.animation
 	%Sprite.flip_h = direction == Vector2.RIGHT
-	if moving:
+	if has_shield_boost:
+		if direction == Vector2.UP and %Sprite.animation != "shieldwalkup":
+			%Sprite.play("shieldwalkup")
+		elif direction == Vector2.DOWN and %Sprite.animation != "shieldwalkdown":
+			%Sprite.play("shieldwalkdown")
+		elif direction.x != 0 and %Sprite.animation != "shieldwalkside":
+			%Sprite.play("shieldwalkside")
+	elif moving:
 		if direction == Vector2.UP and %Sprite.animation != "walkup":
 			%Sprite.play("walkup")
 		elif direction == Vector2.DOWN and %Sprite.animation != "walkdown":
@@ -117,6 +124,8 @@ func try_push() -> void:
 func take_damage(amount: float) -> void:
 	if is_invincible:
 		return
+	if has_shield_boost:
+		return
 	is_invincible = true
 	Mng.dragon_health -= amount
 	if Mng.dragon_health <= 0.0:
@@ -152,6 +161,8 @@ func pick_up(obj: PickUp) -> void:
 
 
 func die() -> void:
+	if has_shield_boost:
+		return
 	if is_dead:
 		return
 	Mng.dragon_health = 0
