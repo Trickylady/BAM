@@ -24,18 +24,26 @@ func _ready() -> void:
 func push(_direction: Vector2, _speed: float = Mng.TILE_SIZE.x * 10.0) -> void:
 	if is_moving:
 		return
+	
+	# check if against another block
+	$RayCastTiles.target_position = _direction * Mng.TILE_SIZE
+	await get_tree().process_frame
+	if $RayCastTiles.is_colliding():
+		return
+	
+	# apply direction speed and activate the physics process
 	direction = _direction
+	next_position()
 	speed = _speed
 	is_moving = true
 
 
 func _physics_process(delta: float) -> void:
-	# TODO
 	position = position.move_toward(target_position, speed * delta)
 	if position == target_position:
-		if speed < 4 * MIN_SPEED:
+		if speed <= 6 * MIN_SPEED:
 			is_moving = false
-			position = position.snapped(Mng.TILE_SIZE / 2.0)
+			position = position.snapped(Mng.TILE_SIZE) - Mng.TILE_SIZE/2.0
 			return
 		else:
 			next_position()
@@ -45,4 +53,28 @@ func _physics_process(delta: float) -> void:
 
 func next_position() -> void:
 	# TODO: check what's ahead
+	if $RayCastTiles.is_colliding():
+		if speed <= 6 * MIN_SPEED:
+			is_moving = false
+			position = position.snapped(Mng.TILE_SIZE) - Mng.TILE_SIZE/2.0
+			return
+		else:
+			direction = -direction
+			$RayCastTiles.target_position = direction * Mng.TILE_SIZE
+	
 	target_position = position + direction * Mng.TILE_SIZE
+
+
+func _on_hit_area_body_entered(body: Node2D) -> void:
+	if not is_moving:
+		return
+	is_moving = false
+	position = position.snapped(Mng.TILE_SIZE) - Mng.TILE_SIZE/2.0
+	
+	if position == Mng.level.player.target_position:
+		position = position - direction * Mng.TILE_SIZE
+	
+	if body is Player:
+		body.take_damage(3.0)
+	if body is Enemy:
+		body.die()

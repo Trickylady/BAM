@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b86ggxfii7sjj"]
+[gd_scene load_steps=8 format=3 uid="uid://b86ggxfii7sjj"]
 
 [ext_resource type="Script" uid="uid://c2k8mrrrnb7f5" path="res://instances/bouncytiles.gd" id="1_frt4m"]
 [ext_resource type="Texture2D" uid="uid://cbanm8078juc3" path="res://graphics/snake/enemy_dead_1.png" id="2_3hmjs"]
@@ -12,14 +12,19 @@ size = Vector2(66, 64)
 _data = [Vector2(0, 0.5799562), 0.0, 2.4425428, 0, 0, Vector2(1, 0), -3.0968077, 0.0, 0, 0]
 point_count = 2
 
-[node name="BouncyTIle" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_3hmjs"]
+radius = 31.06445
+
+[node name="BouncyTile" type="CharacterBody2D"]
 collision_layer = 64
 collision_mask = 247
 script = ExtResource("1_frt4m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lm3os")
+
+[node name="RayCastTiles" type="RayCast2D" parent="."]
+collision_mask = 70
 
 [node name="Particles" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
@@ -35,9 +40,18 @@ initial_velocity_max = 210.54
 scale_amount_min = 0.2
 scale_amount_curve = SubResource("Curve_wc7av")
 
-[node name="bouncetile" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_urs72")
 
-[node name="bounces" type="AudioStreamPlayer" parent="."]
+[node name="Sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_8lcpo")
 bus = &"SFX"
+
+[node name="HitArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource("CircleShape2D_3hmjs")
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
