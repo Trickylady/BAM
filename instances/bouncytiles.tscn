@@ -28,6 +28,13 @@ z_index = 100
 z_as_relative = false
 collision_mask = 70
 
+[node name="RayCastBombs" type="RayCast2D" parent="."]
+z_index = 100
+z_as_relative = false
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="Particles" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
 emitting = false

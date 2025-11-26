@@ -30,6 +30,7 @@ func push(_direction: Vector2, _speed: float = Mng.TILE_SIZE.x * 10.0) -> void:
 	
 	# check if against another block
 	$RayCastTiles.target_position = _direction * Mng.TILE_SIZE
+	$RayCastBombs.target_position = _direction * Mng.TILE_SIZE * 0.6
 	$RayCastTiles.force_raycast_update()
 	if $RayCastTiles.is_colliding():
 		return
@@ -66,6 +67,12 @@ func next_position() -> void:
 		else:
 			direction = -direction
 			$RayCastTiles.target_position = direction * Mng.TILE_SIZE
+			$RayCastBombs.target_position = direction * Mng.TILE_SIZE * 0.6
+	
+	if $RayCastBombs.is_colliding():
+		is_moving = false
+		var bomb: Bomb = $RayCastBombs.get_collider()
+		bomb.explode()
 	
 	target_position = position + direction * Mng.TILE_SIZE
 
