@@ -48,6 +48,14 @@ func _ready() -> void:
 	crystals_total = crystal_list.size()
 
 
+func _input(event: InputEvent) -> void:
+	if Mng.is_publish: return
+	if event is InputEventKey:
+		if event.keycode == KEY_R and event.is_pressed():
+			get_tree().reload_current_scene()
+			Mng.dragon_lives = Mng.START_LIVES
+
+
 func clear_projectiles() -> void:
 	for child: Bullet in bullets.get_children():
 		child.queue_free()
