@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://d4k6w0cj6j8gd"]
+[gd_scene load_steps=43 format=3 uid="uid://d4k6w0cj6j8gd"]
 
 [ext_resource type="Texture2D" uid="uid://rqxektrc1enw" path="res://graphics/dragon/dragon_front_1.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dd1353alu4xf6" path="res://instances/player.gd" id="1_onrkg"]
@@ -37,6 +37,14 @@
 [ext_resource type="Texture2D" uid="uid://cbanm8078juc3" path="res://graphics/snake/enemy_dead_1.png" id="32_snyl3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+
+[sub_resource type="Curve" id="Curve_wc7av"]
+_data = [Vector2(0, 0.52966106), 0.0, 2.4425428, 0, 0, Vector2(1, 0), -3.0968077, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_cxe1a"]
+offsets = PackedFloat32Array(0.11574952, 0.46489564, 1)
+colors = PackedColorArray(0.20567954, 0.43195832, 0.30903637, 1, 0.49988008, 0.8457019, 0.6495457, 1, 1, 1, 1, 0)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b88wv"]
 animations = [{
@@ -236,10 +244,6 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="Curve" id="Curve_wc7av"]
-_data = [Vector2(0, 0.5799562), 0.0, 2.4425428, 0, 0, Vector2(1, 0), -3.0968077, 0.0, 0, 0]
-point_count = 2
-
 [sub_resource type="Animation" id="Animation_4n7q4"]
 length = 0.001
 tracks/0/type = "value"
@@ -316,17 +320,10 @@ horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
-sprite_frames = SubResource("SpriteFrames_b88wv")
-animation = &"idledown"
-
-[node name="BombPlacementSys" type="Node" parent="."]
-script = ExtResource("21_5tmop")
-
 [node name="SpawnParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 27)
 emitting = false
-amount = 10
+amount = 20
 texture = ExtResource("32_snyl3")
 lifetime = 0.8
 one_shot = true
@@ -337,6 +334,15 @@ initial_velocity_min = 68.42
 initial_velocity_max = 210.54
 scale_amount_min = 0.2
 scale_amount_curve = SubResource("Curve_wc7av")
+color_ramp = SubResource("Gradient_cxe1a")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_b88wv")
+animation = &"idledown"
+
+[node name="BombPlacementSys" type="Node" parent="."]
+script = ExtResource("21_5tmop")
 
 [node name="AnimationInvincible" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

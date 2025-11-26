@@ -15,6 +15,7 @@ theme = ExtResource("1_ykenr")
 script = ExtResource("1_51d78")
 
 [node name="Label" type="Label" parent="."]
+z_index = 1
 layout_mode = 0
 offset_left = -357.0
 offset_top = -185.0

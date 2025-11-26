@@ -1,7 +1,7 @@
 extends Node
 
 const TILE_SIZE: Vector2 = Vector2(70, 70)
-var is_publish: bool = true
+var is_publish: bool = false
 var is_web: bool = false
 
 #region Game Modifiers
@@ -75,8 +75,16 @@ func _ready() -> void:
 	#level_filenames = _get_all_levels() # cannot be used in builds
 	if is_publish:
 		AudioServer.set_bus_volume_linear(0, 0.8)
-		AudioServer.set_bus_volume_linear(1, 0.8)
+		AudioServer.set_bus_volume_linear(1, 0.65)
 		AudioServer.set_bus_volume_linear(2, 0.8)
+
+
+func _input(event: InputEvent) -> void:
+	if Mng.is_publish: return
+	if event is InputEventKey:
+		if event.keycode == KEY_R and event.is_pressed():
+			reset_stats()
+			start_test_game()
 
 
 # cannot be used in builds

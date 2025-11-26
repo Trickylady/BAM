@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cynssg52b3qtw"]
+[gd_scene load_steps=15 format=3 uid="uid://cynssg52b3qtw"]
 
 [ext_resource type="Texture2D" uid="uid://d0ies5i7oon4d" path="res://graphics/backgrounds/overlay.png" id="1_emjtp"]
 [ext_resource type="Theme" uid="uid://ccq1etdjf802w" path="res://theme/game.theme" id="1_qxep4"]
@@ -16,12 +16,22 @@ font_size = 42
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Gradient" id="Gradient_gwhy1"]
+colors = PackedColorArray(0.93333334, 0.18431373, 0.24313726, 1, 0.94235504, 0.17888477, 0.24816725, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_327kh"]
+gradient = SubResource("Gradient_gwhy1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [sub_resource type="LabelSettings" id="LabelSettings_d7jtm"]
 font_size = 32
 outline_size = 2
 
 [node name="Gameoverlay" type="TextureRect"]
 process_mode = 3
+z_index = 2
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme = ExtResource("1_qxep4")
@@ -30,10 +40,39 @@ script = ExtResource("2_moi16")
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
+[node name="LabelLevel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 324.0
+offset_top = 4.0
+offset_right = -56.0
+offset_bottom = 54.0
+grow_horizontal = 2
+text = "Level 1/10"
+label_settings = SubResource("LabelSettings_ucdoa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="LabelLevel"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 522.0
+offset_right = -522.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_327kh")
+expand_mode = 1
+
 [node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 39.0
-offset_top = 60.0
+offset_top = 53.0
 offset_right = 223.0
 offset_bottom = 852.0
 
@@ -129,7 +168,7 @@ layout_mode = 2
 
 [node name="Label2" type="Label" parent="VBox"]
 layout_mode = 2
-text = "Bomb Power"
+text = "Explosion"
 horizontal_alignment = 1
 
 [node name="LabelBombPower" type="Label" parent="VBox"]
@@ -167,6 +206,7 @@ label_settings = SubResource("LabelSettings_d7jtm")
 horizontal_alignment = 1
 
 [node name="HSeparator4" type="HSeparator" parent="VBox"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -201,17 +241,5 @@ layout_mode = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-
-[node name="LabelLevel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 54.0
-grow_horizontal = 2
-text = "Current Level"
-label_settings = SubResource("LabelSettings_ucdoa")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="visibility_changed" from="MarginContainer/InGameMenu" to="." method="_on_in_game_menu_visibility_changed"]
