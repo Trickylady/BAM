@@ -29,6 +29,7 @@ metadata/_edit_lock_ = true
 
 [node name="TileMapBoosts" type="TileMapLayer" parent="Arena"]
 position = Vector2(-35, -35)
+tile_map_data = PackedByteArray("AAAGAAoAAQAAAAAABAA=")
 tile_set = ExtResource("3_vac4a")
 metadata/_edit_lock_ = true
 
